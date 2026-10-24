@@ -3144,6 +3144,7 @@ function route(focus) {
 function mount(next) {
   lang = UI[next] ? next : 'en';
   store.set('lang', lang);
+  const u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null, '', u);
   host.replaceChildren($('#tpl-' + lang).content.cloneNode(true));
   pages = $$('.page', host);
   byId = Object.fromEntries(pages.map(p => [p.id, p]));
