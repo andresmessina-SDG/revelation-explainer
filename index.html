@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#13110E" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="A clear, hopeful guide to the Book of Revelation: seven visions of one age, and twenty of its most misunderstood questions, read in the light of all Scripture.">
-<title>Revelation · The Illuminated Codex / Apocalipsis · El Códice Iluminado</title>
+<title>Revelation · The Illuminated Codex / Apocalipsis · El Códice Iluminado / Откровение · Иллюминированный кодекс</title>
 <script>
 /* Apply saved reading settings before first paint, so there is no flash. */
 (function () {
@@ -24,7 +24,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@500;700&amp;family=Cinzel:wght@600&amp;family=Inter:opsz,wght@14..32,400..700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..650;1,6..72,400..600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@500;700&amp;family=Cinzel:wght@600&amp;family=Inter:opsz,wght@14..32,400..700&amp;family=Literata:ital,opsz,wght@0,7..72,400..650;1,7..72,400..600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..650;1,6..72,400..600&amp;display=swap">
 <style>
 /* ==========================================================================
    Revelation · The Illuminated Codex
@@ -1325,6 +1325,26 @@ h1{font-weight:450;letter-spacing:-.024em;line-height:1.04}
   .teach::before{margin-top:40px}
 }
 
+/* Header: sidebar toggle at the top left, beside the wordmark */
+.top-left{display:flex;align-items:center;gap:4px;min-width:0;margin-left:-6px}
+.side-toggle{min-width:40px;min-height:40px;color:var(--ink-2)}
+.side-toggle[aria-expanded="true"]{background:none;color:var(--ink-2)}
+.side-toggle:hover,.side-toggle[aria-expanded="true"]:hover{background:var(--fill);color:var(--ink)}
+.side-toggle svg{display:block}
+.lang-pick button{min-width:38px}
+
+/* Russian: Newsreader and Cinzel have no Cyrillic, so the book face becomes Literata */
+:root[lang="ru"]{
+  --display:'Literata','New York',ui-serif,Georgia,serif;
+  --text:'Literata','New York',ui-serif,Georgia,serif;
+  --initial:'Literata',Georgia,serif;
+}
+:root[lang="ru"] body{font-size:18.5px;line-height:1.62}
+:root[lang="ru"] h1{font-weight:500;letter-spacing:-.03em}
+:root[lang="ru"] h2,:root[lang="ru"] h3{letter-spacing:-.02em}
+:root[lang="ru"] .illum::first-letter{font-weight:600;font-size:3.2em}
+:root[lang="ru"] .brand-mark{letter-spacing:-.025em}
+
 
 /* ==========================================================================
    Phone refinements
@@ -1478,22 +1498,23 @@ html{-webkit-tap-highlight-color:transparent}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#introduction" data-i18n-label="brandLabel" aria-label="Revelation, The Illuminated Codex — home">
-      <span class="brand-mark"><span data-i18n="brand">Revelation</span><span class="brand-star" aria-hidden="true"> ✦</span></span>
-      <span class="brand-sub" data-i18n="brandSub">The Illuminated Codex</span>
-    </a>
+    <div class="top-left">
+      <button type="button" class="tool-btn side-toggle" id="drawerOpen" aria-controls="drawer" aria-expanded="false" data-i18n-label="toggleSide" aria-label="Show or hide the contents">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="3"/><path d="M9.5 4.5v15"/><path d="M5.6 8.5h1.6M5.6 11h1.6M5.6 13.5h1.6" stroke-linecap="round"/></svg>
+      </button>
+      <a class="brand" href="#introduction" data-i18n-label="brandLabel" aria-label="Revelation — home">
+        <span class="brand-mark"><span data-i18n="brand">Revelation</span><span class="brand-star" aria-hidden="true"> ✦</span></span>
+      </a>
+    </div>
     <div class="top-actions">
       <span class="top-status" id="topStatus" aria-live="polite"></span>
       <div class="lang-pick" role="group" data-i18n-label="langLabel" aria-label="Language">
         <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
         <button type="button" data-lang="es" lang="es" aria-label="Español" aria-pressed="false">ES</button>
+        <button type="button" data-lang="ru" lang="ru" aria-label="Русский" aria-pressed="false">RU</button>
       </div>
       <button type="button" class="tool-btn" id="settingsOpen" aria-haspopup="true" aria-controls="settings" aria-expanded="false" data-i18n-label="settings" aria-label="Reading settings">
         <span aria-hidden="true" class="aa">Aa</span>
-      </button>
-      <button type="button" class="contents-btn" id="drawerOpen" aria-controls="drawer" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
-        <span data-i18n="contents">Contents</span>
       </button>
     </div>
   </div>
@@ -1555,16 +1576,13 @@ html{-webkit-tap-highlight-color:transparent}
           <input id="sideSearch" class="nav-search" type="search" data-i18n-ph="sidePh" placeholder="Search" autocomplete="off">
           <kbd aria-hidden="true">/</kbd>
         </label>
-        <button type="button" class="icon-btn small" id="sideHide" data-i18n-label="hideSide" aria-label="Hide the sidebar">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M9 4.5v15M15.5 10l-2 2 2 2"/></svg>
-        </button>
       </div>
       <nav id="sideNav" data-i18n-label="allChapters" aria-label="All chapters"></nav>
     </div>
   </aside>
   <main class="reading" id="main">
     <div id="pages"></div>
-    <noscript><p class="note">This guide needs JavaScript to show its chapters. / Esta guía necesita JavaScript para mostrar sus capítulos.</p></noscript>
+    <noscript><p class="note">This guide needs JavaScript to show its chapters. / Esta guía necesita JavaScript para mostrar sus capítulos. / Для показа глав этому пособию нужен JavaScript.</p></noscript>
   </main>
 </div>
 
@@ -3692,9 +3710,1065 @@ html{-webkit-tap-highlight-color:transparent}
 </footer>
 
 </template>
+<template id="tpl-ru">
+<section class="page intro" id="introduction" data-nav="Как понимать Откровение" data-num="✦" data-keywords="введение начало цель символы откровение 1 патмос иоанн апокалипсис">
+  <p class="eyebrow">Книга Откровение · Введение</p>
+  <h1>Откровение, полное надежды</h1>
+  <p class="lead">Откровение — не книга тайных шифров о конце света. Это «Откровение Иисуса Христа» (1:1). Оно показывает нам, как это видно с неба, Агнца, Который уже победил, и было дано страдающей церкви, чтобы она оставалась верной до Его пришествия.</p>
+  <p class="resume" id="resume" hidden>Продолжить с того места, где вы остановились: <a href="#">…</a></p>
+
+  <figure class="hero-art">
+    <div class="hero-img"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Saint-Sever_Beatus_f._207v-208r_-_New_Jerusalem.jpg?width=1000" alt="Средневековая миниатюра: Новый Иерусалим в виде квадратного города со стенами и двенадцатью воротами, в центре — Агнец." width="1000" height="700" decoding="async"></div>
+    <figcaption>
+      <blockquote>«Се, творю все новое».</blockquote>
+      <cite>Откровение 21:5 · Синодальный перевод</cite>
+      <small>Новый Иерусалим. Беат из Сен-Севера, XI век.</small>
+    </figcaption>
+  </figure>
+
+  <blockquote class="passage">
+    <span class="rubric">Начнём с Писания</span>
+    <p>Блажен читающий и слушающие слова пророчества сего и соблюдающие написанное в нем; ибо время близко.</p>
+    <footer><cite>Откровение 1:3</cite><a href="https://www.bible.com/bible/400/REV.1.SYNO" target="_blank" rel="noopener">Читать Откровение 1 ↗</a></footer>
+  </blockquote>
+
+  <h2>Что такое Откровение?</h2>
+  <p class="illum">Откровение — последняя книга Библии. Апостол Иоанн написал её около 95 года по Р. Х., в конце правления императора Домициана, когда был сослан на остров Патмос «за слово Божие и за свидетельство Иисуса Христа» (1:9). Воскресший Христос дал ему ряд видений и велел отправить их семи настоящим церквам римской провинции Азия, на территории нынешней западной Турции.</p>
+  <p>Греческое название, <em>апокалипсис</em>, означает <strong>снятие покрова</strong>. Откровение отодвигает завесу и показывает, что на самом деле происходит за кулисами истории: Христос царствует уже сейчас, сатана свирепствует против церкви, Бог судит зло, а Его народ будет жить с Ним вечно. Книга написана для того, чтобы её поняли. Она даже обещает благословение каждому, кто читает её вслух и исполняет написанное.</p>
+  <div class="note"><p>Откровение — это одновременно послание, пророчество и апокалипсис (1:1–4). Сначала оно обращалось к христианам первого века, а через них — к церкви во все времена.</p></div>
+
+  <h2>Зачем оно было написано?</h2>
+  <p>Представьте, что вы христианин в Римской империи. Ваши соседи поклоняются богам своего города и чтят кесаря как бога. Отказ участвовать в этом может стоить вам работы, друзей и даже жизни. Церковь кажется маленькой, а Рим — непобедимым. Если Иисус — Царь, почему кажется, что побеждает кесарь?</p>
+  <p><strong>Откровение отвечает, показывая тот же самый мир с точки зрения неба.</strong></p>
+  <div class="purpose">
+    <article><span class="n">I</span><h3>Мужество в страданиях</h3><p>Христос знает испытания Своего народа и ходит среди него (1:12–13; 2:10).</p></article>
+    <article><span class="n">II</span><h3>Верность в искушениях</h3><p>Церковь должна отвергать идолопоклонство и компромиссы, даже когда это дорого обходится (2:14; 13:16–17).</p></article>
+    <article><span class="n">III</span><h3>Уверенность во Христе</h3><p>Империи возникают и рушатся, но Агнец уже сейчас на престоле (5:6; 17:14).</p></article>
+    <article><span class="n">IV</span><h3>Надежда на будущее</h3><p>Зло будет осуждено, смерть уничтожена, и всё станет новым (21:4–5).</p></article>
+  </div>
+
+  <h2>Как его читать?</h2>
+  <p>В самом первом стихе слово, переведённое как «показал», означает «показать знаками». Поэтому правильный вопрос — не «буквально или символически?», а «<strong>на что указывает этот знак?</strong>» Часто Откровение само даёт ответ:</p>
+  <table class="symbols">
+    <thead><tr><th scope="col">Образ</th><th scope="col">Что он означает</th><th scope="col">Где</th></tr></thead>
+    <tbody>
+      <tr><td>Семь светильников</td><td>Церкви</td><td>1:20</td></tr>
+      <tr><td>Агнец с семью рогами</td><td>Христос, закланный и воскресший, всемогущий</td><td>5:6</td></tr>
+      <tr><td>Чаши, полные фимиама</td><td>Молитвы святых</td><td>5:8</td></tr>
+      <tr><td>Великий дракон</td><td>Сатана, «древний змий»</td><td>12:9</td></tr>
+      <tr><td>Многие воды</td><td>Люди, народы, племена и языки</td><td>17:15</td></tr>
+      <tr><td>Жена на звере</td><td>Великий город, царствующий над царями</td><td>17:18</td></tr>
+      <tr><td>Невеста Агнца</td><td>Святой город, народ Божий</td><td>21:9–10</td></tr>
+    </tbody>
+  </table>
+  <p>Так же устроены и числа. <strong>Семь</strong> означает полноту, <strong>двенадцать</strong> — народ Божий, <strong>три с половиной</strong> — ограниченное время бедствий (половина от семи), а <strong>тысяча</strong> — огромное, завершённое число.</p>
+  <div class="note"><p><strong>Четыре вопроса к каждому видению.</strong> Как поняли бы его семь церквей? Где ещё в Библии встречается этот образ? (Откровение сотни раз перекликается с Ветхим Заветом.) Что он показывает нам о Христе? Как он должен изменить нашу жизнь?</p></div>
+
+  <h2>Это хронология будущих событий?</h2>
+  <p>Не одна прямая линия. Семь раз Иоанну показывают всю эпоху от первого пришествия Христа до Его возвращения, и каждый раз — с нового ракурса. Это похоже на матч, снятый семью камерами: игра одна и та же, но каждая камера показывает то, что упустили другие. И каждый раз видение доходит до самого конца.</p>
+  <ol class="mini-visions" aria-label="Семь видений вкратце">
+    <li><span class="mv-n">I</span><span class="mv-c">1–3</span><span class="mv-bar"><i style="--end:0"></i></span></li>
+    <li><span class="mv-n">II</span><span class="mv-c">4–7</span><span class="mv-bar"><i style="--end:6%"></i></span></li>
+    <li><span class="mv-n">III</span><span class="mv-c">8–11</span><span class="mv-bar"><i style="--end:10%"></i></span></li>
+    <li><span class="mv-n">IV</span><span class="mv-c">12–14</span><span class="mv-bar"><i style="--end:14%"></i></span></li>
+    <li><span class="mv-n">V</span><span class="mv-c">15–16</span><span class="mv-bar"><i style="--end:19%"></i></span></li>
+    <li><span class="mv-n">VI</span><span class="mv-c">17–19</span><span class="mv-bar"><i style="--end:24%"></i></span></li>
+    <li><span class="mv-n">VII</span><span class="mv-c">20–22</span><span class="mv-bar"><i style="--end:30%"></i></span></li>
+  </ol>
+  <p class="small">Каждая полоса тянется от первого пришествия Христа до второго. Золото — это конец, который виден всё полнее.</p>
+  <p>Это не значит, что в Откровении нет ничего о будущем. Возвращение Христа, воскресение мёртвых, последний суд и новое творение ещё впереди. Но видение, которое стоит в книге позже, не обязательно описывает то, что произойдёт позже по времени.</p>
+  <p><a class="btn ghost" href="#structure">Посмотреть все семь видений →</a></p>
+
+  <section class="world wide" aria-labelledby="world-title">
+    <span class="rubric">Путеводитель</span>
+    <h2 id="world-title">Мир Откровения</h2>
+    <p>Символы — не отдельные головоломки. Они рассказывают одну историю. Христос — Господь всего. Его церковь принадлежит Ему. Сатана противостоит Ему и нападает на церковь гонениями и обманом. Христос судит зло и вводит Свой народ в новое творение. Выберите любой образ, чтобы изучить его.</p>
+    <div class="world-grid">
+      <a class="node christ" href="#throne"><b>Христос, Агнец</b><small>Уже на престоле, Господь всего · Откр 5</small></a>
+      <div class="world-col">
+        <span class="world-label">Христос спасает и хранит Свой народ</span>
+        <a class="node" href="#144000"><b>Народ Божий</b><small>Запечатлён, сосчитан, сохранён · Откр 7</small></a>
+        <a class="node" href="#witnesses"><b>Два свидетеля</b><small>Церковь, несущая свидетельство · Откр 11</small></a>
+      </div>
+      <div class="world-col">
+        <span class="world-label red">Сатана противостоит Христу и нападает на церковь</span>
+        <a class="node enemy" href="#satan"><b>Дракон</b><small>Сатана, побеждённое творение · Откр 12</small></a>
+        <div class="world-pair">
+          <a class="node enemy" href="#beast"><b>Звери</b><small>Гонения и обман · Откр 13</small></a>
+          <a class="node enemy" href="#babylon"><b>Вавилон</b><small>Соблазн и идолопоклонство · Откр 17–18</small></a>
+        </div>
+      </div>
+      <a class="node newc" href="#new-creation"><b>Новое творение</b><small>Христос возвращается, судит зло и обитает со Своим народом · Откр 19–22</small></a>
+    </div>
+    <p class="world-foot">Дракон не равен Христу. Он — творение под властью Бога, уже побеждённое на кресте и скованное цепью до своего суда.</p>
+  </section>
+
+  <h2>История в пяти действиях</h2>
+  <ol class="movements">
+    <li><span class="n">I</span><b>Церковь страдает</b><small>Верный народ под давлением</small></li>
+    <li><span class="n">II</span><b>Христос царствует</b><small>Небесный престол не пуст</small></li>
+    <li><span class="n">III</span><b>Зло сопротивляется</b><small>Дракон, звери и Вавилон</small></li>
+    <li><span class="n">IV</span><b>Христос торжествует</b><small>Каждый враг побеждён при Его возвращении</small></li>
+    <li><span class="n">V</span><b>Всё новое</b><small>Бог обитает со Своим народом</small></li>
+  </ol>
+
+  <h2>В чём его главная весть?</h2>
+  <p>Тот, Кто умер и воскрес, «жив во веки веков» и имеет «ключи ада и смерти» (1:18). Он придёт снова: «ей, гряду скоро!» (22:20). Всё, что между этими словами, объясняет, почему Его возвращение — добрая весть для Его народа.</p>
+  <aside class="lesson"><span class="rubric">Запомните</span><p>Откровение написано, чтобы рождать верность, а не домыслы, мужество, а не страх, и надежду, а не отчаяние.</p></aside>
+  <div class="btn-row">
+    <a class="btn" href="#structure">Начать с семи видений</a>
+    <a class="btn ghost" href="#churches">Перейти к первому вопросу</a>
+  </div>
+</section>
+
+<section class="page" id="structure" data-nav="Как устроена книга" data-num="◇" data-keywords="структура семь видений прогрессивный параллелизм рекапитуляция хендриксен хронология план">
+  <p class="eyebrow">Как читать книгу · Её структура</p>
+  <h1>Семь видений, одна эпоха</h1>
+  <p class="lead">Откровение не движется вперёд глава за главой. Семь раз Иоанну показывают весь путь от первого пришествия Христа до Его возвращения, и каждое видение — с новой точки обзора. Каждое видение доходит до конца, и каждый раз конец виден всё полнее, пока последнее не открывается в новое творение.</p>
+  <p>Уильям Хендриксен назвал этот принцип <strong>прогрессивным параллелизмом</strong>. Видения идут <em>параллельно</em>, потому что каждое охватывает одну и ту же эпоху. Они <em>прогрессивны</em>, потому что конец сначала возвещается, затем показывается, а затем показывается всё полнее. Выберите любое видение ниже, чтобы раскрыть его.</p>
+
+  <div class="visions wide" role="group" aria-labelledby="visions-h">
+    <div class="visions-title">
+      <span class="rubric">Апокалипсис Иоанна</span>
+      <h3 id="visions-h">Семь видений, одна эпоха</h3>
+      <p>Каждое видение охватывает время от первого пришествия Христа до Его возвращения, и каждое показывает конец всё полнее.</p>
+    </div>
+    <div class="vgrid">
+      <div class="vcell vaxis vlab">Видение</div>
+      <div class="vcell vaxis vmid"><span>Первое пришествие</span><span>Нынешний век</span><span>Второе пришествие</span></div>
+      <div class="vcell vaxis vend">Будущий век</div>
+
+      <div class="vcell vpart vlab">Часть первая · главы 1–11</div>
+      <div class="vcell vpart vmid" data-part="Часть первая · главы 1–11">Церковь в мире</div>
+      <div class="vcell vpart vend"></div>
+
+      <button type="button" class="vcell vlabel" id="vision-1" aria-expanded="false" aria-controls="vd-1"><span class="vn">I</span><span class="vt"><b>Христос среди светильников</b><small>Главы 1–3</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="dot open"></i></div><div class="vcap">1:7 · Его пришествие возвещено</div></div>
+      <div class="vcell vend"></div>
+      <div class="vdetail" id="vd-1" hidden><div class="vdetail-inner">
+        <p>Воскресший Христос ходит среди семи светильников, которые суть церкви (1:12–20). Его семь посланий показывают церковь всех времён такой, какой её видит Он. Конец здесь ещё не изображён, а только обещан: «Се, грядет с облаками» (1:7). Каждое обещание «побеждающему» исполняется в главах 21–22.</p>
+        <ul><li><a href="#churches">Что такое семь посланий?</a></li></ul>
+      </div></div>
+
+      <button type="button" class="vcell vlabel" id="vision-2" aria-expanded="false" aria-controls="vd-2"><span class="vn">II</span><span class="vt"><b>Семь печатей</b><small>Главы 4–7</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="end" style="width:5%"></i><i class="dot"></i></div><div class="vcap">6:12–17 · великий день гнева</div></div>
+      <div class="vcell vend"></div>
+      <div class="vdetail" id="vd-2" hidden><div class="vdetail-inner">
+        <p>Тронный зал неба: закланный Агнец берёт книгу (5:5–6) — это Его воцарение после креста. Когда Он снимает печати, по всей эпохе проносятся завоевание, война, голод и смерть; мученики взывают: «Доколе?»; а шестая печать приносит сам конец (6:12–17). Глава 7 показывает народ Божий запечатлённым и сохранённым.</p>
+        <ul><li><a href="#throne">Кто такой Агнец на престоле?</a></li><li><a href="#horsemen">Кто такие четыре всадника?</a></li><li><a href="#144000">Кто такие 144 000?</a></li><li><a href="#tribulation">Что такое великая скорбь?</a></li></ul>
+      </div></div>
+
+      <button type="button" class="vcell vlabel" id="vision-3" aria-expanded="false" aria-controls="vd-3"><span class="vn">III</span><span class="vt"><b>Семь труб</b><small>Главы 8–11</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="end" style="width:8%"></i><i class="dot"></i></div><div class="vcap">11:15–18 · царство пришло</div></div>
+      <div class="vcell vend"></div>
+      <div class="vdetail" id="vd-3" hidden><div class="vdetail-inner">
+        <p>Трубы возвещают предупреждения над третьей частью мира, но прочие люди «не раскаялись» (9:20). Тем временем церковь свидетельствует, как Моисей и Илия, бывает побеждена и убита — и возносится на небо. Седьмая труба возвещает: «царство мира соделалось царством Господа нашего и Христа Его» (11:15).</p>
+        <ul><li><a href="#trumpets">Что такое трубы и чаши?</a></li><li><a href="#witnesses">Кто такие два свидетеля?</a></li><li><a href="#1260">Что означают 1260 дней?</a></li></ul>
+      </div></div>
+
+      <div class="vcell vpart vlab">Часть вторая · главы 12–22</div>
+      <div class="vcell vpart vmid" data-part="Часть вторая · главы 12–22">Война за войной</div>
+      <div class="vcell vpart vend"></div>
+
+      <button type="button" class="vcell vlabel" id="vision-4" aria-expanded="false" aria-controls="vd-4"><span class="vn">IV</span><span class="vt"><b>Жена и дракон</b><small>Главы 12–14</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="end" style="width:12%"></i><i class="dot"></i></div><div class="vcap">14:14–20 · жатва земли</div></div>
+      <div class="vcell vend"></div>
+      <div class="vdetail" id="vd-4" hidden><div class="vdetail-inner">
+        <p>Занавес поднимается над духовной войной, стоящей за историей. Это видение начинается с рождения и вознесения Христа (12:5). Низвергнутый крестом, дракон свирепствует против жены и вызывает двух зверей — государство-гонителя и его лжепророка. Эпоха завершается тем, что Сын Человеческий пожинает жатву земли (14:14–20).</p>
+        <ul><li><a href="#satan">Правит ли сатана миром?</a></li><li><a href="#beast">Что такое зверь?</a></li><li><a href="#666">Что означает число 666?</a></li><li><a href="#mark">Что такое начертание зверя?</a></li><li><a href="#antichrist">Кто такой антихрист?</a></li></ul>
+      </div></div>
+
+      <button type="button" class="vcell vlabel" id="vision-5" aria-expanded="false" aria-controls="vd-5"><span class="vn">V</span><span class="vt"><b>Семь чаш</b><small>Главы 15–16</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="end" style="width:16%"></i><i class="dot"></i></div><div class="vcap">16:17–21 · «Совершилось!»</div></div>
+      <div class="vcell vend"></div>
+      <div class="vdetail" id="vd-5" hidden><div class="vdetail-inner">
+        <p>Суды труб повторяются — теперь не частичные, а полные, по тем же целям и в том же порядке. Шестая чаша собирает царей к Армагеддону (16:12–16); седьмая приносит голос от престола: «совершилось!»</p>
+        <ul><li><a href="#trumpets">Что такое трубы и чаши?</a></li><li><a href="#armageddon">Что такое Армагеддон?</a></li></ul>
+      </div></div>
+
+      <button type="button" class="vcell vlabel" id="vision-6" aria-expanded="false" aria-controls="vd-6"><span class="vn">VI</span><span class="vt"><b>Вавилон пал, Царь возвращается</b><small>Главы 17–19</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="end" style="width:20%"></i><i class="dot"></i></div><div class="vcap">19:11–21 · Всадник на белом коне</div></div>
+      <div class="vcell vend"></div>
+      <div class="vdetail" id="vd-6" hidden><div class="vdetail-inner">
+        <p>Город-блудница, соблазнявший народы, осуждён, и его оплакивают купцы, любившие его богатство. Затем небо отверзается, и выезжает Христос, «Верный и Истинный», чтобы победить зверя, лжепророка и царей, собравшихся против Него (19:11–21).</p>
+        <ul><li><a href="#babylon">Кто такой Вавилон великий?</a></li><li><a href="#second-coming">Что произойдёт, когда Иисус вернётся?</a></li><li><a href="#rapture">А как же восхищение церкви?</a></li></ul>
+      </div></div>
+
+      <button type="button" class="vcell vlabel" id="vision-7" aria-expanded="false" aria-controls="vd-7"><span class="vn">VII</span><span class="vt"><b>Дракон осуждён, всё новое</b><small>Главы 20–22</small></span><span class="vchev" aria-hidden="true">▸</span></button>
+      <div class="vcell vbar vmid"><div class="vtrack"><i class="age"></i><i class="end" style="width:24%"></i><i class="dot"></i></div><div class="vcap"><span class="tie">пересказывает 19:19–21</span><span>20:7–15 · белый престол</span></div></div>
+      <div class="vcell vbeyond vend"><i></i><span>21:1–22:5 · новое творение</span></div>
+      <div class="vdetail" id="vd-7" hidden><div class="vdetail-inner">
+        <p>Последний раз — снова к началу. При первом пришествии Христа сатана связан, «дабы не прельщал уже народы» (20:1–3), а души умерших верных царствуют со Христом «тысячу лет». После недолгого освобождения следует та же последняя битва, что и в 19:19–21, затем великий белый престол и наконец новое небо и новая земля.</p>
+        <ul><li><a href="#millennium">Что такое тысячелетнее царство?</a></li><li><a href="#resurrection">Что такое первое воскресение?</a></li><li><a href="#new-creation">Что такое Новый Иерусалим?</a></li></ul>
+      </div></div>
+
+      <div class="vclose"></div>
+    </div>
+    <div class="vlegend">
+      <div class="keys">
+        <span><i class="k-age" aria-hidden="true"></i>Вся эпоха, которую охватывает видение</span>
+        <span><i class="k-end" aria-hidden="true"></i>Конец, видимый всё полнее</span>
+        <span><i class="k-ring" aria-hidden="true"></i>Конец возвещён, но не показан</span>
+      </div>
+      <em>По книге Уильяма Хендриксена «Более чем победители»</em>
+    </div>
+  </div>
+
+  <h2>Пять признаков того, что Откровение повторяется</h2>
+  <h3>1. Конец наступает слишком рано</h3>
+  <p>При шестой печати солнце становится мрачным, небо свивается, как свиток, всякая гора и остров сдвигаются с мест, а люди восклицают, что «пришел великий день гнева Его» (6:12–17). Это конец света — а мы только в шестой главе. Книга должна начаться заново, и так и происходит.</p>
+  <h3>2. Трубы и чаши поражают одни и те же цели в одном порядке</h3>
+  <p>Земля, море, реки, солнце, тьма, река Евфрат и последняя буря: трубы (главы 8–11) и чаши (глава 16) следуют одной и той же семичастной схеме, и обе построены по образцу казней египетских. Разница в том, что трубы поражают «третью часть», а чаши — всё целиком. <a href="#trumpets">Сравните оба списка.</a></p>
+  <h3>3. Каждую серию завершает одна и та же буря — и каждый раз сильнее</h3>
+  <p>Каждая серия заканчивается одной и той же бурей от Божьего престола, и каждый раз она усиливается. После печатей — голоса, громы, молнии и землетрясение (8:5). После труб — та же буря, к которой добавлен великий град (11:19). После чаш — землетрясение, какого не бывало в истории, и градины весом около таланта (16:18–21).</p>
+  <h3>4. Одна последняя битва, рассказанная трижды</h3>
+  <p>Бесовские духи собирают царей «на брань в оный великий день» (16:14). Зверь и цари «собранные, чтобы сразиться» с Всадником (19:19). Сатана собирает народы «на брань» (20:8). В греческом каждый раз речь идёт об <em>определённой</em> битве, и главы 19 и 20 опираются на одно и то же пророчество — Иезекииль 38–39. Значит, глава 20 не происходит после главы 19. Она рассказывает о той же последней битве с нового ракурса.</p>
+  <h3>5. Один период под пятью именами</h3>
+  <p>Время свидетельства и страданий церкви названо сорока двумя месяцами, тысячью двумястами шестьюдесятью днями и «времени, времен и полвремени» (11:2–3; 12:6, 14; 13:5). Это три способа сказать одно и то же. <a href="#1260">Посмотрите, как они сочетаются.</a></p>
+
+  <div class="note"><p><strong>Повторение — это способ, которым Бог подтверждает Своё слово.</strong> Иосиф сказал фараону: «что сон повторился фараону дважды, это значит, что сие истинно слово Божие» (Бытие 41:32). Даниил видел те же четыре царства сначала в виде истукана (Даниил 2), а затем в виде четырёх зверей (Даниил 7). Откровение делает то же самое семь раз. Уже самый ранний латинский комментарий на Откровение, написанный Викторином Петавийским (умер около 304 года), учил, что чаши повторяют трубы.</p></div>
+
+  <h2>Две половины</h2>
+  <p>Хендриксен увидел, что семь видений делятся на две группы. <strong>Главы 1–11</strong> показывают борьбу на поверхности истории: церковь гонима миром, но охраняема, отомщена и победоносна. <strong>Главы 12–22</strong> идут глубже и показывают духовную войну, стоящую за этим: Христос и Его церковь против дракона и его помощников — зверя, лжепророка и Вавилона. Один за другим, в порядке, обратном их появлению, эти враги осуждаются: Вавилон (гл. 18), зверь и лжепророк (гл. 19) и, наконец, сам дракон (гл. 20).</p>
+
+  <h2>Так что же ещё впереди?</h2>
+  <p>Каждое видение заканчивается одним и тем же реальным событием: видимым возвращением Христа, воскресением мёртвых, последним судом и новым творением. Параллельные видения показывают также, что эпоха завершается <strong>коротким и напряжённым пиком</strong>: войной зверя против свидетелей (11:7), освобождением сатаны «на малое время» (20:3, 7–9) и тем, о чём пишет Павел: «откроется человек греха» (2 Фессалоникийцам 2:3). Церковь проходит через это последнее испытание под Божьей защитой, и Христос прекращает его Своим пришествием.</p>
+
+  <section class="evidence" aria-labelledby="ev-structure">
+    <h2 id="ev-structure">Откуда мы это знаем?</h2>
+    <p class="evidence-intro">Метки отделяют то, что прямо говорит текст, от связей и выводов, которые из него следуют.</p>
+    <div class="legend"><span><i class="tag stated">Сказано</i> так говорит текст</span><span><i class="tag link">Связь</i> другой отрывок проливает свет</span><span><i class="tag inference">Вывод</i> заключение из обоих</span><span><i class="tag caution">Осторожно</i> где кончается уверенность</span></div>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 6:12–17</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Шестая печать описывает распад неба и земли и возвещает, что пришёл великий день гнева.</p><a href="https://www.bible.com/bible/400/REV.6.SYNO" target="_blank" rel="noopener">Читать Откровение 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 11:15–18</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Седьмая труба возвещает, что пришло «время судить мертвых и дать возмездие рабам Твоим». Это снова конец — на исходе второго цикла.</p><a href="https://www.bible.com/bible/400/REV.11.SYNO" target="_blank" rel="noopener">Читать Откровение 11 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 16:14; 19:19; 20:8</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Три описания народов, собранных «на брань» против Бога, и за каждым следует решающая победа Христа.</p><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать Откровение 20 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Иезекииль 38–39</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Пир птиц в Откровении 19:17–18 взят из Иезекииля 39:17–20, а Гог и Магог в 20:8 — из Иезекииля 38:2. За обеими главами стоит одно пророчество.</p><a href="https://www.bible.com/bible/400/EZK.39.SYNO" target="_blank" rel="noopener">Читать Иезекииль 39 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">05</span><span class="ev-ref">Бытие 41:32; Даниил 2 и 7</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Бог даёт одно откровение в нескольких формах, чтобы подтвердить его. Откровение следует образцу пророков, которых оно цитирует.</p><a href="https://www.bible.com/bible/400/GEN.41.SYNO" target="_blank" rel="noopener">Читать Бытие 41 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">06</span><span class="ev-ref">Где проводить границы</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Семь разделов Хендриксена — это один тщательно продуманный план. Другие толкователи той же традиции, например Г. К. Бил, делят циклы немного иначе, но согласны в главном: видения повторяются и усиливаются, а не идут единой последовательностью.</p></div></details>
+  </section>
+
+  <details class="alt">
+    <summary>Как читают другие</summary>
+    <div class="alt-body">
+      <p class="alt-intro">Главное различие в том, образуют ли главы 4–22 одну непрерывную последовательность.</p>
+      <div class="alt-grid">
+        <article><h3>Одна прямая линия</h3><p>Многие футуристы читают главы 4–22 как единую хронологию: церковь взята (4:1), семь лет скорби (главы 6–18), возвращение Христа (гл. 19), затем тысячелетнее земное царство (гл. 20).</p></article>
+        <article class="ours"><h3>Семь параллельных видений</h3><p>Печати, трубы и чаши — каждая серия доходит до конца; глава 20 возвращается к первому пришествию. Книга семь раз показывает одну эпоху и одно возвращение в её конце.</p></article>
+      </div>
+    </div>
+  </details>
+
+  <aside class="lesson"><span class="rubric">Запомните</span><p>В каком бы месте Откровения вы ни читали, крест позади вас, а возвращение Христа — впереди. Вы живёте в той самой эпохе, которую описывают видения.</p></aside>
+</section>
+
+<section class="page" id="interpretations" data-nav="Как толковать Откровение" data-num="◈" data-keywords="толкование претеризм историцизм футуризм идеализм амилленаризм премилленаризм постмилленаризм взгляды">
+  <p class="eyebrow">Как читать книгу · Четыре подхода, три взгляда</p>
+  <h1>Разные подходы, одно Откровение</h1>
+  <p class="lead">Христиане, любящие Откровение, читали его по-разному. Большинство различий сводится к двум вопросам: <em>когда</em> исполняются видения и <em>когда</em> наступает тысяча лет из 20-й главы?</p>
+
+  <div class="primary">
+    <span class="rubric">Прочтение, которому следует это пособие</span>
+    <h2>Христос царствует уже сейчас. Он вернётся однажды, во славе.</h2>
+    <p>Это пособие следует амилленаристскому прочтению реформатских исповеданий, которому учили Герхардус Вос, Луис Беркхоф, Уильям Хендриксен, Энтони Хукема, Ким Риддлбаргер и У. Роберт Годфри. Откровение сначала обращалось к реальным церквам под властью Рима. Его семь видений показывают картину всей эпохи между пришествиями Христа. Тысяча лет из 20-й главы — это нынешняя эпоха, в которой Христос царствует, а сатана не может помешать Евангелию дойти до народов.</p>
+    <p>В конце этой эпохи Христос вернётся видимым образом, один раз. Все мёртвые воскреснут, мир будет судим, а небо и земля станут новыми.</p>
+  </div>
+
+  <div class="disclaimer"><p style="margin:0">Это <strong>два отдельных вопроса</strong>, поэтому ответы на них можно сочетать. Например, человек может быть амилленаристом и частичным претеристом одновременно. Ни одна из схем ниже не является календарём будущего.</p></div>
+
+  <section class="lab" id="lens-study" aria-labelledby="lens-h">
+    <span class="rubric">Вопрос первый · Исполнение</span>
+    <h2 id="lens-h">Когда исполняются видения?</h2>
+    <p>Выберите подход, чтобы увидеть, на что он делает упор. Затенение показывает акцент, а не даты.</p>
+    <div class="tabs" role="tablist" aria-label="Подходы к Откровению" id="lensTabs">
+      <button type="button" class="tab" role="tab" aria-selected="true" aria-controls="lensPanel" data-lens="preterism">Претеризм</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="lensPanel" data-lens="historicism">Историцизм</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="lensPanel" data-lens="futurism">Футуризм</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="lensPanel" data-lens="idealism">Идеализм</button>
+    </div>
+    <div class="panel" role="tabpanel" id="lensPanel" aria-live="polite">
+      <div class="eras" id="lensEras" aria-hidden="true"></div>
+      <h3 id="lensTitle"></h3>
+      <p id="lensDesc"></p>
+      <div class="cols">
+        <div><span class="rubric">На чём делает акцент</span><p id="lensStress"></p></div>
+        <div><span class="rubric">Важная оговорка</span><p id="lensCaveat"></p></div>
+      </div>
+    </div>
+    <div class="note"><p><strong>Смешанные прочтения.</strong> Прочтение этого пособия иногда называют <em>эклектическим</em> или <em>искупительно-историческим</em>: оно всерьёз принимает обстановку первого века (как претеризм), видит в видениях картину всей эпохи (как идеализм) и ожидает реального, будущего конца (как футуризм).</p></div>
+  </section>
+
+  <section class="lab" id="mill-study" aria-labelledby="mill-h">
+    <span class="rubric">Вопрос второй · Откровение 20</span>
+    <h2 id="mill-h">Когда наступает тысяча лет?</h2>
+    <p>Все три взгляда согласны в том, что Христос побеждает. Они расходятся в понимании тысячи лет и её связи с Его возвращением.</p>
+    <div class="tabs" role="tablist" aria-label="Взгляды на тысячелетнее царство" id="millTabs">
+      <button type="button" class="tab" role="tab" aria-selected="true" aria-controls="millPanel" data-mill="a">Амилленаризм</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="millPanel" data-mill="pre">Премилленаризм</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="millPanel" data-mill="post">Постмилленаризм</button>
+    </div>
+    <div class="panel" role="tabpanel" id="millPanel" aria-live="polite">
+      <div class="mill" id="millVisual" role="img"></div>
+      <h3 id="millTitle"></h3>
+      <p id="millDesc"></p>
+      <div class="cols">
+        <div><span class="rubric">Ключевые отрывки</span><p id="millTexts"></p></div>
+        <div><span class="rubric">Важное различие</span><p id="millCaveat"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab" id="matrix-study" aria-labelledby="matrix-h">
+    <span class="rubric">Соединяя вместе</span>
+    <h2 id="matrix-h">Два вопроса вместе</h2>
+    <p>Выберите сочетание, чтобы прочитать краткое описание. Это общие тенденции, а не статистика.</p>
+    <div class="table-scroll">
+      <table class="matrix" id="matrix">
+        <thead><tr><th scope="col">Подход / тысячелетие</th><th scope="col">Премиллен.</th><th scope="col">Амиллен.</th><th scope="col">Постмиллен.</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Частичный претеризм</th><td><button type="button" aria-pressed="false" data-pair="preterism|pre">Возможно</button></td><td><button type="button" aria-pressed="false" data-pair="preterism|a">Часто</button></td><td><button type="button" aria-pressed="false" data-pair="preterism|post">Часто</button></td></tr>
+          <tr><th scope="row">Историцизм</th><td><button type="button" aria-pressed="false" data-pair="historicism|pre">Возможно</button></td><td><button type="button" aria-pressed="false" data-pair="historicism|a">Возможно</button></td><td><button type="button" aria-pressed="false" data-pair="historicism|post">Часто</button></td></tr>
+          <tr><th scope="row">Футуризм</th><td><button type="button" aria-pressed="false" data-pair="futurism|pre">Часто</button></td><td><button type="button" aria-pressed="false" data-pair="futurism|a">Редко</button></td><td><button type="button" aria-pressed="false" data-pair="futurism|post">Редко</button></td></tr>
+          <tr><th scope="row">Идеализм</th><td><button type="button" aria-pressed="false" data-pair="idealism|pre">Редко</button></td><td><button type="button" aria-pressed="false" data-pair="idealism|a">Часто</button></td><td><button type="button" aria-pressed="false" data-pair="idealism|post">Возможно</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="matrix-out" id="matrixOut" aria-live="polite">Выберите ячейку, чтобы увидеть, как сочетаются два ответа.</p>
+  </section>
+
+  <section class="lab" id="passage-study" aria-labelledby="passage-h">
+    <span class="rubric">Попробуйте на отрывке</span>
+    <h2 id="passage-h">Один отрывок, четыре прочтения</h2>
+    <p>Выберите отрывок, затем подход. Эти краткие описания упрощают целый спектр мнений внутри каждого подхода.</p>
+    <label class="field" for="passagePick">Выберите отрывок</label>
+    <select class="select" id="passagePick">
+      <option value="seals">Откровение 6 · Печати</option>
+      <option value="beast">Откровение 13 · Зверь</option>
+      <option value="armageddon">Откровение 16 · Армагеддон</option>
+      <option value="babylon">Откровение 17–18 · Вавилон</option>
+      <option value="millennium">Откровение 20 · Тысячелетнее царство</option>
+    </select>
+    <div class="tabs" role="tablist" aria-label="Подход к выбранному отрывку" id="readingTabs">
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="readingPanel" data-reading="preterism">Претеристы</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="readingPanel" data-reading="historicism">Историцисты</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="readingPanel" data-reading="futurism">Футуристы</button>
+      <button type="button" class="tab" role="tab" aria-selected="true" aria-controls="readingPanel" data-reading="idealism">Идеалисты</button>
+    </div>
+    <div class="panel" role="tabpanel" id="readingPanel" aria-live="polite">
+      <span class="rubric" id="readingLabel"></span>
+      <h3 id="readingTitle"></h3>
+      <p id="readingDesc"></p>
+      <a id="readingTopic" href="#horsemen"></a>
+    </div>
+  </section>
+
+  <aside class="lesson"><span class="rubric">Принцип доброго чтения</span><p>Начинайте с того, что могли понять первые читатели Иоанна. Читайте символы в свете Ветхого Завета. Твёрдо держитесь того, чему ясно учит отрывок, и не цепляйтесь за подробности, о которых спорят верные христиане.</p></aside>
+</section>
+
+<section class="page topic" id="churches" data-nav="Что такое семь посланий?" data-num="01" data-keywords="семь церквей послания ефес смирна пергам фиатира сардис филадельфия лаодикия светильники откровение 2 3 побеждающий">
+  <p class="eyebrow">Вопрос 01 · Откровение 1–3</p>
+  <h1>Что такое семь посланий?</h1>
+  <p class="deck">Слово Христа к Его церкви во все времена</p>
+  <div class="locator" data-vision="1"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.1.SYNO" target="_blank" rel="noopener">Откровение 1</a></li><li><a href="https://www.bible.com/bible/400/REV.2.SYNO" target="_blank" rel="noopener">Откровение 2</a></li><li><a href="https://www.bible.com/bible/400/REV.3.SYNO" target="_blank" rel="noopener">Откровение 3</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Vision_of_the_Seven_Candlesticks,_1498,_NGA_142350.jpg?width=1000" alt="Гравюра: Христос на престоле среди семи светильников, держит семь звёзд, из Его уст исходит меч; перед Ним на коленях Иоанн." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Видение семи светильников</b>, Альбрехт Дюрер, 1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Тайна семи звезд, которые ты видел в деснице Моей, и семи золотых светильников есть сия: семь звезд суть Ангелы семи церквей; а семь светильников, которые ты видел, суть семь церквей.</p><footer><cite>Откровение 1:20</cite><a href="https://www.bible.com/bible/400/REV.1.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Семь церквей — это зашифрованная хронология семи эпох церковной истории, и мы сейчас живём в последней из них, в тепловатой Лаодикии.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Это были семь настоящих общин в римской провинции Азия, перечисленных в том порядке, в каком вестник проходил по связывавшей их дороге. Христос обращается к каждой по имени, говоря о её реальном городе и трудностях. И всё же каждое послание заканчивается словами: «Имеющий ухо да слышит, что Дух говорит <strong>церквам</strong>» — во множественном числе. Семь — число полноты, поэтому вместе эти послания — слово Христа ко всей церкви, в любом месте и в любом веке.</p>
+    <p>Каждое послание построено по одному образцу. Христос называет Себя одним из имён из видения первой главы, говорит: «знаю твои дела», хвалит доброе, обличает дурное, призывает к покаянию и даёт обещание «побеждающему». Каждое из этих обещаний исполняется в последнем видении — видении нового творения.</p>
+  </div>
+  <ul class="churches" aria-label="Семь церквей">
+    <li><span class="ref">2:1–7</span><b>Ефес</b><small>Здрав в учении, но оставил первую любовь</small></li>
+    <li class="clean"><span class="ref">2:8–11</span><b>Смирна</b><small>Бедна и гонима, но богата. Без обличения</small></li>
+    <li><span class="ref">2:12–17</span><b>Пергам</b><small>Верен под давлением, но терпит лжеучение</small></li>
+    <li><span class="ref">2:18–29</span><b>Фиатира</b><small>Растёт в любви и служении, но терпит «Иезавель»</small></li>
+    <li><span class="ref">3:1–6</span><b>Сардис</b><small>Носит имя, будто жив, но мёртв</small></li>
+    <li class="clean"><span class="ref">3:7–13</span><b>Филадельфия</b><small>Немного силы, но верна. Без обличения</small></li>
+    <li><span class="ref">3:14–22</span><b>Лаодикия</b><small>Богата и благополучна, но тепла</small></li>
+  </ul>
+  <h3>Обещания, данные в главах 2–3, исполненные в главах 21–22</h3>
+  <div class="table-scroll"><table class="promises">
+    <thead><tr><th scope="col">Обещание</th><th scope="col">Дано</th><th scope="col">Исполнено</th></tr></thead>
+    <tbody>
+      <tr><td>Древо жизни</td><td class="ref">2:7</td><td><span class="ref">22:2</span> По ту и по другую сторону реки — древо жизни</td></tr>
+      <tr><td>Вне власти второй смерти</td><td class="ref">2:11</td><td><span class="ref">21:7–8</span> Вторая смерть — удел неверных, а не побеждающего</td></tr>
+      <tr><td>Новое имя</td><td class="ref">2:17</td><td><span class="ref">22:4</span> Имя Его будет на челах их</td></tr>
+      <tr><td>Звезда утренняя</td><td class="ref">2:28</td><td><span class="ref">22:16</span> Иисус — звезда светлая и утренняя</td></tr>
+      <tr><td>Имя в книге жизни</td><td class="ref">3:5</td><td><span class="ref">21:27</span> В город войдут только записанные в книге жизни Агнца</td></tr>
+      <tr><td>Имя нового Иерусалима</td><td class="ref">3:12</td><td><span class="ref">21:2</span> Святой город нисходит с неба</td></tr>
+      <tr><td>Место на престоле Христа</td><td class="ref">3:21</td><td><span class="ref">22:5</span> Они будут царствовать во веки веков</td></tr>
+    </tbody>
+  </table></div>
+  <section class="evidence" aria-labelledby="ev-churches">
+    <h2 id="ev-churches">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 1:4, 11</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Иоанн пишет «семи церквам, находящимся в Асии», и называет семь городов.</p><a href="https://www.bible.com/bible/400/REV.1.SYNO" target="_blank" rel="noopener">Читать Откровение 1 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 2:7, 11, 17, 29; 3:6, 13, 22</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Каждое послание завершается призывом слышать, что Дух говорит всем церквам, а не только той, к которой оно обращено.</p><a href="https://www.bible.com/bible/400/REV.2.SYNO" target="_blank" rel="noopener">Читать Откровение 2 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 21–22</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Обещания побеждающему одно за другим появляются вновь как черты нового Иерусалима.</p><a href="https://www.bible.com/bible/400/REV.22.SYNO" target="_blank" rel="noopener">Читать Откровение 22 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">«Ангелы церквей»</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Толкователи расходятся в том, кто такие «Ангелы» (1:20): небесные хранители, пастыри церквей или олицетворение самих церквей. Главная весть посланий от ответа на этот вопрос не зависит.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Семь церковных эпох</h3><p>Некоторые диспенсационалисты и историцисты видят в посланиях пророчество о семи периодах — от апостолов (Ефес) до последних дней (Лаодикия).</p></article>
+    <article class="ours"><h3>Семь реальных церквей, одна вся церковь</h3><p>Послания обращены к реальным общинам первого века, а поскольку семь — число полноты, они говорят к каждой церкви во все времена. Все семь видов церкви существуют одновременно — и сегодня, как и тогда.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Христос ходит среди Своих церквей. Он видит то, что мы скрываем, и обещает всё побеждающим.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Каждое послание заканчивается: «да слышит, что Дух говорит …»</h3><div class="quiz-options"><button class="quiz-opt" data-correct>«церквам»: каждое послание — для всей церкви</button><button class="quiz-opt">«этой церкви»: каждое послание адресовано только одному городу</button><button class="quiz-opt">«последней церкви»: сегодня к нам обращена только Лаодикия</button></div><p class="quiz-feedback" hidden>Множественное число стоит в конце всех семи посланий (2:7 и далее). Христос хочет, чтобы каждая церковь слышала то, что Он говорит каждой.</p></section>
+</section>
+
+<section class="page topic" id="throne" data-nav="Кто такой Агнец на престоле?" data-num="02" data-keywords="тронный зал престол агнец лев старцы двадцать четыре животные книга откровение 4 5 небо поклонение">
+  <p class="eyebrow">Вопрос 02 · Откровение 4–5</p>
+  <h1>Кто такой Агнец на престоле?</h1>
+  <p class="deck">Взгляд с неба, который проясняет всё остальное</p>
+  <div class="locator" data-vision="2"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.4.SYNO" target="_blank" rel="noopener">Откровение 4</a></li><li><a href="https://www.bible.com/bible/400/REV.5.SYNO" target="_blank" rel="noopener">Откровение 5</a></li><li><a href="https://www.bible.com/bible/400/EZK.1.SYNO" target="_blank" rel="noopener">Иезекииль 1</a></li><li><a href="https://www.bible.com/bible/400/ISA.6.SYNO" target="_blank" rel="noopener">Исаия 6</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_Saint_John_before_God_and_the_Elders,_1498,_NGA_142351.jpg?width=1000" alt="Гравюра: Бог на престоле на небе с Агнцем, вокруг двадцать четыре старца в венцах; Иоанн смотрит вверх через открытую дверь." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Святой Иоанн перед Богом и старцами</b>, Альбрехт Дюрер, 1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И один из старцев сказал мне: не плачь; вот, лев от колена Иудина, корень Давидов, победил, и может раскрыть сию книгу и снять семь печатей ее. И я взглянул, и вот, посреди престола и четырех животных и посреди старцев стоял Агнец как бы закланный.</p><footer><cite>Откровение 5:5–6</cite><a href="https://www.bible.com/bible/400/REV.5.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Слова «взойди сюда» в 4:1 — это восхищение церкви, поэтому после третьей главы церковь из книги исчезает.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Прежде чем Иоанн увидит хоть один суд, ему показывают престол. Небо не пусто, и история не вышла из-под контроля: Бог восседает на престоле, окружённый поклонением (гл. 4). Затем наступает поворотный момент всей книги. Никто не достоин раскрыть запечатанную книгу — Божий план осудить зло и искупить Свой народ, — пока старец не возвещает о Льве от колена Иудина. Иоанн оборачивается и видит <strong>Агнца, стоящего как бы закланного</strong>, посреди престола.</p>
+    <p>Это Евангелие в одном образе. Христос победил как Лев, умерев как Агнец, и теперь разделяет престол Своего Отца (3:21). Это Его воцарение после креста и вознесения — то нынешнее царствование, которое подразумевает всё остальное Откровение. Двадцать четыре старца представляют весь народ Божий: двенадцать — за колена Израиля и двенадцать — за апостолов; эти же две дюжины имён написаны на воротах и основаниях нового Иерусалима (21:12–14). Четыре животных — это стражи престола из Иезекииля 1 и Исаии 6, возглавляющие хвалу всего творения.</p>
+    <p>А 4:1 — это призыв Иоанна в видение («покажу тебе»), а не уход церкви. Церковь находится на земле на протяжении всей книги — как «святые», запечатлённые рабы Божии, свидетели и невеста.</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-throne">
+    <h2 id="ev-throne">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 5:5–6, 9</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Иоанн слышит о Льве, но видит закланного Агнца, Который достоин, потому что Своей Кровью искупил людей Богу из всякого народа.</p><a href="https://www.bible.com/bible/400/REV.5.SYNO" target="_blank" rel="noopener">Читать Откровение 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 3:21</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Христос «победил и сел с Отцем Моим на престоле Его». Его царствование следует за Его победой; оно не отложено.</p><a href="https://www.bible.com/bible/400/REV.3.SYNO" target="_blank" rel="noopener">Читать Откровение 3 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 21:12–14</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>На воротах города — имена двенадцати колен, а на его основаниях — двенадцати апостолов: один народ Божий, ветхого и нового завета.</p><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Читать Откровение 21 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 4:1</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Голос говорит: «взойди сюда, и покажу тебе». Он обращён к Иоанну, а не к церкви, и вводит то, что Иоанн увидит.</p><a href="https://www.bible.com/bible/400/REV.4.SYNO" target="_blank" rel="noopener">Читать Откровение 4 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Восхищённая церковь на небе</h3><p>Некоторые диспенсационалисты считают старцев церковью, уже взятой на небо перед семилетней скорбью, а 4:1 — моментом восхищения.</p></article>
+    <article class="ours"><h3>Нынешнее царствование Агнца</h3><p>Главы 4–5 показывают Христа на престоле со времени Его вознесения. Старцы представляют весь народ Божий, а книга, которую Он раскрывает, управляет всей последующей эпохой.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Что бы ни происходило на земле, небесный престол не пуст, и Сидящий на нём был заклан за вас.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Старец говорит Иоанну о Льве. Что Иоанн видит на самом деле?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Агнца, стоящего как бы закланного</button><button class="quiz-opt">Льва с семью головами</button><button class="quiz-opt">Пустой престол</button></div><p class="quiz-feedback" hidden>Иоанн слышит «лев», а видит закланного Агнца (5:5–6). Царская победа Христа была одержана через Его жертвенную смерть.</p></section>
+</section>
+
+<section class="page topic" id="horsemen" data-nav="Кто такие четыре всадника?" data-num="03" data-keywords="четыре всадника печати конь белый рыжий вороной бледный откровение 6 захария завоевание война голод смерть">
+  <p class="eyebrow">Вопрос 03 · Откровение 6</p>
+  <h1>Кто такие четыре всадника?</h1>
+  <p class="deck">Беды падшего века, выпущенные Агнцем</p>
+  <div class="locator" data-vision="2"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.6.SYNO" target="_blank" rel="noopener">Откровение 6</a></li><li><a href="https://www.bible.com/bible/400/ZEC.6.SYNO" target="_blank" rel="noopener">Захария 6</a></li><li><a href="https://www.bible.com/bible/400/MAT.24.SYNO" target="_blank" rel="noopener">Матфея 24</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Four_Horsemen,_1498,_NGA_142352.jpg?width=1000" alt="Гравюра: четыре всадника мчатся по небу, топча людей; над ними ангел." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Четыре всадника</b>, Альбрехт Дюрер, 1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И я взглянул, и вот, конь бледный, и на нем всадник, которому имя «смерть»; и ад следовал за ним; и дана ему власть над четвертою частью земли — умерщвлять мечом и голодом, и мором и зверями земными.</p><footer><cite>Откровение 6:8</cite><a href="https://www.bible.com/bible/400/REV.6.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Четыре сверхъестественных всадника появятся в будущей семилетней скорби, перед самым концом света.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Всадники выезжают только тогда, когда Агнец снимает печати. Они изображают завоевание, войну, нужду и смерть — те же четыре суда, которые Бог назвал через Иезекииля («меч, и голод, и лютых зверей, и моровую язву», Иезекииль 14:21), в образе коней из видений Захарии (Захария 1 и 6). Иисус сказал, что эти беды будут отмечать всю эпоху: «о войнах и о военных слухах… глады, моры и землетрясения», и что это «начало болезней» (Матфея 24:6–8).</p>
+    <p>Итак, всадники — это не четыре будущих события. Это характерные скорби истории между пришествиями Христа. Обратите внимание на пределы: власть им «дана», и только «над четвертою частью земли». Затем пятая печать показывает мучеников, взывающих: «доколе?», а шестая печать приносит сам конец света. Седьмая открывает трубы — следующее видение той же эпохи.</p>
+  </div>
+  <div class="seals" aria-labelledby="seals-h">
+    <h3 id="seals-h">Одна книга, семь печатей</h3>
+    <p>Четыре всадника, вопль от жертвенника и конец, а затем безмолвие перед началом следующего видения.</p>
+    <ol class="seal-row">
+      <li class="seal"><span class="wax" aria-hidden="true">I</span><b>Конь белый</b><small>Завоевание · 6:1–2</small></li>
+      <li class="seal"><span class="wax" aria-hidden="true">II</span><b>Конь рыжий</b><small>Война · 6:3–4</small></li>
+      <li class="seal"><span class="wax" aria-hidden="true">III</span><b>Конь вороной</b><small>Нужда · 6:5–6</small></li>
+      <li class="seal"><span class="wax" aria-hidden="true">IV</span><b>Конь бледный</b><small>Смерть · 6:7–8</small></li>
+      <li class="seal"><span class="wax" aria-hidden="true">V</span><b>Мученики</b><small>«Доколе?» · 6:9–11</small></li>
+      <li class="seal end"><span class="wax" aria-hidden="true">VI</span><b>Конец</b><small>День гнева · 6:12–17</small></li>
+      <li class="seal"><span class="wax" aria-hidden="true">VII</span><b>Безмолвие</b><small>Затем трубы · 8:1–5</small></li>
+    </ol>
+    <p class="seal-note">Между шестой и седьмой печатями глава 7 делает паузу, чтобы показать народ Божий запечатлённым и сохранённым. На вопрос «кто может устоять?» (6:17) ответ даётся сразу: запечатлённые рабы Божии.</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-horsemen">
+    <h2 id="ev-horsemen">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 6:1–8</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Каждый всадник появляется, когда Агнец снимает печать, и каждому власть «дана».</p><a href="https://www.bible.com/bible/400/REV.6.SYNO" target="_blank" rel="noopener">Читать Откровение 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Захария 1:8–11; 6:1–8</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>В ночных видениях Захарии разномастные кони обходят землю, посланные Господом.</p><a href="https://www.bible.com/bible/400/ZEC.6.SYNO" target="_blank" rel="noopener">Читать Захария 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Матфея 24:6–8</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Иисус описывает войны, голод и землетрясения как приметы эпохи перед концом, а не как знаки того, что конец уже наступил.</p><a href="https://www.bible.com/bible/400/MAT.24.SYNO" target="_blank" rel="noopener">Читать Матфея 24 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Конь белый (6:2)</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>О первом всаднике спорят даже реформатские толкователи. Хендриксен видел в нём Христа и шествие Евангелия (ср. 19:11); многие другие видят завоевание или подделку под Христа, поскольку три остальных всадника несут вред.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Суды будущей скорби</h3><p>Футуристы относят печати к грядущему семилетнему периоду, часто видя в белом всаднике антихриста, устанавливающего ложный мир.</p></article>
+    <article class="ours"><h3>Приметы всей эпохи</h3><p>Печати показывают то, что страдает каждое поколение между пришествиями Христа, под властью Агнца, пока шестая печать не приносит конец.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Когда мир содрогается, помните, Кто снимает печати.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Что происходит при шестой печати?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Наступает великий день гнева: конец света</button><button class="quiz-opt">Выезжает пятый всадник</button><button class="quiz-opt">Церковь тайно забирают</button></div><p class="quiz-feedback" hidden>При шестой печати небо свивается, как свиток, и «пришел великий день гнева Его» (6:12–17). Первый цикл видений уже дошёл до конца.</p></section>
+</section>
+
+<section class="page topic" id="144000" data-nav="Кто такие 144 000?" data-num="04" data-keywords="144000 144 000 запечатленные колена израиль великое множество откровение 7 14 церковь">
+  <p class="eyebrow">Вопрос 04 · Откровение 7 и 14</p>
+  <h1>Кто такие 144 000?</h1>
+  <p class="deck">Народ, который Бог считает, запечатлевает и хранит</p>
+  <div class="locator" data-vision="2,4"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.7.SYNO" target="_blank" rel="noopener">Откровение 7</a></li><li><a href="https://www.bible.com/bible/400/REV.14.SYNO" target="_blank" rel="noopener">Откровение 14</a></li><li><a href="https://www.bible.com/bible/400/NUM.1.SYNO" target="_blank" rel="noopener">Числа 1</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Four_Angels_Holding_the_Winds,_1498,_NGA_142354.jpg?width=1000" alt="Гравюра: четыре ангела удерживают ветры, а другой ангел ставит знак на челах толпы верных." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Четыре ангела, удерживающие ветры</b>, и запечатление рабов Божиих, Альбрехт Дюрер, 1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>После сего взглянул я, и вот, великое множество людей, которого никто не мог перечесть, из всех племен и колен, и народов и языков, стояло пред престолом и пред Агнцем в белых одеждах и с пальмовыми ветвями в руках своих.</p><footer><cite>Откровение 7:9</cite><a href="https://www.bible.com/bible/400/REV.7.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Спасутся только 144 000 человек — или это особая группа еврейских благовестников в будущей скорби.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Иоанн <em>слышит</em> число: 144 000 запечатлённых из колен Израиля (7:4). Затем он оборачивается и <em>видит</em> «великое множество людей, которого никто не мог перечесть, из всех племен» (7:9). Именно это произошло в пятой главе, когда он услышал о Льве и увидел Агнца. То, что Иоанн слышит, и то, что он видит, — это одна и та же реальность с двух сторон. <strong>144 000 — это вся церковь</strong>, описанная как истинный Израиль Божий и сосчитанная до последнего человека; великое множество — та же церковь, какова она на самом деле, собранная из всех народов.</p>
+    <p>Это число построено, а не подсчитано: 12 колен × 12 апостолов × 1000 — полнота народа Божьего. Оно оформлено как военная перепись (ср. Числа 1), потому что это воинство Агнца, те, «которые следуют за Агнцем, куда бы Он ни пошел» (14:4). Сам список необычен. Иуда, колено Мессии, стоит первым, а Дан пропущен вовсе. Это не обычный перечень колен; это портрет народа Мессии. Павел желает мира и милости «Израилю Божию» (Галатам 6:16) — то есть церкви, а печать на их челах означает, что они принадлежат Богу и будут сохранены в любом испытании.</p>
+  </div>
+  <div class="pair-cards">
+    <article><span class="ref">Что Иоанн слышит · 7:4–8</span><h3>144 000</h3><p>Сосчитаны по коленам, запечатлены, построены к битве. Церковь как истинный Израиль, в полноте.</p></article>
+    <article class="dark"><span class="ref">Что Иоанн видит · 7:9–17</span><h3>Бесчисленное множество</h3><p>Из всех народов, в белых одеждах, перед престолом. Та же церковь, какова она на самом деле.</p></article>
+  </div>
+  <section class="evidence" aria-labelledby="ev-144">
+    <h2 id="ev-144">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 7:4, 9</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>«Я слышал число запечатленных… После сего взглянул я, и вот, великое множество людей, которого никто не мог перечесть».</p><a href="https://www.bible.com/bible/400/REV.7.SYNO" target="_blank" rel="noopener">Читать Откровение 7 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 5:5–6</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Тот же образец: Иоанн слышит «лев», а видит Агнца. Услышанное и увиденное описывают одну реальность двумя способами.</p><a href="https://www.bible.com/bible/400/REV.5.SYNO" target="_blank" rel="noopener">Читать Откровение 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Галатам 6:16; Римлянам 2:28–29; Филиппийцам 3:3</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Павел называет верующих Израилем Божиим («мир им и милость, и Израилю Божию») и истинным обрезанием — теми, кто служит Богу духом.</p><a href="https://www.bible.com/bible/400/GAL.6.SYNO" target="_blank" rel="noopener">Читать Галатам 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 14:1–4</span><i class="tag inference">Вывод</i></summary><div class="ev-body"><p>144 000 стоят с Агнцем, носят имя Его Отца и следуют за Ним. То, что это вся искупленная церковь, — вывод из глав 5, 7 и 14, взятых вместе.</p><a href="https://www.bible.com/bible/400/REV.14.SYNO" target="_blank" rel="noopener">Читать Откровение 14 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Этнический Израиль в последние времена</h3><p>Диспенсационалисты видят 144 000 верующих евреев, запечатлённых во время будущей скорби, в отличие от множества верующих из язычников.</p></article>
+    <article class="ours"><h3>Весь народ Божий</h3><p>Число символизирует полноту, а множество — это то же собрание, увиденное таким, какое оно есть: одна церковь из иудеев и язычников.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Бог знает каждого из Своего народа по имени, и ни один из них не погибнет.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Что видит Иоанн сразу после того, как слышит число 144 000?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Великое множество, которого никто не мог перечесть, из всех народов</button><button class="quiz-opt">Ровно 144 000 мужчин из Израиля и больше никого</button><button class="quiz-opt">Пустое небо, которое ждёт, чтобы его наполнили</button></div><p class="quiz-feedback" hidden>Иоанн слышит число, а затем видит бесчисленное множество (7:4, 9) — так же, как в пятой главе он услышал о Льве и увидел Агнца.</p></section>
+</section>
+
+<section class="page topic" id="trumpets" data-nav="Что такое трубы и чаши?" data-num="05" data-keywords="семь труб семь чаш казни египет исход гнев третья часть откровение 8 9 15 16 суды язвы">
+  <p class="eyebrow">Вопрос 05 · Откровение 8–9 и 15–16</p>
+  <h1>Что такое трубы и чаши?</h1>
+  <p class="deck">Казни египетские, звучащие над всей эпохой</p>
+  <div class="locator" data-vision="3,5"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.8.SYNO" target="_blank" rel="noopener">Откровение 8</a></li><li><a href="https://www.bible.com/bible/400/REV.9.SYNO" target="_blank" rel="noopener">Откровение 9</a></li><li><a href="https://www.bible.com/bible/400/REV.16.SYNO" target="_blank" rel="noopener">Откровение 16</a></li><li><a href="https://www.bible.com/bible/400/EXO.7.SYNO" target="_blank" rel="noopener">Исход 7</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Seven_Angels_with_the_Trumpets,_probably_c._1496-1498,_NGA_850.jpg?width=1000" alt="Гравюра: семь ангелов получают трубы перед Божьим престолом, а внизу огонь, град и падающая звезда поражают землю и море." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Семь ангелов с трубами</b>, Альбрехт Дюрер, около 1496–1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Прочие же люди, которые не умерли от этих язв, не раскаялись в делах рук своих, так чтобы не поклоняться бесам и золотым, серебряным, медным, каменным и деревянным идолам, которые не могут ни видеть, ни слышать, ни ходить.</p><footer><cite>Откровение 9:20</cite><a href="https://www.bible.com/bible/400/REV.9.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Трубы и чаши — это четырнадцать отдельных бедствий, которые произойдут одно за другим в последние несколько лет истории.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Обе серии построены по образцу казней, которые Бог послал на Египет перед исходом: град и огонь, вода, превращённая в кровь, тьма, саранча, язвы. Смысл тот же, что и в книге Исход. Бог судит мир, который поклоняется ложным богам и угнетает Его народ, и выводит Свой народ на свободу. Прямо перед тем, как звучат трубы, молитвы святых возносятся от жертвенника, и огонь повергается на землю (8:3–5). <strong>Суды — это Божий ответ на молитвы Его народа.</strong></p>
+    <p>Обе серии поражают одни и те же цели в одном и том же порядке. Разница — в том, насколько далеко они простираются. Трубы падают на «третью часть»: это частичные суды-предупреждения, и всё же мир не раскаивается (9:20–21). Чаши — это «семь последних язв, которыми оканчивалась ярость Божия» (15:1). Это не более поздние события, а тот же образец, явленный в полную силу, в конце эпохи.</p>
+  </div>
+  <div class="table-scroll wide"><table class="parallels">
+    <caption>Те же цели, тот же порядок. Трубы предупреждают; чаши завершают.</caption>
+    <thead><tr><th scope="col">Цель</th><th scope="col">Трубы · частично</th><th scope="col">Чаши · полностью</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1 · Земля<small>Исход: град, язвы</small></th><td><span class="ref">8:7</span>Град и огонь; третья часть дерев сгорела</td><td><span class="ref">16:2</span>Гнойные раны на имеющих начертание зверя</td></tr>
+      <tr><th scope="row">2 · Море<small>Исход: кровь</small></th><td><span class="ref">8:8–9</span>Третья часть моря сделалась кровью</td><td><span class="ref">16:3</span>Море сделалось кровью; всё живое в нём умерло</td></tr>
+      <tr><th scope="row">3 · Реки и источники</th><td><span class="ref">8:10–11</span>Звезда «полынь»; третья часть вод стала горькой</td><td><span class="ref">16:4–7</span>Реки и источники сделались кровью</td></tr>
+      <tr><th scope="row">4 · Солнце</th><td><span class="ref">8:12</span>Затмилась третья часть солнца, луны и звёзд</td><td><span class="ref">16:8–9</span>Солнце жжёт людей огнём</td></tr>
+      <tr><th scope="row">5 · Тьма<small>Исход: тьма, саранча</small></th><td><span class="ref">9:1–11</span>Бездна отверзлась; дым затмил небо; саранча</td><td><span class="ref">16:10–11</span>Царство зверя погрузилось во тьму</td></tr>
+      <tr><th scope="row">6 · Евфрат</th><td><span class="ref">9:13–21</span>Освобождены четыре Ангела при реке; огромное войско</td><td><span class="ref">16:12–16</span>Река высохла; цари собраны к Армагеддону</td></tr>
+      <tr class="final"><th scope="row">7 · Конец</th><td><span class="ref">11:15–19</span>«Царство мира соделалось царством Господа нашего»; молнии, землетрясение, град</td><td><span class="ref">16:17–21</span>«Совершилось!»; величайшее землетрясение, огромный град</td></tr>
+    </tbody>
+  </table></div>
+  <section class="evidence" aria-labelledby="ev-trumpets">
+    <h2 id="ev-trumpets">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Исход 7–10</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Кровь, град, саранча, тьма и язвы — это казни египетские, повторённые в Откровении как суды над новым фараоном.</p><a href="https://www.bible.com/bible/400/EXO.9.SYNO" target="_blank" rel="noopener">Читать Исход 9 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 8:3–5</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Фимиам с молитвами святых возносится пред Бога, а затем огонь с того же жертвенника повергается на землю.</p><a href="https://www.bible.com/bible/400/REV.8.SYNO" target="_blank" rel="noopener">Читать Откровение 8 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 9:4, 20–21</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Имеющие печать Божию защищены, а казни — это призывы к покаянию, которые мир отвергает.</p><a href="https://www.bible.com/bible/400/REV.9.SYNO" target="_blank" rel="noopener">Читать Откровение 9 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 15:1</span><i class="tag inference">Вывод</i></summary><div class="ev-body"><p>Чаши названы «последними», потому что ими оканчивается ярость Божия. Понимать их как трубы в полную силу, а не как более поздние события, — вывод из совпадающей семичастной схемы.</p><a href="https://www.bible.com/bible/400/REV.15.SYNO" target="_blank" rel="noopener">Читать Откровение 15 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Хронологический обратный отсчёт</h3><p>Футуристы обычно читают печати, трубы и чаши как двадцать один последовательный суд: трубы выходят из седьмой печати, а чаши — из седьмой трубы.</p></article>
+    <article class="ours"><h3>Параллельные циклы одной эпохи</h3><p>Трубы предупреждают на протяжении всей эпохи; чаши показывают те же суды завершёнными в её конце. Обе серии заканчиваются одной и той же бурей от престола.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Каждое бедствие в этом мире — это труба: призыв покаяться, пока ещё есть время.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>В чём главное различие между трубами и чашами?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Трубы поражают третью часть как предупреждение; чаши — всё целиком</button><button class="quiz-opt">Они поражают совершенно разные части творения</button><button class="quiz-opt">Чаши изливаются на церковь</button></div><p class="quiz-feedback" hidden>Обе серии поражают одни и те же семь целей в одном порядке. Трубы — частичные («третья часть»), а чашами оканчивается ярость Божия (15:1).</p></section>
+</section>
+
+<section class="page topic" id="witnesses" data-nav="Кто такие два свидетеля?" data-num="06" data-keywords="два свидетеля маслины светильники моисей илия откровение 11 храм измерен вретище пророчествовать">
+  <p class="eyebrow">Вопрос 06 · Откровение 11</p>
+  <h1>Кто такие два свидетеля?</h1>
+  <p class="deck">Церковь, свидетельствующая народам</p>
+  <div class="locator" data-vision="3"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.11.SYNO" target="_blank" rel="noopener">Откровение 11</a></li><li><a href="https://www.bible.com/bible/400/ZEC.4.SYNO" target="_blank" rel="noopener">Захария 4</a></li><li><a href="https://www.bible.com/bible/400/DEU.19.SYNO" target="_blank" rel="noopener">Второзаконие 19</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer_-_Saint_John_Devouring_the_Book_(NGA_1941.3.9).jpg?width=1000" alt="Гравюра: могучий ангел с ногами, как огненные столпы, подаёт Иоанну книжку, и тот съедает её." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Святой Иоанн, поглощающий книгу</b>, Альбрехт Дюрер, около 1496–1498. Прямо перед появлением свидетелей Иоанну сказано: «тебе надлежит опять пророчествовать» (10:11). Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И дам двум свидетелям Моим, и они будут пророчествовать тысячу двести шестьдесят дней, будучи облечены во вретище. Это суть две маслины и два светильника, стоящие пред Богом земли.</p><footer><cite>Откровение 11:3–4</cite><a href="https://www.bible.com/bible/400/REV.11.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Два конкретных пророка — возможно, вернувшиеся Моисей и Илия — будут проповедовать в восстановленном храме в Иерусалиме во время будущей скорби.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Откровение само говорит нам, кто они: «два светильника» (11:4). А что такое светильники, оно уже сказало: «семь светильников… суть семь церквей» (1:20). Свидетели — это <strong>церковь в её призвании свидетельствовать</strong>. Почему два? Потому что закон требовал двух свидетелей, чтобы дело состоялось (Второзаконие 19:15), и Иисус посылал учеников по двое. Возможно, важно и то, что только две из семи церквей — Смирна и Филадельфия — не получили обличения.</p>
+    <p>Их власть — это власть Моисея и Илии: «затворить небо, чтобы не шел дождь», как Илия на три года и шесть месяцев (Иакова 5:17), и превращать воды «в кровь», как Моисей в Египте (11:6). Церковь несёт всё свидетельство Закона и Пророков. Её история повторяет историю её Господа. Она пророчествует всю эпоху (1260 дней), она защищена, пока не завершит своё дело, а затем, в самом конце, зверь побеждает её. Три с половиной дня мир торжествует на улице «великого города… где и Господь наш распят». Затем в свидетелей входит «дух жизни от Бога», они встают на ноги и восходят на небо на облаке на глазах у своих врагов (11:11–12). Сразу же седьмая труба возвещает конец.</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-witnesses">
+    <h2 id="ev-witnesses">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 11:4 и 1:20</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Свидетели — это светильники, а светильники — это церкви. Откровение само толкует свой символ.</p><a href="https://www.bible.com/bible/400/REV.1.SYNO" target="_blank" rel="noopener">Читать Откровение 1 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Захария 4:2–3, 14</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Захария видел светильник и рядом две маслины — «два помазанные елеем, предстоящие Господу всей земли»: народ Божий, наделённый силой Его Духа.</p><a href="https://www.bible.com/bible/400/ZEC.4.SYNO" target="_blank" rel="noopener">Читать Захария 4 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 11:6; Иакова 5:17; Исход 7:20</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Затворённое небо напоминает об Илии; вода, превращённая в кровь, — о Моисее.</p><a href="https://www.bible.com/bible/400/JAS.5.SYNO" target="_blank" rel="noopener">Читать Иакова 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 11:8</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Великий город «духовно называется Содом и Египет». Сам текст показывает, что место символическое: это мировой город, отвергающий Бога.</p><a href="https://www.bible.com/bible/400/REV.11.SYNO" target="_blank" rel="noopener">Читать Откровение 11 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">05</span><span class="ev-ref">Два конкретных человека?</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Некоторые вдумчивые толкователи, в том числе некоторые амилленаристы, считают, что в конце явятся и два конкретных пророка. Символическое прочтение выше не требует это исключать, но текст не называет имён.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Два пророка последнего времени</h3><p>Футуристы обычно ожидают двух буквальных пророков — часто это Моисей и Илия или Енох и Илия, — служащих в Иерусалиме три с половиной года.</p></article>
+    <article class="ours"><h3>Свидетельствующая церковь</h3><p>Два светильника — это церковь, пророчествующая на протяжении всей эпохи, ненадолго замолкающая в конце и оправданная при возвращении Христа.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Церковь призвана не к удобству, а к верности. Её свидетельство нельзя заглушить, пока Бог не скажет, что её дело окончено.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Откровение называет свидетелей «два светильника». Что такое светильники в Откровении?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Церкви (1:20)</button><button class="quiz-opt">Ангелы, охраняющие Иерусалим</button><button class="quiz-opt">Две половины Библии</button></div><p class="quiz-feedback" hidden>«Семь светильников, которые ты видел, суть семь церквей» (1:20). Значит, два светильника из 11:4 указывают на церковь как на Божьего свидетеля.</p></section>
+</section>
+
+<section class="page topic" id="1260" data-nav="Что означают 1260 дней?" data-num="07" data-keywords="1260 дней 42 месяца время времена полвремени три с половиной года даниил 7 12 пустыня числа">
+  <p class="eyebrow">Вопрос 07 · Откровение 11–13</p>
+  <h1>Что означают 1260 дней?</h1>
+  <p class="deck">Один период испытаний под пятью именами</p>
+  <div class="locator" data-vision="3,4"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Откровение 12</a></li><li><a href="https://www.bible.com/bible/400/DAN.7.SYNO" target="_blank" rel="noopener">Даниил 7</a></li><li><a href="https://www.bible.com/bible/400/DAN.12.SYNO" target="_blank" rel="noopener">Даниил 12</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Apocalyptic_Woman,_1498,_NGA_142358.jpg?width=1000" alt="Гравюра: жене, облечённой в солнце и стоящей на луне, даны орлиные крылья; ей угрожает семиглавый дракон, а её дитя возносится к Богу." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Жена, облечённая в солнце</b>, Альбрехт Дюрер, 1498. Жену питают в пустыне 1260 дней. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И родила она младенца мужеского пола, которому надлежит пасти все народы жезлом железным; и восхищено было дитя ее к Богу и престолу Его. А жена убежала в пустыню, где приготовлено было для нее место от Бога, чтобы питали ее там тысячу двести шестьдесят дней.</p><footer><cite>Откровение 12:5–6</cite><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Эти числа — секундомер последних трёх с половиной лет истории, и по ним можно вычислить, когда вернётся Христос.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Посмотрите, когда начинается этот период в 12-й главе. Младенец рождается, и «восхищено было дитя ее к Богу и престолу Его» — это рождение и вознесение Христа. Затем жена убегает, и её питают 1260 дней. <strong>Период начинается с первого пришествия Христа.</strong> Это время церкви в пустыне — между вознесением и возвращением.</p>
+    <p>Откровение называет этот период тремя способами: сорок два месяца, тысяча двести шестьдесят дней и «времени, времен и полвремени», то есть три с половиной года. Все три взяты из книги Даниила, где время жестокого, но ограниченного гонения длится «до времени и времен и полувремени» (Даниил 7:25; 12:7). Три с половиной — это половина от семи: время, которое <em>сокращено</em>. Оно напоминает и о трёх годах и шести месяцах Илии, когда Бог питал его, а земля была под судом (Иакова 5:17). Церковь попирают, но хранят, гонят, но питают, и срок устанавливает Бог, а не дракон.</p>
+  </div>
+  <ul class="periods" aria-label="Пять имён одного периода">
+    <li><b>42 месяца</b><span>Язычники попирают внешний двор; внутренний храм измерен и сохранён</span><span class="ref">11:2</span></li>
+    <li><b>1260 дней</b><span>Два свидетеля пророчествуют во вретище</span><span class="ref">11:3</span></li>
+    <li><b>1260 дней</b><span>Жену питают в пустыне</span><span class="ref">12:6</span></li>
+    <li><b>Время, времена и полвремени</b><span>Жена питается вне досягаемости змия</span><span class="ref">12:14</span></li>
+    <li><b>42 месяца</b><span>Зверю дана власть богохульствовать и вести войну</span><span class="ref">13:5</span></li>
+    <li class="short"><b>Три дня с половиною</b><span>В самом конце свидетели лежат мёртвыми, а мир торжествует, пока Бог не воскрешает их</span><span class="ref">11:9–11</span></li>
+  </ul>
+  <section class="evidence" aria-labelledby="ev-1260">
+    <h2 id="ev-1260">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 12:5–6</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Жена убегает на 1260 дней сразу после того, как дитя восхищено к Божьему престолу.</p><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Читать Откровение 12 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 12:6, 14</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Одно и то же событие — жену питают в пустыне — названо и «тысячу двести шестьдесят дней», и «в продолжение времени, времен и полвремени».</p><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Читать Откровение 12 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Даниил 7:25; 12:7</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Даниил говорит «до времени и времен и полувремени» о гонении на святых со стороны враждебной власти — об ограниченном периоде, которому Бог кладёт конец.</p><a href="https://www.bible.com/bible/400/DAN.7.SYNO" target="_blank" rel="noopener">Читать Даниил 7 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Точные даты</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Многие пытались превратить эти числа в календари. Каждая такая дата не сбылась, а Иисус сказал: «О дне же том и часе никто не знает» (Матфея 24:36).</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Вторая половина 70-й седмины Даниила</h3><p>Футуристы понимают 1260 дней как буквальные дни второй половины семилетней скорби. Историцисты часто читают их как 1260 лет.</p></article>
+    <article class="ours"><h3>Вся эпоха церкви</h3><p>Эти числа описывают один ограниченный Богом период — от вознесения до возвращения, — увиденный как попрание, свидетельство, защита и гонение.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>У пустыни церкви есть дата окончания, и её назначил Бог. А до тех пор Он питает Свой народ.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>В Откровении 12 1260 дней жены начинаются сразу после какого события?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Её дитя восхищено к Богу и престолу Его</button><button class="quiz-opt">Восхищение церкви</button><button class="quiz-opt">Восстановление храма</button></div><p class="quiz-feedback" hidden>Дитя, Христос, восхищено к Божьему престолу (12:5), и затем жена убегает (12:6). Период начинается с Его вознесения.</p></section>
+</section>
+
+<section class="page topic" id="satan" data-nav="Правит ли сатана миром?" data-num="08" data-keywords="сатана диавол дракон змий война на небе михаил клеветник низвержен откровение 12 крест побежден">
+  <p class="eyebrow">Вопрос 08 · Откровение 12</p>
+  <h1>Правит ли сатана миром?</h1>
+  <p class="deck">Побеждённый враг, чьё время на исходе</p>
+  <div class="locator" data-vision="4,7"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Откровение 12</a></li><li><a href="https://www.bible.com/bible/400/JHN.12.SYNO" target="_blank" rel="noopener">Иоанна 12</a></li><li><a href="https://www.bible.com/bible/400/COL.2.SYNO" target="_blank" rel="noopener">Колоссянам 2</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer_-_Saint_Michael_Fighting_the_Dragon_(NGA_2008.109.12).jpg?width=1000" alt="Гравюра: архангел Михаил и его ангелы поражают копьями дракона и его бесов в небе над тихим пейзажем." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Святой Михаил, сражающийся с драконом</b>, Альбрехт Дюрер, 1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И низвержен был великий дракон, древний змий, называемый диаволом и сатаною, обольщающий всю вселенную, низвержен на землю, и ангелы его низвержены с ним.</p><footer><cite>Откровение 12:9</cite><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Бог и сатана — две равные силы, сцепившиеся в борьбе, исход которой ещё не ясен.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Война на небе в Откровении 12 — не о том, что было до сотворения мира. Она происходит из-за креста. Дитя восхищено к Божьему престолу, дракон низвержен, и небо объясняет почему: «ныне настало спасение и сила и царство Бога нашего… потому что <strong>низвержен клеветник братий наших</strong>». Святые «победили его кровию Агнца и словом свидетельства своего» (12:10–11). То же самое сказал Иисус, идя на крест: «ныне князь мира сего изгнан будет вон» (Иоанна 12:31).</p>
+    <p>Итак, сатана реален, опасен и разъярён, но он — побеждённое творение. Он больше не может обвинять Божий народ пред Богом, потому что Христос заплатил за их грехи. Он свирепствует на земле, «зная, что немного ему остается времени» (12:12). Он по-прежнему гонит и обманывает, и Пётр предупреждает, что он «ходит, как рыкающий лев» (1 Петра 5:8). Но он на цепи (20:1–3), приговор ему вынесен, и озеро огненное ждёт его (20:10).</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-satan">
+    <h2 id="ev-satan">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 12:5, 9–11</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Дракон низвержен после того, как дитя восхищено к Богу, и небо празднует пришествие спасения через кровь Агнца.</p><a href="https://www.bible.com/bible/400/REV.12.SYNO" target="_blank" rel="noopener">Читать Откровение 12 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Иоанна 12:31; Луки 10:18; Колоссянам 2:15</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Иисус видел сатану, «спадшего с неба, как молнию», и говорил об изгнании князя мира сего; Павел пишет, что Христос, «отняв силы у начальств и властей», восторжествовал над ними.</p><a href="https://www.bible.com/bible/400/COL.2.SYNO" target="_blank" rel="noopener">Читать Колоссянам 2 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 12:12; 1 Петра 5:8</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Диавол всё ещё действует и яростен, но времени у него немного.</p><a href="https://www.bible.com/bible/400/1PE.5.SYNO" target="_blank" rel="noopener">Читать 1 Петра 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 20:10</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Диавол, прельщавший народы, ввержен в озеро огненное. Его конец несомненен.</p><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать Откровение 20 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Будущее или изначальное падение</h3><p>Одни читают войну на небе как изначальный мятеж сатаны до сотворения мира; другие относят её к середине будущей скорби.</p></article>
+    <article class="ours"><h3>Низвержен крестом</h3><p>Контекст связывает поражение сатаны со смертью и вознесением Христа. Откровение 12 объясняет, почему диавол свирепствует сейчас: он проиграл и знает это.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Не недооценивайте диавола, но никогда не думайте, что он равен Богу. Клеветник низвержен.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Как святые побеждают дракона в Откровении 12?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Кровью Агнца и словом своего свидетельства</button><button class="quiz-opt">Одолевая его собственными ангельскими войсками</button><button class="quiz-opt">Никак: исход всё ещё не решён</button></div><p class="quiz-feedback" hidden>«Они победили его кровию Агнца и словом свидетельства своего» (12:11). Победа была одержана на кресте.</p></section>
+</section>
+
+<section class="page topic" id="beast" data-nav="Что такое зверь?" data-num="09" data-keywords="зверь из моря из земли лжепророк даниил 7 рим империя откровение 13 государство власть">
+  <p class="eyebrow">Вопрос 09 · Откровение 13</p>
+  <h1>Что такое зверь?</h1>
+  <p class="deck">Власть, выдающая себя за Бога</p>
+  <div class="locator" data-vision="4,6"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Откровение 13</a></li><li><a href="https://www.bible.com/bible/400/DAN.7.SYNO" target="_blank" rel="noopener">Даниил 7</a></li><li><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Откровение 19</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer_-_The_Seven-Headed_Beast_and_the_Beast_with_Lamb%27s_Horns_-_Google_Art_Project.jpg?width=1000" alt="Гравюра: семиглавый зверь выходит из моря, а второй зверь с рогами агнца низводит огонь; толпы преклоняются." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Семиглавый зверь и зверь с рогами агнца</b>, Альбрехт Дюрер, около 1496–1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И стал я на песке морском, и увидел выходящего из моря зверя с семью головами и десятью рогами: на рогах его было десять диадим, а на головах его имена богохульные. Зверь, которого я видел, был подобен барсу; ноги у него — как у медведя, а пасть у него — как пасть у льва; и дал ему дракон силу свою и престол свой и великую власть.</p><footer><cite>Откровение 13:1–2</cite><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Зверь — это только один будущий мировой диктатор, и задача христиан — вычислить, кто он.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">В Даниила 7 из моря выходят четыре зверя, и Даниилу объясняют, что они означают, «что четыре царя восстанут от земли» (7:17): лев, медведь, барс и страшный четвёртый зверь. Зверь Иоанна — это все они сразу: барс, медведь и лев вместе. <strong>Это богоборческое государство</strong> — политическая власть, требующая поклонения, которое принадлежит только Богу, и ведущая «войну со святыми» (13:7). Для первых читателей Иоанна это был Рим с его культом императора. Но зверь пережил Рим. Он вновь поднимался в каждой империи, которая ставила себя на место Бога.</p>
+    <p>Из земли выходит второй зверь. Он «имел два рога, подобные агнчим, и говорил как дракон» (13:11). Он творит знамения и убеждает людей поклоняться первому зверю; позже Откровение называет его лжепророком (16:13; 19:20). Это ложная религия и пропаганда на службе у государства. Вместе дракон, зверь и лжепророк образуют злую подделку под Отца, Сына и Духа. У зверя даже есть смертельная рана, которая исцелела (13:3), — пародия на воскресение. В конце этот образец достигает последней вершины — того, что Хукема назвал одновременно принципом и личностью. И тогда зверь будет схвачен и брошен в озеро огненное (19:20).</p>
+  </div>
+  <div class="pair-cards">
+    <article class="red"><span class="ref">13:1–10 · из моря</span><h3>Первый зверь</h3><p>Политическая власть, притязающая на божественный авторитет. Хулит Бога, воюет со святыми, мир поклоняется ему.</p></article>
+    <article class="red"><span class="ref">13:11–18 · из земли</span><h3>Лжепророк</h3><p>Религия и убеждение на службе у государства. Выглядит как агнец, говорит как дракон.</p></article>
+  </div>
+  <section class="evidence" aria-labelledby="ev-beast">
+    <h2 id="ev-beast">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Даниил 7:3–7, 17</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Звери Даниила, выходящие из моря, истолкованы как цари и царства.</p><a href="https://www.bible.com/bible/400/DAN.7.SYNO" target="_blank" rel="noopener">Читать Даниил 7 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 13:1–2</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Зверь Иоанна соединяет барса, медведя и льва из Даниила и имеет десять рогов, как четвёртый зверь Даниила.</p><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать Откровение 13 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 13:11–14; 19:20</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Второй зверь направляет поклонение к первому, а позже назван лжепророком.</p><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Читать Откровение 19 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 17:9–11</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>«Семь голов суть семь гор» и семь царей — это указывало читателям первого века на Рим. Попытки сопоставить царей с точным списком императоров так и не привели к согласию.</p><a href="https://www.bible.com/bible/400/REV.17.SYNO" target="_blank" rel="noopener">Читать Откровение 17 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Один будущий правитель</h3><p>Футуристы видят в звере из моря прежде всего грядущего мирового диктатора и его империю, а в лжепророке — его религиозного союзника.</p></article>
+    <article class="ours"><h3>Государство-гонитель во все века</h3><p>Сначала Рим, затем всякая богоборческая власть, и последнее воплощение в конце. Зверь — это образец, который завершится в личности.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Власти — слуги Божии, но никогда не Бог. Когда какая-либо власть требует поклонения, принадлежащего Христу, христианин должен отказаться.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>В какой главе Ветхого Завета звери из моря объяснены как царства?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Даниил 7</button><button class="quiz-opt">Бытие 1</button><button class="quiz-opt">Псалом 22</button></div><p class="quiz-feedback" hidden>Даниил видел четырёх зверей, выходящих из моря, и ему было сказано, что они означают «четыре царя» (Даниил 7:17). Зверь Иоанна соединяет их всех.</p></section>
+</section>
+
+<section class="page topic" id="666" data-nav="Что означает число 666?" data-num="10" data-keywords="666 616 число зверя нерон гематрия шесть семь откровение 13 18">
+  <p class="eyebrow">Вопрос 10 · Откровение 13:18</p>
+  <h1>Что означает число 666?</h1>
+  <p class="deck">Число, а не проклятие</p>
+  <div class="locator" data-vision="4"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Откровение 13</a></li></ul>
+  <div class="number-art" aria-hidden="true">
+    <div><span class="big">7</span><small>Число Божьей полноты: семь церквей, печатей, труб, чаш</small></div>
+    <div class="red"><span class="big">666</span><small>Шесть, и шесть, и шесть: всегда на одну меньше семи</small></div>
+  </div>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Здесь мудрость. Кто имеет ум, тот сочти число зверя, ибо это число человеческое; число его шестьсот шестьдесят шесть.</p><footer><cite>Откровение 13:18</cite><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Цифры 666 опасны сами по себе, поэтому увидеть их на чеке, номерном знаке или в номере телефона — к беде.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">В Откровении семь — число полноты, число совершенного Божьего дела. Шесть не дотягивает до него. Шесть, повторённое трижды, — это <strong>человечество, пытающееся быть Богом и всегда не дотягивающее</strong>. Зверь подражает Троице, требует поклонения и творит чудеса, но остаётся всего лишь «числом человеческим». Как бы внушительно он ни выглядел, до семи ему никогда не дойти.</p>
+    <p>Есть и второй слой. В еврейском и греческом языках буквы служили также цифрами. Если записать «Нерон Кесарь» еврейскими буквами (<em>Нрвн Кср</em>), их значения в сумме дают 666. Нерон был первым императором, преследовавшим христиан, и многие римляне позже ожидали его возвращения; исцелённая рана зверя, возможно, отражает этот слух (13:3). Примечательно, что некоторые древние рукописи читают 616 — ровно столько даёт латинское написание имени Нерона еврейскими буквами. Нерон — вероятный ключ для первого века, а символический смысл простирается на все века. Одно не противоречит другому: Нерон был просто первым «человеком» числа 666.</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-666">
+    <h2 id="ev-666">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 13:17–18</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Число относится к имени зверя, и это «число человеческое». Иоанн призывает к мудрости, а не к страху.</p><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать Откровение 13 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Семёрки по всему Откровению</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Семь церквей, духов, печатей, труб, чаш и многое другое: семь обозначает полноту Божьего дела.</p></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Нерон Кесарь = 666</span><i class="tag inference">Вывод</i></summary><div class="ev-body"><p>Еврейское написание נרון קסר (50 + 200 + 6 + 50 + 100 + 60 + 200) в сумме даёт 666; без последнего <em>н</em> — 616, вариант, который есть в некоторых рукописях. Это отождествление широко распространено, но не бесспорно.</p></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Современные имена и устройства</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Почти любое имя можно при желании подогнать под 666. Расчёты, направленные на современных лидеров, раз за разом оказывались ошибочными.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Шифр будущей личности</h3><p>Некоторые футуристы ожидают, что число укажет на последнего антихриста по его имени или по системе, которую он контролирует.</p></article>
+    <article class="ours"><h3>Человечество, не дотягивающее до Бога, — впервые в Нероне</h3><p>Число изображает всякую власть, которая пытается быть Богом и терпит неудачу. Нерон был примером первого века; этот образец продолжается до конца.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Зло может впечатлять, но оно лишь тварно. Ему всегда будет недоставать одного до Бога.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Откровение называет 666 числом …</h3><div class="quiz-options"><button class="quiz-opt" data-correct>человеческим</button><button class="quiz-opt">проклятия, которое падает на всякого, кто его увидит</button><button class="quiz-opt">даты конца света</button></div><p class="quiz-feedback" hidden>«Это число человеческое» (13:18). Зверь при всех своих притязаниях — всего лишь человек и не дотягивает до Бога.</p></section>
+</section>
+
+<section class="page topic" id="mark" data-nav="Что такое начертание зверя?" data-num="11" data-keywords="начертание зверя метка печать зверя чело рука печать бога покупать продавать верность поклонение чип штрихкод откровение 13 14">
+  <p class="eyebrow">Вопрос 11 · Откровение 13:16–17</p>
+  <h1>Что такое начертание зверя?</h1>
+  <p class="deck">Вопрос верности</p>
+  <div class="locator" data-vision="4"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Откровение 13</a></li><li><a href="https://www.bible.com/bible/400/REV.14.SYNO" target="_blank" rel="noopener">Откровение 14</a></li><li><a href="https://www.bible.com/bible/400/REV.7.SYNO" target="_blank" rel="noopener">Откровение 7</a></li><li><a href="https://www.bible.com/bible/400/DEU.6.SYNO" target="_blank" rel="noopener">Второзаконие 6</a></li></ul>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И он сделает то, что всем, малым и великим, богатым и нищим, свободным и рабам, положено будет начертание на правую руку их или на чело их, и что никому нельзя будет ни покупать, ни продавать, кроме того, кто имеет это начертание, или имя зверя, или число имени его.</p><footer><cite>Откровение 13:16–17</cite><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Начертание — это микрочип, штрихкод, прививка или цифровой паспорт, который человек может получить случайно.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">В Откровении два знака, а не один. Прежде чем зверь отметит кого-либо, Бог кладёт печать «на челах рабов Бога нашего» (7:3), а у 144 000 «имя Отца Его написано на челах» (14:1). Никто не думает, что Божья печать — это татуировка. Она означает, что они принадлежат Ему. <strong>Начертание зверя — это подделка</strong>: оно показывает, кто принадлежит зверю.</p>
+    <p>Почему рука и чело? Потому что Бог велел Израилю о Своих словах: «навяжи их в знак на руку твою, и да будут они повязкою над глазами твоими» (Второзаконие 6:8) — то есть Его слово должно управлять тем, что они думают и что делают. Начертание зверя — противоположность этому: ум и жизнь, подчинённые верности богоборческой власти. Подробность о покупке и продаже показывает, как действует это давление. Во времена Иоанна ремесленная гильдия могла исключить того, кто отказывался чтить богов и императора. Откровение говорит о поклонении и верности, и каждый человек несёт тот или другой знак.</p>
+  </div>
+  <div class="pair-cards">
+    <article class="dark"><span class="ref">7:3 · 14:1 · 22:4</span><h3>Печать Божия</h3><p>Имя Отца и Агнца на челе. Принадлежность, защита, а в конце — лицезрение Его.</p></article>
+    <article class="red"><span class="ref">13:16–17 · 14:9–11</span><h3>Начертание зверя</h3><p>Имя зверя на руке или на челе. Верность, купленная доступом к рынку и утраченная на суде.</p></article>
+  </div>
+  <section class="evidence" aria-labelledby="ev-mark">
+    <h2 id="ev-mark">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 13:15–17</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Начертание сопровождается поклонением образу зверя и отлучением от купли и продажи.</p><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать Откровение 13 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 7:3; 14:1; 22:4</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Рабы Божии запечатлены Его именем на челах. Откровение ставит два знака рядом.</p><a href="https://www.bible.com/bible/400/REV.14.SYNO" target="_blank" rel="noopener">Читать Откровение 14 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Второзаконие 6:6–8</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Божьи слова нужно было навязывать на руку и носить над глазами: мысли и дела, посвящённые Ему.</p><a href="https://www.bible.com/bible/400/DEU.6.SYNO" target="_blank" rel="noopener">Читать Второзаконие 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 14:9–11</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Принятие начертания связано с поклонением зверю. Это избранная верность, а не случайность.</p><a href="https://www.bible.com/bible/400/REV.14.SYNO" target="_blank" rel="noopener">Читать Откровение 14 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Видимый знак последних дней</h3><p>Некоторые ожидают буквального, видимого знака, введённого последним режимом, и высматривают его в новых технологиях.</p></article>
+    <article class="ours"><h3>Две принадлежности</h3><p>Начертание и печать означают верность зверю или Богу. Давление пойти на компромисс ради работы и торговли сегодня так же реально, как во дни Иоанна.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Не спрашивайте, какого устройства бояться. Спросите, чьё имя написано на ваших мыслях и делах.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Что Откровение противопоставляет начертанию зверя?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Печать Божию — Его имя на челах Его рабов</button><button class="quiz-opt">Конкурирующий микрочип, выданный церковью</button><button class="quiz-opt">Ничего: начертание получат все</button></div><p class="quiz-feedback" hidden>Бог запечатлевает Своих рабов первыми (7:3; 14:1). Каждый человек принадлежит либо Богу, либо зверю.</p></section>
+</section>
+
+<section class="page topic" id="antichrist" data-nav="Кто такой антихрист?" data-num="12" data-keywords="антихрист человек греха беззаконник 1 иоанна 2 фессалоникийцам 2 папство папа зверь исповедание">
+  <p class="eyebrow">Вопрос 12 · 1 Иоанна 2 и 2 Фессалоникийцам 2</p>
+  <h1>Кто такой антихрист?</h1>
+  <p class="deck">Дух, уже действующий, и последний противник, который ещё придёт</p>
+  <div class="locator" data-vision="4"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/1JN.2.SYNO" target="_blank" rel="noopener">1 Иоанна 2</a></li><li><a href="https://www.bible.com/bible/400/2JN.1.SYNO" target="_blank" rel="noopener">2 Иоанна</a></li><li><a href="https://www.bible.com/bible/400/2TH.2.SYNO" target="_blank" rel="noopener">2 Фессалоникийцам 2</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Bamberg_Apocalypse_Msc.Bibl.140_0070._32v_The_beast_of_the_sea_miniature_cropped.jpg?width=1000" alt="Средневековая миниатюра: многоглавый зверь выходит из моря." loading="lazy" decoding="async" width="1000" height="1000"><figcaption><b>Зверь из моря</b>, Бамбергский Апокалипсис, начало XI века. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Дети! последнее время. И как вы слышали, что придет антихрист, и теперь появилось много антихристов, то мы и познаём из того, что последнее время.</p><footer><cite>1 Иоанна 2:18</cite><a href="https://www.bible.com/bible/400/1JN.2.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Откровение — это книга об антихристе, таинственном будущем диктаторе, которого христиане должны попытаться опознать среди нынешних политиков.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Слово <em>антихрист</em> ни разу не встречается в Откровении. Его используют только послания Иоанна, и там он говорит нечто удивительное: «теперь появилось много антихристов». Антихрист — это всякий, кто «отвергает, что Иисус есть Христос» (1 Иоанна 2:22), или не исповедует «Иисуса Христа, пришедшего во плоти» (2 Иоанна 7). «Дух антихриста» был в мире уже в первом веке (1 Иоанна 4:3). И Иоанн говорит, что именно по этому «мы и познаём… что последнее время», — а значит, последние дни начались с первого пришествия Христа.</p>
+    <p>Павел добавляет, что перед возвращением Христа откроется «человек греха», который выдаёт себя за Бога, и что его «Господь Иисус убьет духом уст Своих» (2 Фессалоникийцам 2:3–8). И всё же уже тогда «тайна беззакония уже в действии» (2:7). Соединяя всё это, Хукема описывал антихриста как <strong>и нынешний дух, и будущую личность</strong>: противостояние Христу проходит через всю эпоху и достигает последней вершины перед самым концом. Зверь Откровения — та же реальность в образах.</p>
+  </div>
+  <div class="note"><p><strong>Заметка из реформатской истории.</strong> Вестминстерское исповедание веры (25.6) и Лондонское баптистское исповедание 1689 года (26.4) называли папство «тем антихристом, человеком греха». Реформаторы видели в притязаниях Рима человека беззакония, который «в храме Божием сядет». Некоторые позднейшие редакции, например американская редакция Вестминстерского исповедания 1903 года, убрали эту строку, и реформатские христиане сегодня расходятся в том, считать ли это окончательным отождествлением или одним из исторических воплощений духа антихриста.</p></div>
+  <section class="evidence" aria-labelledby="ev-antichrist">
+    <h2 id="ev-antichrist">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">1 Иоанна 2:18, 22; 4:3; 2 Иоанна 7</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Многие антихристы уже пришли; дух антихриста отвергает Отца и Сына и воплощение.</p><a href="https://www.bible.com/bible/400/1JN.2.SYNO" target="_blank" rel="noopener">Читать 1 Иоанна 2 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">2 Фессалоникийцам 2:3–8</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Последний беззаконник откроется и будет истреблён Христом при Его пришествии.</p><a href="https://www.bible.com/bible/400/2TH.2.SYNO" target="_blank" rel="noopener">Читать 2 Фессалоникийцам 2 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 13; 19:19–20</span><i class="tag inference">Вывод</i></summary><div class="ev-body"><p>Хула зверя, поклонение ему и его гибель при пришествии Христа совпадают с описанием беззаконника у Павла. Связывать их — это толкование, поскольку Откровение этого слова не использует.</p><a href="https://www.bible.com/bible/400/REV.13.SYNO" target="_blank" rel="noopener">Читать Откровение 13 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Только будущий мировой правитель</h3><p>Популярный футуризм ожидает, что в последние семь лет возвысится один человек, заключит завет с Израилем, а затем нарушит его.</p></article>
+    <article class="ours"><h3>Нынешний дух и будущая личность</h3><p>Антихристы приходили на протяжении всей истории; последний явится перед возвращением Христа и будет Им истреблён.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Не превращайте Откровение в угадайку о публичных фигурах. Учитесь распознавать всякое учение и всякую власть, отвергающие Иисуса Христа.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Где в Библии встречается слово «антихрист»?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Только в посланиях Иоанна</button><button class="quiz-opt">По всему Откровению</button><button class="quiz-opt">В книге Даниила</button></div><p class="quiz-feedback" hidden>Слово «антихрист» встречается только в 1 и 2 посланиях Иоанна, где он говорит, что «появилось много антихристов» (1 Иоанна 2:18).</p></section>
+</section>
+
+<section class="page topic" id="tribulation" data-nav="Что такое великая скорбь?" data-num="13" data-keywords="великая скорбь семь лет страдания гонения откровение 7 14 эпоха церкви седмина даниила">
+  <p class="eyebrow">Вопрос 13 · Откровение 1:9 и 7:14</p>
+  <h1>Что такое великая скорбь?</h1>
+  <p class="deck">Верность под давлением, во все времена</p>
+  <div class="locator" data-vision="2,3,4"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.7.SYNO" target="_blank" rel="noopener">Откровение 7</a></li><li><a href="https://www.bible.com/bible/400/JHN.16.SYNO" target="_blank" rel="noopener">Иоанна 16</a></li><li><a href="https://www.bible.com/bible/400/ACT.14.SYNO" target="_blank" rel="noopener">Деяния 14</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Opening_of_the_Fifth_and_Sixth_Seals,_probably_c._1496-1498,_NGA_52558.jpg?width=1000" alt="Гравюра: ангелы дают белые одежды душам мучеников под жертвенником, а внизу звёзды падают на объятых ужасом людей." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Снятие пятой и шестой печатей</b>, Альбрехт Дюрер, около 1496–1498. Мученики получают белые одежды. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Я сказал ему: ты знаешь, господин. И он сказал мне: это те, которые пришли от великой скорби; они омыли одежды свои и убелили одежды свои Кровию Агнца.</p><footer><cite>Откровение 7:14</cite><a href="https://www.bible.com/bible/400/REV.7.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Великая скорбь — это семилетний период в конце истории, и христиане будут взяты прежде, чем он начнётся.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Иоанн открывает книгу словами: «брат ваш и соучастник в <strong>скорби</strong> и в царствии и в терпении Иисуса Христа» (1:9). Скорбь для него уже началась на Патмосе. Иисус обещал её каждому ученику: «В мире будете иметь скорбь; но мужайтесь: Я победил мир» (Иоанна 16:33). Павел учил новообращённых, «что многими скорбями надлежит нам войти в Царствие Божие» (Деяния 14:22).</p>
+    <p>Итак, великое множество из 7:14 — это церковь всех времён, выходящая из испытаний этой жизни в Божье присутствие. Это не исключает последнего, более жестокого гонения в самом конце — последней войны зверя против свидетелей (11:7) и краткого освобождения сатаны (20:7–9). Но церковь проходит <em>через</em> скорбь, запечатлённая и хранимая Богом, а не в обход её. Нигде в Откровении не упоминается семилетний период. Эта схема возникает, когда книгу соединяют с одним определённым прочтением Даниила 9:27.</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-trib">
+    <h2 id="ev-trib">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 1:9</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Иоанн уже разделяет «скорбь» с церквами.</p><a href="https://www.bible.com/bible/400/REV.1.SYNO" target="_blank" rel="noopener">Читать Откровение 1 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Иоанна 16:33; Деяния 14:22; 2 Тимофею 3:12</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Иисус и апостолы учат, что страдание принадлежит обычной христианской жизни: «все, желающие жить благочестиво во Христе Иисусе, будут гонимы».</p><a href="https://www.bible.com/bible/400/JHN.16.SYNO" target="_blank" rel="noopener">Читать Иоанна 16 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 3:10; Иоанна 17:15</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Христос обещает: «сохраню тебя от годины искушения» — тем же словом, которым молился Иисус: «Не молю, чтобы Ты взял их из мира, но чтобы сохранил их от зла». Защита в испытании, а не изъятие из него.</p><a href="https://www.bible.com/bible/400/JHN.17.SYNO" target="_blank" rel="noopener">Читать Иоанна 17 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Семилетняя скорбь</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Эта идея зависит от того, чтобы поставить промежуток перед последней из семидесяти седмин Даниила (Даниил 9:27). Само Откровение нигде не говорит о семи годах.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Будущие семь лет</h3><p>Диспенсационалисты ожидают семилетнюю скорбь после восхищения церкви, причём её вторую половину называют «великой скорбью».</p></article>
+    <article class="ours"><h3>Вся эпоха, обостряющаяся к концу</h3><p>Церковь терпит скорбь от апостолов до возвращения Христа, с напряжённым последним периодом, и всё это время её хранит Бог.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Христос не обещает уберечь нас от бед. Он обещает хранить нас в них и провести через них к славе.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Как Иоанн описывает себя в Откровении 1:9?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Как соучастника церквей в скорби</button><button class="quiz-opt">Как того, кто благополучно взят до скорби</button><button class="quiz-opt">Как пророка скорби, до которой две тысячи лет</button></div><p class="quiz-feedback" hidden>Иоанн называет себя «брат ваш и соучастник в скорби» (1:9). Скорбь уже была опытом церкви.</p></section>
+</section>
+
+<section class="page topic" id="babylon" data-nav="Кто такой Вавилон великий?" data-num="14" data-keywords="вавилон великий блудница рим город купцы невеста откровение 17 18 выйди от нее">
+  <p class="eyebrow">Вопрос 14 · Откровение 17–18</p>
+  <h1>Кто такой Вавилон великий?</h1>
+  <p class="deck">Город человеческой гордости и город Божий</p>
+  <div class="locator" data-vision="6"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.17.SYNO" target="_blank" rel="noopener">Откровение 17</a></li><li><a href="https://www.bible.com/bible/400/REV.18.SYNO" target="_blank" rel="noopener">Откровение 18</a></li><li><a href="https://www.bible.com/bible/400/GEN.11.SYNO" target="_blank" rel="noopener">Бытие 11</a></li><li><a href="https://www.bible.com/bible/400/JER.51.SYNO" target="_blank" rel="noopener">Иеремия 51</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Whore_of_Babylon,_1498,_NGA_142362.jpg?width=1000" alt="Гравюра: богато одетая женщина на семиглавом звере поднимает чашу перед восхищёнными людьми, а город горит, и ангел возвещает её падение." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Вавилонская блудница</b>, Альбрехт Дюрер, 1498. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Они будут вести брань с Агнцем, и Агнец победит их; ибо Он есть Господь господствующих и Царь царей, и те, которые с Ним, суть званые и избранные и верные.</p><footer><cite>Откровение 17:14</cite><a href="https://www.bible.com/bible/400/REV.17.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Вавилон — это обязательно одна конкретная современная страна, город или организация, и задача в том, чтобы назвать её.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Вавилон — это город, разрушивший Иерусалим и уведший народ Божий в плен, а ещё раньше Вавилон был местом, где человечество пыталось построить башню до небес. В Библии он становится образом <strong>человеческой цивилизации, устроенной против Бога</strong>: гордой, богатой, соблазнительной и жестокой. Ангел объясняет, что жена «есть великий город, царствующий над земными царями» (17:18), сидящий на семи горах (17:9). Любой читатель первого века подумал бы о Риме. Но Вавилон больше, чем Рим. Рим был просто Вавилоном во дни Иоанна.</p>
+    <p>Откровение намеренно ставит рядом двух жён и два города. Ангел из той же семёрки говорит почти теми же словами: «подойди, я покажу тебе суд над великою блудницею» (17:1), а позже: «пойди, я покажу тебе жену, невесту Агнца» (21:9). Первая жена «упоена была кровью святых» (17:6); вторая — святой город, где обитает Бог. Один оплакивают купцы, потерявшие свою торговлю; другой наполнен славой Божией. Каждый человек живёт в том или другом городе, и призыв во все века один и тот же: «выйди от нее, народ Мой» (18:4).</p>
+  </div>
+  <div class="pair-cards">
+    <article class="red"><span class="ref">17:1 · «я покажу тебе…»</span><h3>Блудница, Вавилон</h3><p>В порфире и золоте, упоена кровью святых, сидит на звере. Падёт «в один час».</p></article>
+    <article class="dark"><span class="ref">21:9 · «я покажу тебе…»</span><h3>Невеста, новый Иерусалим</h3><p>Облечена в виссон — праведность святых. Нисходит от Бога и пребудет вечно.</p></article>
+  </div>
+  <section class="evidence" aria-labelledby="ev-babylon">
+    <h2 id="ev-babylon">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 17:9, 18</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Жена — это великий город, царствующий над земными царями и сидящий на семи горах.</p><a href="https://www.bible.com/bible/400/REV.17.SYNO" target="_blank" rel="noopener">Читать Откровение 17 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 18:3, 11–19, 24</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Её богатство развращает народы, купцы оплакивают её падение, и «в нем найдена кровь пророков и святых».</p><a href="https://www.bible.com/bible/400/REV.18.SYNO" target="_blank" rel="noopener">Читать Откровение 18 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Иеремия 51:6–8; Исаия 47</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Откровение 18 перекликается с пророчествами против древнего Вавилона, включая призыв бежать из него.</p><a href="https://www.bible.com/bible/400/JER.51.SYNO" target="_blank" rel="noopener">Читать Иеремия 51 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 17:1; 21:9</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Одинаковое ангельское вступление представляет блудницу и невесту, приглашая читателя сравнить два города.</p><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Читать Откровение 21 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">05</span><span class="ev-ref">Вавилон и папство</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Многие реформаторы отождествляли Вавилон с папским Римом. У этого прочтения долгая протестантская история, но собственные указания текста ведут прежде всего к императорскому Риму, а через него — к мировой системе во все века.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Восстановленный город или последняя система</h3><p>Некоторые футуристы ожидают буквально восстановленного Вавилона в Ираке или будущей мировой экономической и религиозной системы.</p></article>
+    <article class="ours"><h3>Мировой город во все века</h3><p>Вавилон — это Рим для читателей Иоанна и гордый, идолопоклоннический мир в каждом поколении, осуждённый раз и навсегда в конце.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Не стройте надежду на богатстве, удобстве или культуре, которая проходит. Ваше гражданство — в городе, который нисходит от Бога.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Какой город Откровение противопоставляет Вавилону?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Новый Иерусалим, невесту Агнца</button><button class="quiz-opt">Древнюю Ниневию</button><button class="quiz-opt">Рим, который приходит на смену Вавилону</button></div><p class="quiz-feedback" hidden>Город-блудницу (17:1) и город-невесту (21:9) представляют одними и теми же словами: «я покажу тебе». Каждый человек принадлежит тому или другому городу.</p></section>
+</section>
+
+<section class="page topic" id="armageddon" data-nav="Что такое Армагеддон?" data-num="15" data-keywords="армагеддон мегиддо битва брань цари евфрат гог магог война откровение 16 19 20">
+  <p class="eyebrow">Вопрос 15 · Откровение 16:12–16</p>
+  <h1>Что такое Армагеддон?</h1>
+  <p class="deck">Последний мятеж, оконченный одним словом</p>
+  <div class="locator" data-vision="5,6,7"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.16.SYNO" target="_blank" rel="noopener">Откровение 16</a></li><li><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Откровение 19</a></li><li><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Откровение 20</a></li><li><a href="https://www.bible.com/bible/400/EZK.38.SYNO" target="_blank" rel="noopener">Иезекииль 38</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Four_Avenging_Angels,_1498,_NGA_142356.jpg?width=1000" alt="Гравюра: четыре вооружённых ангела поражают толпы людей; позади всадники и огнедышащие кони." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Четыре ангела мщения</b>, Альбрехт Дюрер, 1498. Ангелы, освобождённые при Евфрате (9:14), — той реке, у которой позже собираются цари к Армагеддону (16:12). Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И он собрал их на место, называемое по-еврейски Армагеддон.</p><footer><cite>Откровение 16:16</cite><a href="https://www.bible.com/bible/400/REV.16.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Армагеддон — это ядерная Третья мировая война на обозначенном на картах поле битвы на севере Израиля.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">«Армагеддон» означает «гора Мегиддо». Мегиддо — реальная долина в Израиле, знаменитая решающими битвами (Судей 5:19; 4 Царств 23:29). Но горы у Мегиддо нет, и название дано как символ, «по-еврейски». Оно обозначает <strong>место, где мятеж мира даёт последний бой</strong>, собранный бесовской ложью (16:13–14).</p>
+    <p>Обратите внимание на удивительное: сама битва так и не происходит. В 16-й главе цари собраны, а в следующем стихе звучит: «совершилось!» В 19-й главе зверь и цари «собранные, чтобы сразиться», а Всадник просто побеждает их мечом, исходящим из Его уст, — то есть Своим словом (19:15, 21). В 20-й главе сатана собирает народы «на брань», и «ниспал огонь с неба» (20:9). Это три взгляда на один и тот же последний натиск на церковь, и каждый опирается на пророчество Иезекииля о Гоге и Магоге. То же говорит Павел: Господь Иисус убьёт беззаконника «духом уст Своих» (2 Фессалоникийцам 2:8).</p>
+  </div>
+  <ol class="steps" aria-label="Одна битва, три взгляда">
+    <li><span class="ref">16:14–16</span><b>Собраны «на брань»</b><small>Цари собраны к Армагеддону; затем «совершилось!»</small></li>
+    <li><span class="ref">19:19–21</span><b>«Собранные, чтобы сразиться»</b><small>Зверь и цари побеждены мечом уст Христа</small></li>
+    <li><span class="ref">20:8–9</span><b>Собраны «на брань»</b><small>Гог и Магог окружают святых; огонь с неба</small></li>
+    <li><span class="ref">2 Фес 2:8</span><b>Одно дуновение</b><small>Господь убивает беззаконника при Своём пришествии</small></li>
+  </ol>
+  <section class="evidence" aria-labelledby="ev-armageddon">
+    <h2 id="ev-armageddon">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 16:13–16</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Бесовские духи собирают царей всей вселенной «на брань в оный великий день Бога Вседержителя».</p><a href="https://www.bible.com/bible/400/REV.16.SYNO" target="_blank" rel="noopener">Читать Откровение 16 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 19:15, 19–21</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Враги «убиты мечом Сидящего на коне, исходящим из уст Его».</p><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Читать Откровение 19 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Иезекииль 38–39 в Откровении 19 и 20</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Великая вечеря птиц (19:17–18) и Гог и Магог (20:8) взяты из одного пророчества Иезекииля о последнем враге.</p><a href="https://www.bible.com/bible/400/EZK.39.SYNO" target="_blank" rel="noopener">Читать Иезекииль 39 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Судей 5:19; 4 Царств 23:29</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Мегиддо помнили по битвам — и победам, и поражениям, — поэтому оно стало подходящим символом.</p><a href="https://www.bible.com/bible/400/JDG.5.SYNO" target="_blank" rel="noopener">Читать Судей 5 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Буквальная война в Израиле</h3><p>Многие футуристы ожидают, что армии мира соберутся в Изреельской долине перед возвращением Христа, и отличают это от более позднего мятежа Гога и Магога после тысячелетия.</p></article>
+    <article class="ours"><h3>Последний натиск, увиденный трижды</h3><p>Армагеддон, битва 19-й главы и Гог и Магог — это одно последнее нападение на церковь, мгновенно прекращённое Христом при Его пришествии.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Исход не вызывает сомнений. Последняя битва окончена в тот миг, когда говорит Христос.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Как Христос побеждает войска в Откровении 19?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Мечом, исходящим из Его уст, — Своим словом</button><button class="quiz-opt">Современным оружием, которое поставляют Его последователи</button><button class="quiz-opt">После долгой войны, длящейся семь лет</button></div><p class="quiz-feedback" hidden>Враги «убиты мечом Сидящего на коне, исходящим из уст Его» (19:21). Христос побеждает Своим словом.</p></section>
+</section>
+
+<section class="page topic" id="rapture" data-nav="А как же восхищение церкви?" data-num="16" data-keywords="восхищение церкви восхищены в сретение господу на воздухе тайное оставленные 1 фессалоникийцам 4 труба до скорби">
+  <p class="eyebrow">Вопрос 16 · 1 Фессалоникийцам 4</p>
+  <h1>А как же восхищение церкви?</h1>
+  <p class="deck">Выйти навстречу возвращающемуся Царю</p>
+  <div class="locator" data-vision="6"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/1TH.4.SYNO" target="_blank" rel="noopener">1 Фессалоникийцам 4</a></li><li><a href="https://www.bible.com/bible/400/1CO.15.SYNO" target="_blank" rel="noopener">1 Коринфянам 15</a></li><li><a href="https://www.bible.com/bible/400/MAT.24.SYNO" target="_blank" rel="noopener">Матфея 24</a></li></ul>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>потому что Сам Господь при возвещении, при гласе Архангела и трубе Божией, сойдет с неба, и мертвые во Христе воскреснут прежде; потом мы, оставшиеся в живых, вместе с ними восхищены будем на облаках в сретение Господу на воздухе, и так всегда с Господом будем.</p><footer><cite>1 Фессалоникийцам 4:16–17</cite><a href="https://www.bible.com/bible/400/1TH.4.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <ol class="steps" aria-label="Что описывает Павел, по порядку">
+    <li><span class="ref">4:16</span><b>Господь сходит</b><small>Возвещение, глас Архангела, труба Божия</small></li>
+    <li><span class="ref">4:16</span><b>Мёртвые воскресают</b><small>«Мертвые во Христе воскреснут прежде»</small></li>
+    <li><span class="ref">4:17</span><b>Живые восхищаются</b><small>Вместе с ними, в сретение Господу</small></li>
+    <li><span class="ref">4:17</span><b>Всегда с Господом</b><small>Ни второго ухода, ни возвращения, чтобы ждать</small></li>
+  </ol>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Иисус тайно заберёт христиан, оставив мир в недоумении, а через семь лет вернётся открыто.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Библия действительно учит о «восхищении»: верующие, которые будут живы при возвращении Христа, «восхищены будем… в сретение Господу». Но Павел описывает это как <strong>самое громкое событие в истории</strong>: возвещение, глас Архангела, труба Божия. Оно происходит вместе с воскресением мёртвых и в «день Господень», который придёт на неготовых, «как тать ночью» (5:2). Ту же трубу Павел называет последней: «при последней трубе» (1 Коринфянам 15:52), а Иисус говорит, что Его Ангелы соберут избранных «с трубою громогласною», когда все племена земные увидят Его грядущим (Матфея 24:30–31).</p>
+    <p>Слово, которое здесь переведено как «сретение» (встреча), употреблялось, когда горожане выходили из города навстречу прибывающему царю, чтобы торжественно ввести его в город. Именно такова картина. Мы не улетаем со Христом на небо, пока мир продолжает жить своей жизнью. Мы выходим навстречу нашему Царю и идём с Ним, когда Он приходит судить мир и обновить его. Возвращение <strong>одно, а не два</strong>.</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-rapture">
+    <h2 id="ev-rapture">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">1 Фессалоникийцам 4:16–5:2</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Восхищение публично, сопровождается воскресением и относится к тому, что Павел называет «день Господень».</p><a href="https://www.bible.com/bible/400/1TH.5.SYNO" target="_blank" rel="noopener">Читать 1 Фессалоникийцам 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">1 Коринфянам 15:51–52</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Верующие изменятся «при последней трубе», когда воскреснут мёртвые. После последней трубы других труб нет.</p><a href="https://www.bible.com/bible/400/1CO.15.SYNO" target="_blank" rel="noopener">Читать 1 Коринфянам 15 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Матфея 24:30–31</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Собирание избранных происходит, когда Христос видимо приходит «на облаках небесных с силою и славою великою».</p><a href="https://www.bible.com/bible/400/MAT.24.SYNO" target="_blank" rel="noopener">Читать Матфея 24 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 3:10; 4:1</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Эти стихи часто приводят в пользу восхищения до скорби, но 3:10 обещает защиту в испытании (ср. Иоанна 17:15), а 4:1 призывает в видение одного Иоанна.</p><a href="https://www.bible.com/bible/400/REV.3.SYNO" target="_blank" rel="noopener">Читать Откровение 3 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Восхищение до скорби</h3><p>Диспенсационалисты учат, что Христос сначала тайно приходит за Своей церковью перед семилетней скорбью, а затем видимо приходит вместе с ней.</p></article>
+    <article class="ours"><h3>Одно видимое возвращение</h3><p>Верующие восхищаются, чтобы встретить Христа при Его едином славном пришествии, при последней трубе, вместе с воскресением мёртвых.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Наша надежда — не бегство, а встреча: видимое возвращение нашего Спасителя и вечная жизнь с Ним.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Что, по словам Павла, будет сопровождать восхищение верующих?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Возвещение, глас Архангела и труба Божия</button><button class="quiz-opt">Полная тишина, чтобы никто не заметил</button><button class="quiz-opt">Сначала семь лет предупреждающих знамений</button></div><p class="quiz-feedback" hidden>Описание Павла совсем не тайное (1 Фессалоникийцам 4:16). Весь мир узнает, что Царь пришёл.</p></section>
+</section>
+
+<section class="page topic" id="second-coming" data-nav="Что произойдёт, когда Иисус вернётся?" data-num="17" data-keywords="второе пришествие возвращение христа конь белый верный и истинный суд воскресение откровение 19 один день">
+  <p class="eyebrow">Вопрос 17 · Откровение 19:11–21</p>
+  <h1>Что произойдёт, когда Иисус вернётся?</h1>
+  <p class="deck">Приходит Царь, и всё решается</p>
+  <div class="locator" data-vision="1,2,3,4,5,6,7"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Откровение 19</a></li><li><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Откровение 20</a></li><li><a href="https://www.bible.com/bible/400/JHN.5.SYNO" target="_blank" rel="noopener">Иоанна 5</a></li><li><a href="https://www.bible.com/bible/400/MAT.25.SYNO" target="_blank" rel="noopener">Матфея 25</a></li></ul>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И увидел я отверстое небо, и вот конь белый, и сидящий на нем называется Верный и Истинный, Который праведно судит и воинствует.</p><footer><cite>Откровение 19:11</cite><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Возвращение Христа — лишь один шаг в длинной череде будущих этапов: тайное пришествие, скорбь, открытое пришествие, тысячелетнее царство, затем ещё одно воскресение и суд.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Каждое из семи видений Откровения заканчивается в одном и том же месте, потому что в конце эпохи — одно великое событие. Христос придёт снова <strong>видимо</strong>: «узрит Его всякое око» (1:7). Он придёт <strong>во славе</strong>, как «Царь царей и Господь господствующих» (19:16). И в этот один день соединится всё, что Библия обещает о конце.</p>
+    <p>Иисус сказал: «наступает время, в которое <em>все</em>, находящиеся в гробах, услышат глас Сына Божия», и изыдут как творившие добро, так и делавшие зло (Иоанна 5:28–29). Народы соберутся перед Его престолом и будут отделены, как овцы от козлов (Матфея 25:31–32). Смерть, последний враг, будет истреблена (1 Коринфянам 15:26). А небо и земля станут новыми (2 Петра 3:13). Реформатские исповедания подытоживают это как одно всеобщее воскресение и один последний суд. Дня мы не знаем (Матфея 24:36), поэтому призыв — не вычислять, а быть готовыми.</p>
+  </div>
+  <ol class="steps" aria-label="Единый день возвращения Христа">
+    <li><span class="ref">Откр 1:7; 19:11</span><b>Христос является</b><small>Видимо, во славе, перед всяким оком</small></li>
+    <li><span class="ref">Ин 5:28–29</span><b>Воскресают все мёртвые</b><small>И праведные, и нечестивые — в одно время</small></li>
+    <li><span class="ref">Откр 20:11–15</span><b>Последний суд</b><small>Каждый человек перед великим белым престолом</small></li>
+    <li><span class="ref">Откр 21:1–5</span><b>Всё новое</b><small>Новое небо и новая земля</small></li>
+  </ol>
+  <section class="evidence" aria-labelledby="ev-return">
+    <h2 id="ev-return">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 19:11–16</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Всадник — это Христос: «Верный и Истинный», «Слово Божие», «Царь царей и Господь господствующих».</p><a href="https://www.bible.com/bible/400/REV.19.SYNO" target="_blank" rel="noopener">Читать Откровение 19 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Иоанна 5:28–29; Деяния 24:15</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Одно грядущее время приносит воскресение и праведных, и нечестивых.</p><a href="https://www.bible.com/bible/400/JHN.5.SYNO" target="_blank" rel="noopener">Читать Иоанна 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">1 Коринфянам 15:23–26</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>«Первенец Христос, потом Христовы, в пришествие Его. А затем конец». Христос царствует сейчас, «доколе низложит всех врагов под ноги Свои», и последней истребится смерть.</p><a href="https://www.bible.com/bible/400/1CO.15.SYNO" target="_blank" rel="noopener">Читать 1 Коринфянам 15 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Матфея 24:36</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>«О дне же том и часе никто не знает». Каждая попытка назначить дату оказывалась ошибочной.</p><a href="https://www.bible.com/bible/400/MAT.24.SYNO" target="_blank" rel="noopener">Читать Матфея 24 ↗</a></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Этапы и промежутки</h3><p>Премилленаристские взгляды помещают тысячу лет между возвращением Христа и последним судом, разделяя этим периодом воскресение верующих и неверующих.</p></article>
+    <article class="ours"><h3>Один день Господень</h3><p>Возвращение Христа, воскресение всех, последний суд и новое творение составляют вместе одно великое событие.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Для тех, кто принадлежит Ему, возвращение Христа — не угроза, а великая надежда.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Кто, согласно Иоанна 5:28–29, воскреснет, когда настанет время?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Все, находящиеся в гробах, — праведные и нечестивые</button><button class="quiz-opt">Только верующие; неверующие — через тысячу лет</button><button class="quiz-opt">Только те, кто будет тогда жив</button></div><p class="quiz-feedback" hidden>Иисус говорит об одном времени, «в которое все, находящиеся в гробах, услышат глас Сына Божия» (Иоанна 5:28–29).</p></section>
+</section>
+
+<section class="page topic" id="millennium" data-nav="Что такое тысячелетнее царство?" data-num="18" data-keywords="тысячелетнее царство тысячелетие тысяча лет сатана связан бездна цепь царствование амилленаризм откровение 20 царство">
+  <p class="eyebrow">Вопрос 18 · Откровение 20:1–10</p>
+  <h1>Что такое тысячелетнее царство?</h1>
+  <p class="deck">Царь, Который царствует уже сейчас</p>
+  <div class="locator" data-vision="7"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Откровение 20</a></li><li><a href="https://www.bible.com/bible/400/MAT.12.SYNO" target="_blank" rel="noopener">Матфея 12</a></li><li><a href="https://www.bible.com/bible/400/EPH.1.SYNO" target="_blank" rel="noopener">Ефесянам 1</a></li><li><a href="https://www.bible.com/bible/400/MAT.28.SYNO" target="_blank" rel="noopener">Матфея 28</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D%C3%BCrer,_The_Angel_with_the_Key_to_the_Bottomless_Pit,_probably_c._1496-1498,_NGA_6685.jpg?width=1000" alt="Гравюра: ангел запирает скованного дракона в бездне, а другой ангел показывает Иоанну Новый Иерусалим на холме." loading="lazy" decoding="async" width="1000" height="1400"><figcaption><b>Ангел с ключом от бездны</b>, Альбрехт Дюрер, около 1496–1498. Последняя гравюра серии: сатана связан, и святой город виден. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Он взял дракона, змия древнего, который есть диавол и сатана, и сковал его на тысячу лет, и низверг его в бездну, и заключил его, и положил над ним печать, дабы не прельщал уже народы, доколе не окончится тысяча лет; после же сего ему должно быть освобожденным на малое время.</p><footer><cite>Откровение 20:2–3</cite><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Иисус ещё не царствует как Царь. Его царство начнётся только после того, как Он вернётся и установит на земле тысячелетнее политическое государство.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Глава 20 — седьмое видение, и, как каждое из остальных, оно начинается снова с первого пришествия Христа. Связывание сатаны — не будущее событие. Иисус описал его во время Своего служения: «как может кто войти в дом сильного и расхитить вещи его, если прежде не свяжет сильного?» (Матфея 12:29). Обратите внимание, <strong>от чего</strong> удержан сатана: «дабы не прельщал уже народы» (20:3). Веками народы сидели во тьме, а Божья истина была в основном заключена в Израиле. Со времени креста Евангелие пошло ко всем народам, и сатана не может его остановить.</p>
+    <p>Итак, <strong>тысяча лет</strong> — это вся эпоха между пришествиями Христа: долгий, завершённый период (десять × десять × десять), а не секундомер. В это время души умерших верующих «ожили и царствовали со Христом» на небе (20:4), а на земле Христос царствует уже сейчас: «дана Мне всякая власть на небе и на земле» (Матфея 28:18). В конце сатана освобождается «на малое время», собирает народы на ту же последнюю битву, которую мы встречали в главах 16 и 19, и бывает ввержен в озеро огненное. Таково амилленаристское прочтение реформатских исповеданий. <em>Амилленаризм</em> не означает «никакого тысячелетия». Он означает, что нет отдельного будущего земного тысячелетия: тысячелетнее царство — сейчас.</p>
+  </div>
+  <div class="mill-inline">
+    <div class="mill-track" role="img" aria-label="Хронология: первое пришествие и связывание сатаны, тысяча лет царствования Христа, краткое освобождение, возвращение Христа, новое творение">
+      <div class="mill-seg event" style="--w:.9"><i></i><b>Первое пришествие</b><small>Сатана связан · 20:1–3</small></div>
+      <div class="mill-seg reign" style="--w:3"><i></i><b>Тысяча лет</b><small>Христос царствует; Евангелие идёт к народам · 20:4–6</small></div>
+      <div class="mill-seg event" style="--w:.9"><i></i><b>Краткое освобождение</b><small>Последний мятеж · 20:7–9</small></div>
+      <div class="mill-seg final" style="--w:1.2"><i></i><b>Христос возвращается</b><small>Суд, новое творение · 20:10–22:5</small></div>
+    </div>
+  </div>
+  <section class="evidence" aria-labelledby="ev-mill">
+    <h2 id="ev-mill">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 20:3</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>У связывания названа цель: «дабы не прельщал уже народы». Там не сказано, что сатана вообще ничего не может делать.</p><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать Откровение 20 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Матфея 12:28–29; Иоанна 12:31–32</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Иисус говорит, что сильный связывается в Его служении, и обещает: «когда Я вознесен буду от земли, всех привлеку к Себе», — ведь «ныне князь мира сего изгнан будет вон».</p><a href="https://www.bible.com/bible/400/MAT.12.SYNO" target="_blank" rel="noopener">Читать Матфея 12 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Ефесянам 1:20–22; 1 Коринфянам 15:25</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Христос уже посажен «превыше всякого Начальства, и Власти», и «Ему надлежит царствовать, доколе низложит всех врагов под ноги Свои». Его царствование — настоящее.</p><a href="https://www.bible.com/bible/400/EPH.1.SYNO" target="_blank" rel="noopener">Читать Ефесянам 1 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 20:8, 16:14 и 19:19</span><i class="tag inference">Вывод</i></summary><div class="ev-body"><p>Собирание «на брань» в 20:8 совпадает с 16:14 и 19:19 и опирается на то же пророчество Иезекииля, что и 19:17–18. Поэтому глава 20 повторяет главу 19 с другого ракурса, а не следует за ней.</p><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать Откровение 20 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">05</span><span class="ev-ref">Сатана всё ещё действует</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Новый Завет также говорит, что диавол «ходит, как рыкающий лев» (1 Петра 5:8) и ослепляет умы неверующих (2 Коринфянам 4:4). Быть связанным в одном отношении — не в силах остановить Евангелие, идущее к народам, — не значит бездействовать во всех отношениях.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Премилленаризм</h3><p>Христос возвращается до будущего тысячелетнего царства на земле; главы 19 и 20 читаются последовательно.</p></article>
+    <article><h3>Постмилленаризм</h3><p>Золотой век успеха Евангелия наступает внутри истории, до возвращения Христа.</p></article>
+  </div><p class="alt-intro" style="margin:14px 0 0">Полное сравнение — в разделе <a href="#mill-study">«Как толковать Откровение»</a>.</p></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Мы не ждём, когда Иисус станет Царём. Он царствует уже сейчас, и Евангелие идёт к народам, потому что сильный связан.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Согласно Откровению 20:3, сатана связан для того, чтобы он не мог делать что?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Прельщать народы</button><button class="quiz-opt">Искушать кого бы то ни было</button><button class="quiz-opt">Находиться где-либо на земле</button></div><p class="quiz-feedback" hidden>Связывание имеет конкретную цель: «дабы не прельщал уже народы» (20:3). Со времени креста Евангелие идёт к каждому народу.</p></section>
+</section>
+
+<section class="page topic" id="resurrection" data-nav="Что такое первое воскресение?" data-num="19" data-keywords="первое воскресение вторая смерть души царствуют престолы промежуточное состояние откровение 20 4 6 озеро огненное">
+  <p class="eyebrow">Вопрос 19 · Откровение 20:4–6</p>
+  <h1>Что такое первое воскресение?</h1>
+  <p class="deck">Живы со Христом даже в смерти</p>
+  <div class="locator" data-vision="7"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Откровение 20</a></li><li><a href="https://www.bible.com/bible/400/REV.6.SYNO" target="_blank" rel="noopener">Откровение 6</a></li><li><a href="https://www.bible.com/bible/400/PHP.1.SYNO" target="_blank" rel="noopener">Филиппийцам 1</a></li><li><a href="https://www.bible.com/bible/400/JHN.5.SYNO" target="_blank" rel="noopener">Иоанна 5</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Cloisters_Apocalypse_-_New_Jerusalem_and_angel.jpg?width=1000" alt="Средневековая миниатюра: ангел показывает Иоанну Новый Иерусалим — город со стенами и ворота из драгоценных камней." loading="lazy" decoding="async" width="1000" height="1200"><figcaption><b>Новый Иерусалим и ангел</b>, Апокалипсис из Клойстерс, около 1330 года. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>Блажен и свят имеющий участие в воскресении первом: над ними смерть вторая не имеет власти, но они будут священниками Бога и Христа и будут царствовать с Ним тысячу лет.</p><footer><cite>Откровение 20:6</cite><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Верующие воскреснут телесно на тысячу лет раньше неверующих, так что будет два телесных воскресения, разделённых тысячелетием.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Посмотрите, кого видит Иоанн: «<strong>души</strong> обезглавленных за свидетельство Иисуса» (20:4). Это перекликается с пятой печатью, где Иоанн видел «души убиенных» под жертвенником, ожидающие и взывающие: «доколе?» (6:9–11). Теперь они видны на престолах — живыми и царствующими со Христом. Именно это происходит с каждым верующим при смерти: «разрешиться и быть со Христом, потому что это несравненно лучше» (Филиппийцам 1:23). Они желают «выйти из тела и водвориться у Господа» (2 Коринфянам 5:8).</p>
+    <p>Откровение использует продуманный образец. Для верующих <em>первая смерть</em> (физическая) ведёт к <strong>первому воскресению</strong> — жизни и царствованию со Христом на небе. Затем в конце наступает телесное воскресение всех — в то единое время, о котором говорил Иисус (Иоанна 5:28–29). Для неверующих за физической жизнью следует <strong>вторая смерть</strong> — «озеро огненное» (20:14). Смысл отрывка — утешение гонимой церкви: те, кто отдал жизнь за Христа, не проиграли. Они царствуют.</p>
+  </div>
+  <div class="pair-cards">
+    <article class="dark"><span class="ref">20:4–6 · 6:9–11 · Флп 1:23</span><h3>Верующий</h3><p>Первая смерть, затем первое воскресение: жив и царствует со Христом. «Над ними смерть вторая не имеет власти».</p></article>
+    <article class="red"><span class="ref">20:5, 13–15 · 21:8</span><h3>Неверующий</h3><p>Физическая жизнь, затем суд в последний день и вторая смерть — озеро огненное.</p></article>
+  </div>
+  <section class="evidence" aria-labelledby="ev-res">
+    <h2 id="ev-res">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 20:4</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Иоанн видит на престолах души, а не тела: обезглавленных за свидетельство и тех, кто не поклонился зверю.</p><a href="https://www.bible.com/bible/400/REV.20.SYNO" target="_blank" rel="noopener">Читать Откровение 20 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 6:9–11</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Души тех же мучеников появляются под жертвенником при пятой печати. В 20-й главе их ожидание показано как царствование.</p><a href="https://www.bible.com/bible/400/REV.6.SYNO" target="_blank" rel="noopener">Читать Откровение 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Иоанна 5:28–29; Деяния 24:15</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Телесное воскресение праведных и нечестивых происходит вместе, в одно время. Это исключает два телесных воскресения с промежутком в тысячу лет.</p><a href="https://www.bible.com/bible/400/JHN.5.SYNO" target="_blank" rel="noopener">Читать Иоанна 5 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 20:14; 21:8</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>«И смерть и ад повержены в озеро огненное. Это смерть вторая». Пара «первое — второе» принадлежит самому Откровению.</p><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Читать Откровение 21 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">05</span><span class="ev-ref">Новое рождение?</span><i class="tag caution">Осторожно</i></summary><div class="ev-body"><p>Августин понимал первое воскресение как новое рождение, когда духовно мёртвые оживают (Иоанна 5:24–25). Многие амилленаристы, в том числе Уорфилд, Хукема и Риддлбаргер, предпочитают прочтение, изложенное выше, поскольку 20:4 описывает души умерших. Оба прочтения относят первое воскресение к нынешней эпохе.</p></div></details>
+  </section>
+  <details class="alt"><summary>Как читают другие</summary><div class="alt-body"><div class="alt-grid">
+    <article><h3>Два телесных воскресения</h3><p>Премилленаристы понимают слово «ожили» как телесное воскресение верующих перед тысячелетием, а остальных — после него.</p></article>
+    <article class="ours"><h3>Жизнь со Христом сейчас, тело — потом</h3><p>Первое воскресение — это вхождение верующего в жизнь и царствование со Христом при смерти; тело воскреснет вместе со всеми в последний день.</p></article>
+  </div></div></details>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Для христианина смерть — не конец жизни, а начало царствования со Христом.</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Кого Иоанн видит на престолах в Откровении 20:4?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Души умерших за своё свидетельство</button><button class="quiz-opt">Политических правителей будущего земного царства</button><button class="quiz-opt">Ангелов, никогда не живших на земле</button></div><p class="quiz-feedback" hidden>Иоанн видит «души обезглавленных за свидетельство Иисуса» (20:4) — тех же мучеников, которых видел под жертвенником в 6:9.</p></section>
+</section>
+
+<section class="page topic" id="new-creation" data-nav="Что такое Новый Иерусалим?" data-num="20" data-keywords="новый иерусалим новое небо новая земля святой город невеста эдем древо жизни река откровение 21 22 вечность">
+  <p class="eyebrow">Вопрос 20 · Откровение 21–22</p>
+  <h1>Что такое Новый Иерусалим?</h1>
+  <p class="deck">Бог творит всё новое</p>
+  <div class="locator" data-vision="7"></div>
+  <ul class="refs" aria-label="Отрывки для чтения"><li class="refs-label">Читать в Синодальном переводе</li><li><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Откровение 21</a></li><li><a href="https://www.bible.com/bible/400/REV.22.SYNO" target="_blank" rel="noopener">Откровение 22</a></li><li><a href="https://www.bible.com/bible/400/ISA.65.SYNO" target="_blank" rel="noopener">Исаия 65</a></li><li><a href="https://www.bible.com/bible/400/ROM.8.SYNO" target="_blank" rel="noopener">Римлянам 8</a></li></ul>
+  <figure class="art"><img data-art src="https://commons.wikimedia.org/wiki/Special:FilePath/Saint-Sever_Beatus_f._207v-208r_-_New_Jerusalem.jpg?width=1000" alt="Средневековая миниатюра: Новый Иерусалим в виде квадратного города с двенадцатью воротами, в каждых — апостол, в центре — Агнец." loading="lazy" decoding="async" width="1000" height="700"><figcaption><b>Новый Иерусалим</b>, Беат из Сен-Севера, XI век. Двенадцать ворот, двенадцать апостолов и Агнец в центре. Историческое произведение, а не буквальное изображение видения.</figcaption></figure>
+  <blockquote class="passage"><span class="rubric">Текст</span><p>И услышал я громкий голос с неба, говорящий: се, скиния Бога с человеками, и Он будет обитать с ними; они будут Его народом, и Сам Бог с ними будет Богом их. И отрет Бог всякую слезу с очей их, и смерти не будет уже; ни плача, ни вопля, ни болезни уже не будет, ибо прежнее прошло.</p><footer><cite>Откровение 21:3–4</cite><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Читать главу ↗</a></footer></blockquote>
+  <div class="myth"><span class="rubric">Распространённое заблуждение</span><p>Христианская надежда — вечно парить духом в облаках, далеко от материального мира.</p></div>
+  <div class="teach">
+    <h2>Чему учит Писание</h2>
+    <p class="illum">Откровение заканчивается не бегством из творения, а обновлённым творением: Иоанн видит «новое небо и новую землю» (21:1). Город <strong>сходит</strong> с неба на землю. Сама «тварь освобождена будет от рабства тлению» (Римлянам 8:21), а тела народа Божьего воскреснут. Ангел обещает показать Иоанну «жену, невесту Агнца», а показывает святой город (21:9–10). Город — это народ Божий, наконец-то совершенно дома у Него.</p>
+    <p>Каждая подробность говорит одно и то же: <strong>Бог живёт со Своим народом.</strong> Город — совершенный куб: «длина и широта и высота его равны» (21:16), как Святое святых в храме Соломона (3 Царств 6:20), так что весь город теперь — место Божьего присутствия. Поэтому Иоанн говорит: «Храма же я не видел в нем, ибо Господь Бог Вседержитель — храм его, и Агнец» (21:22). Река жизни и древо жизни возвращаются из Эдема (22:1–2), и «ничего уже не будет проклятого». Библейская история, начавшаяся в саду, заканчивается в городе-саде, где «узрят лице Его» (22:4).</p>
+  </div>
+  <section class="evidence" aria-labelledby="ev-new">
+    <h2 id="ev-new">Откуда мы это знаем?</h2>
+    <details class="ev"><summary><span class="ev-n">01</span><span class="ev-ref">Откровение 21:1–4</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Новое небо и новая земля, город, сходящий с неба, Бог, обитающий с людьми, и конец смерти и плача.</p><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Читать Откровение 21 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">02</span><span class="ev-ref">Откровение 21:9–10</span><i class="tag stated">Сказано</i></summary><div class="ev-body"><p>Ангел обещает показать «невесту» и показывает святой город: город — это народ Божий.</p><a href="https://www.bible.com/bible/400/REV.21.SYNO" target="_blank" rel="noopener">Читать Откровение 21 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">03</span><span class="ev-ref">Откровение 21:16, 22; 3 Царств 6:20</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Город в форме куба соответствует внутреннему святилищу храма, и храма в нём нет, потому что Бог и Агнец — его храм.</p><a href="https://www.bible.com/bible/400/1KI.6.SYNO" target="_blank" rel="noopener">Читать 3 Царств 6 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">04</span><span class="ev-ref">Откровение 22:1–5; Бытие 2–3</span><i class="tag link">Связь</i></summary><div class="ev-body"><p>Река, древо жизни и снятие проклятия возвращают Эдем — и превосходят его.</p><a href="https://www.bible.com/bible/400/REV.22.SYNO" target="_blank" rel="noopener">Читать Откровение 22 ↗</a></div></details>
+    <details class="ev"><summary><span class="ev-n">05</span><span class="ev-ref">Римлянам 8:19–23; 2 Петра 3:13</span><i class="tag inference">Вывод</i></summary><div class="ev-body"><p>Творение освобождается, а не выбрасывается. Понимание слова «новое» как обновления, а не замены, — так реформатская традиция в целом понимала эти тексты, хотя некоторые читают 2 Петра 3:10 как более полное разрушение.</p><a href="https://www.bible.com/bible/400/ROM.8.SYNO" target="_blank" rel="noopener">Читать Римлянам 8 ↗</a></div></details>
+  </section>
+  <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Последнее слово — не разрушение. Это жизнь с Богом, лицом к лицу, вовеки. «Ей, гряди, Господи Иисусе!»</p></aside>
+  <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Почему в Новом Иерусалиме нет храма?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Потому что Господь Бог и Агнец — его храм</button><button class="quiz-opt">Потому что поклонение прекратилось</button><button class="quiz-opt">Потому что город ещё не достроен</button></div><p class="quiz-feedback" hidden>«Храма же я не видел в нем, ибо Господь Бог Вседержитель — храм его, и Агнец» (21:22). Весь город — жилище Бога.</p></section>
+</section>
+
+<footer class="site-foot">
+  <h2>Что почитать дальше</h2>
+  <p>Это пособие следует классическому реформатскому амилленаристскому прочтению Откровения. Вот основные труды, на которые оно опирается (в оригинальных названиях):</p>
+  <ul>
+    <li>William Hendriksen, <em>More Than Conquerors</em> (1940) — семь параллельных видений</li>
+    <li>Anthony A. Hoekema, <em>The Bible and the Future</em> (1979)</li>
+    <li>Kim Riddlebarger, <em>A Case for Amillennialism</em> (2003; расширенное издание 2013)</li>
+    <li>Dennis E. Johnson, <em>Triumph of the Lamb</em> (2001)</li>
+    <li>G. K. Beale, <em>The Book of Revelation</em>, NIGTC (1999)</li>
+    <li>Geerhardus Vos, <em>The Pauline Eschatology</em> (1930)</li>
+    <li>B. B. Warfield, «The Millennium and the Apocalypse» (1904)</li>
+  </ul>
+  <p>Библейские цитаты приведены по Синодальному переводу (1876), который является общественным достоянием. Ссылки на главы открывают Синодальный перевод на bible.com.</p>
+  <p>Иллюстрации: гравюры «Апокалипсиса» Альбрехта Дюрера (1498) и средневековые иллюминированные рукописи — все являются общественным достоянием и взяты из Викисклада (Wikimedia Commons).</p>
+  <p lang="en">Read in English: use the <strong>EN</strong> button at the top of the page. · <span lang="es">Leer en español: usa el botón <strong>ES</strong>.</span></p>
+</footer>
+
+</template>
 
 <script>
-/* Interpretation-lab content, both languages. Loaded before app.js. */
+/* Interpretation-lab content, all three languages. Loaded before app.js. */
 const LAB = {
   en: {
     eras: ['First century', 'Church history', 'Later history', 'The end'],
@@ -3751,6 +4825,34 @@ const LAB = {
     pairOurs: 'Esto se acerca a la lectura de esta guía, que además la ancla firmemente en el primer siglo y en un final real y futuro.',
     pairOther: 'Cada intérprete es distinto; tómalo como una tendencia general, no como un bando fijo.',
     timeline: 'Cronología: ', then: ', luego '
+  },
+  ru: {
+    eras: ['Первый век', 'История церкви', 'Поздняя история', 'Конец'],
+    lenses: {
+      preterism: { title: 'Исполнилось в первом веке', desc: 'Большинство видений описывает события апостольской эпохи: римские гонения и, по мнению многих претеристов, падение Иерусалима в 70 году.', stress: 'Семь реальных церквей, культ римского императора и настойчивое утверждение книги, что всё это «надлежит быть вскоре» (1:1, 3).', caveat: 'Частичные претеристы по-прежнему ожидают телесного возвращения Христа, воскресения и последнего суда. Полный претеризм, утверждающий, что и это уже в прошлом, находится за пределами исторических символов веры.', eras: [0.95, 0.25, 0.1, 0.18] },
+      historicism: { title: 'Карта истории церкви', desc: 'Видения разворачиваются последовательно через века — от Иоанна до конца, — и определённые империи и движения соотносятся с определёнными символами.', stress: 'Долгая борьба Царства Христа с враждебными силами. Многие реформаторы читали так образы зверя и Вавилона, часто имея в виду папство.', caveat: 'Историцисты так и не пришли к согласию, какие символы соответствуют каким событиям, и их схемы приходилось перерисовывать по мере того, как шла история.', eras: [0.3, 0.9, 0.95, 0.65] },
+      futurism: { title: 'В основном ещё впереди', desc: 'Начиная с 4-й главы, бо́льшая часть книги описывает последний период непосредственно перед возвращением Христа.', stress: 'Кульминация противостояния Христу, последний суд и завершение всего.', caveat: 'При таком подходе бо́льшая часть книги почти ничего не говорит её первым читателям и церкви на протяжении веков. Футуризм и премилленаризм часто идут вместе, но это не одно и то же.', eras: [0.12, 0.12, 0.25, 0.97] },
+      idealism: { title: 'Вся эпоха глазами неба', desc: 'Видения изображают реальности, истинные для всей эпохи между пришествиями Христа: страдающее свидетельство церкви, обман мирской власти, Божьи суды и победу Христа.', stress: 'Ветхозаветная образность Откровения, его повторяющиеся циклы и обращение к «церквам» всех времён.', caveat: 'Сам по себе идеализм может оторваться от истории. Прочтение этого пособия закрепляет его: книга написана реальным церквам под властью Рима, истинна для каждой эпохи и завершается реальным, будущим возвращением.', eras: [0.8, 0.9, 0.9, 0.9] }
+    },
+    mills: {
+      a: { title: 'Амилленаризм: тысяча лет — сейчас', desc: 'Тысяча лет из Откровения 20 — это вся эпоха между первым и вторым пришествиями Христа. Сатана связан, так что не может помешать Евангелию дойти до народов. Умершие верующие царствуют со Христом на небе. Христос возвращается один раз, воскрешает всех мёртвых, судит мир и творит всё новое.', texts: 'Матфея 12:29 (сильный связан); Ефесянам 1:20–22 и Матфея 28:18 (Христос царствует сейчас); Иоанна 5:28–29 (один час, одно воскресение всех); Откровение 20 как новое видение всей эпохи, подобно шести предыдущим.', caveat: '«Амилленаризм» не означает «никакого тысячелетия». Он означает, что тысячелетнее царство — не отдельное будущее земное царство. Таково прочтение реформатских исповеданий и этого пособия.', segs: [['Первое пришествие', 'Сатана связан, Христос воцарился', 'event', 0.8], ['Тысяча лет', 'Христос царствует; Евангелие идёт по миру', 'reign', 3], ['Краткое освобождение', 'Последнее отступление', 'event', 0.8], ['Христос возвращается', 'Одно воскресение, один суд', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] },
+      pre: { title: 'Премилленаризм: Христос возвращается до тысячелетия', desc: 'Христос возвращается перед будущим тысячелетним царством на земле. Верующие воскресают при Его пришествии; остальные мёртвые воскресают после тысячелетия, за чем следуют последний мятеж, суд и новое творение.', texts: 'Главы 19 и 20 Откровения читаются в строгой последовательности; слово «ожили» в 20:4 понимается как телесное воскресение.', caveat: 'Исторический премилленаризм (например, у Джорджа Элдона Лэдда) отличается от диспенсационального, который добавляет восхищение церкви до скорби и резкое различие между Израилем и церковью.', segs: [['Нынешний век', 'Церковь ожидает', 'age', 2], ['Христос возвращается', 'Верующие воскресают', 'event', 1], ['Тысячелетие', 'Земное царство', 'reign', 1.8], ['Последний суд', 'Воскресают остальные', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] },
+      post: { title: 'Постмилленаризм: Христос возвращается после тысячелетия', desc: 'Через Евангелие Царство Христа растёт, пока бо́льшая часть мира не станет христианской, и наступает долгая эпоха праведности и мира, после которой Он возвращается судить и творить всё новое.', texts: 'Псалмы 2 и 71 (в еврейской нумерации 72); притчи о горчичном зерне и закваске (Матфея 13:31–33); Великое поручение (Матфея 28:18–20).', caveat: 'Постмилленаристы согласны с амилленаристами в том, что возвращение одно и воскресение одно. Различие — в ожидании золотого века внутри истории.', segs: [['Евангелие шествует', 'Царство растёт', 'age', 1.6], ['Золотой век', 'Расцвет христианства', 'reign', 2], ['Христос возвращается', 'Воскресение и суд', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] }
+    },
+    readings: {
+      beast: [['Рим и его императоры', 'Зверь — это Римская империя и культ императора, угрожавшие церквам Иоанна.'], ['Череда угнетателей', 'Зверя прослеживают через силы церковной истории; реформаторы часто видели здесь папство.'], ['Последний мировой правитель', 'Зверь — это прежде всего будущий диктатор и его империя в конце времён.'], ['Всякое богоборческое государство', 'Зверь — это государство-гонитель во все века: сначала Рим, а в конце — последний антихрист.']],
+      babylon: [['Рим (или Иерусалим)', 'Вавилон — это Рим первого века; некоторые претеристы говорят — отступивший Иерусалим.'], ['Развращённая церковно-государственная власть', 'Вавилон — это позднейший институт ложного поклонения, часто отождествляемый с папским Римом.'], ['Восстановленный город или система последних дней', 'Вавилон — это будущий буквальный город или мировая система.'], ['Соблазнительная мировая система', 'Вавилон — это человеческая культура, построенная вокруг гордости, богатства и идолопоклонства, в любую эпоху.']],
+      armageddon: [['Суд над Римом', 'Образы битвы описывают Божий суд в рамках борьбы первого века.'], ['Историческая война', 'Армагеддон соотносят с определённой войной в истории церкви.'], ['Буквальная битва в Израиле', 'Армии собираются у Мегиддо для последней войны перед возвращением Христа.'], ['Последний бой, решённый словом', 'Армагеддон — это последний натиск на церковь, который Христос прекращает при Своём пришествии. Та же битва описана в 19:19 и 20:8.']],
+      millennium: [['По-разному', 'Претеристы бывают амилленаристами или постмилленаристами; этот ярлык касается сроков, а не самой 20-й главы.'], ['Отрезок истории', 'Тысяча лет — это определённый период внутри истории церкви, иногда исчисляемый буквально.'], ['Будущее земное царство', 'Большинство футуристов ожидают буквального тысячелетнего царства после возвращения Христа.'], ['Нынешнее царствование Христа', 'Тысяча лет — это эпоха церкви; сатана связан, а святые царствуют со Христом.']],
+      seals: [['Бедствия под властью Рима', 'Печати описывают несчастья римского мира первого века.'], ['Эпохи церковной истории', 'Каждая печать — это очередной период истории.'], ['Суды последней скорби', 'Печати снимаются во время будущей семилетней скорби.'], ['Приметы всей эпохи', 'Завоевание, война, голод и смерть отмечают всю эпоху, пока шестая печать не приносит конец. Каждую печать снимает Агнец.']]
+    },
+    lensNames: { preterism: 'Претеристское', historicism: 'Историцистское', futurism: 'Футуристское', idealism: 'Идеалистическое' },
+    readingSuffix: ' прочтение', readingPrefix: '', goTo: t => 'Перейти к главе: ' + t + ' →',
+    pair: { preterism: 'Частичный претеризм читает бо́льшую часть книги на фоне Рима первого века.', historicism: 'Историцизм прослеживает видения через века.', futurism: 'Футуризм относит большинство видений к самому концу.', idealism: 'Идеализм читает видения как картину всей эпохи.' },
+    pairMill: { pre: 'Христос возвращается до будущего тысячелетнего царства.', a: 'Тысячелетнее царство — это нынешнее царствование Христа.', post: 'Золотой век наступает до возвращения Христа.' },
+    pairOurs: 'Это близко к прочтению этого пособия, которое к тому же твёрдо опирается на первый век и ожидает реального, будущего конца.',
+    pairOther: 'Толкователи бывают разными; воспринимайте это как общую тенденцию, а не как жёсткий лагерь.',
+    timeline: 'Хронология: ', then: ', затем '
   }
 };
 
@@ -3779,7 +4881,8 @@ const IDS = [
   ['babylon', 'armageddon', 'rapture', 'second-coming'],
   ['millennium', 'resurrection', 'new-creation']
 ];
-const TRANSLATION = { en: 'BSB', es: 'NBLA' };
+const TRANSLATION = { en: 'BSB', es: 'NBLA', ru: 'Синодальный перевод' };
+const LANGS = ['en', 'es', 'ru'];
 const UI = {
   en: {
     docTitle: 'The Illuminated Codex', home: 'Revelation', brand: 'Revelation', brandSub: 'The Illuminated Codex',
@@ -3797,7 +4900,7 @@ const UI = {
     settings: 'Reading settings', close: 'Close', textSize: 'Text size', sizeS: 'Small text', sizeM: 'Standard text', sizeL: 'Large text', sizeXL: 'Larger text',
     theme: 'Page', vellum: 'Vellum', night: 'Night', auto: 'Auto', print: 'Print this chapter', shortcuts: 'Keyboard shortcuts',
     reset: 'Reset my progress', resetArmed: 'Click again to erase', resetDone: 'Your progress has been reset',
-    hideSide: 'Hide the sidebar', toTop: 'Back to top',
+    hideSide: 'Hide the sidebar', toggleSide: 'Show or hide the contents', toTop: 'Back to top',
     progress: 'Your progress', progressCount: (k, t) => `${k} of ${t} answered`, nextUp: 'Next to answer', allDone: 'All twenty answered. Well done!',
     groupCount: (k, t) => `${k} of ${t} answered`,
     onPage: 'On this page', minutes: m => `${m} min read`,
@@ -3821,13 +4924,37 @@ const UI = {
     settings: 'Ajustes de lectura', close: 'Cerrar', textSize: 'Tamaño del texto', sizeS: 'Texto pequeño', sizeM: 'Texto normal', sizeL: 'Texto grande', sizeXL: 'Texto más grande',
     theme: 'Página', vellum: 'Pergamino', night: 'Noche', auto: 'Automático', print: 'Imprimir este capítulo', shortcuts: 'Atajos de teclado',
     reset: 'Borrar mi progreso', resetArmed: 'Haz clic otra vez para borrar', resetDone: 'Tu progreso se ha borrado',
-    hideSide: 'Ocultar la barra lateral', toTop: 'Volver arriba',
+    hideSide: 'Ocultar la barra lateral', toggleSide: 'Mostrar u ocultar el contenido', toTop: 'Volver arriba',
     progress: 'Tu progreso', progressCount: (k, t) => `${k} de ${t} respondidas`, nextUp: 'Siguiente por responder', allDone: '¡Las veinte respondidas! Bien hecho.',
     groupCount: (k, t) => `${k} de ${t} respondidas`,
     onPage: 'En esta página', minutes: m => `${m} min de lectura`,
     copyLink: 'Copiar un enlace a esta sección', linkCopied: 'Enlace copiado', copy: 'Copiar', copyPassage: 'Copiar este pasaje', passageCopied: 'Pasaje copiado', copyFail: 'No se puede copiar aquí',
     openAll: 'Abrir todo', closeAll: 'Cerrar todo',
     keys: [['← →', 'Capítulo anterior o siguiente'], ['/', 'Buscar en los capítulos'], ['S', 'Mostrar u ocultar el contenido'], ['L', 'Cambiar de idioma'], ['T', 'Volver arriba'], ['?', 'Mostrar estos atajos'], ['Esc', 'Cerrar un panel']]
+  },
+  ru: {
+    docTitle: 'Иллюминированный кодекс', home: 'Откровение', brand: 'Откровение', brandSub: 'Иллюминированный кодекс',
+    brandLabel: 'Откровение — на главную', skip: 'Перейти к чтению',
+    contents: 'Содержание', contentsKicker: 'Иллюминированный кодекс', closeContents: 'Закрыть содержание',
+    searchLabel: 'Найти тему', searchPh: 'Найти тему или отрывок…', sidePh: 'Поиск', allChapters: 'Все главы', chapters: 'Главы',
+    empty: 'Ничего не найдено. Попробуйте другое слово, например «зверь» или «Откровение 20».',
+    groups: [['С чего начать', ''], ['I · Агнец и Его церкви', 'Главы 1–7'], ['II · Свидетельство церкви', 'Главы 8–14'], ['III · Суд и возвращение', 'Главы 15–19'], ['IV · Окончательная победа', 'Главы 20–22']],
+    statusQ: (n, t) => `Вопрос ${n} из ${t}`, statusDone: k => `отвечено: ${k}`, statusAll: (k, t) => `Отвечено вопросов: ${k} из ${t}`,
+    quizDone: 'тест пройден', seenLabel: 'прочитано', prev: '← Назад', next: 'Далее →', pagerLabel: 'Назад и далее',
+    locator: 'Место в семи видениях', vision: 'Видение', thisTopic: 'эта тема',
+    right: 'Верно!', wrong: 'Не совсем.', retry: 'Попробовать ещё раз',
+    legend: [['stated', 'Сказано', 'так говорит текст'], ['link', 'Связь', 'другой отрывок проливает свет'], ['inference', 'Вывод', 'заключение из обоих'], ['caution', 'Осторожно', 'где кончается уверенность']],
+    langLabel: 'Язык', description: 'Ясное и полное надежды пособие по книге Откровение: семь видений одной эпохи и двадцать самых непонятых вопросов в свете всего Писания.',
+    settings: 'Настройки чтения', close: 'Закрыть', textSize: 'Размер текста', sizeS: 'Мелкий текст', sizeM: 'Обычный текст', sizeL: 'Крупный текст', sizeXL: 'Самый крупный текст',
+    theme: 'Страница', vellum: 'Пергамент', night: 'Ночь', auto: 'Авто', print: 'Распечатать главу', shortcuts: 'Сочетания клавиш',
+    reset: 'Сбросить мой прогресс', resetArmed: 'Нажмите ещё раз, чтобы стереть', resetDone: 'Ваш прогресс сброшен',
+    hideSide: 'Скрыть боковую панель', toggleSide: 'Показать или скрыть содержание', toTop: 'Наверх',
+    progress: 'Ваш прогресс', progressCount: (k, t) => `${k} из ${t} отвечено`, nextUp: 'Следующий вопрос', allDone: 'Все двадцать вопросов пройдены. Отлично!',
+    groupCount: (k, t) => `${k} из ${t} отвечено`,
+    onPage: 'На этой странице', minutes: m => `${m} мин чтения`,
+    copyLink: 'Скопировать ссылку на этот раздел', linkCopied: 'Ссылка скопирована', copy: 'Копировать', copyPassage: 'Скопировать этот отрывок', passageCopied: 'Отрывок скопирован', copyFail: 'Копирование здесь недоступно',
+    openAll: 'Открыть все', closeAll: 'Закрыть все',
+    keys: [['← →', 'Предыдущая или следующая глава'], ['/', 'Поиск по главам'], ['S', 'Показать или скрыть содержание'], ['L', 'Сменить язык'], ['T', 'Наверх'], ['?', 'Показать эти сочетания'], ['Esc', 'Закрыть панель']]
   }
 };
 
@@ -3885,7 +5012,7 @@ function applyUI() {
   $$('[data-i18n]').forEach(e => { e.textContent = t(e.dataset.i18n); });
   $$('[data-i18n-label]').forEach(e => e.setAttribute('aria-label', t(e.dataset.i18nLabel)));
   $$('[data-i18n-ph]').forEach(e => e.setAttribute('placeholder', t(e.dataset.i18nPh)));
-  $$('[data-i18n-label]').forEach(e => { if (e.matches('#settingsOpen, #sideHide, #toTop')) e.title = t(e.dataset.i18nLabel); });
+  $$('[data-i18n-label]').forEach(e => { if (e.matches('#settingsOpen, #drawerOpen, #toTop')) e.title = t(e.dataset.i18nLabel); });
   const meta = $('meta[name="description"]'); if (meta) meta.setAttribute('content', t('description'));
   $$('.lang-pick button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   const dl = $('#keysList'); dl.replaceChildren();
@@ -4145,7 +5272,7 @@ function enhance() {
     b.addEventListener('click', async () => {
       const text = $('p', card).textContent.trim();
       const cite = $('cite', card).textContent.trim();
-      const q = lang === 'es' ? `«${text}» (${cite}, ${TRANSLATION[lang]})` : `“${text}” (${cite}, ${TRANSLATION[lang]})`;
+      const q = lang === 'en' ? `“${text}” (${cite}, ${TRANSLATION[lang]})` : `«${text}» (${cite}, ${TRANSLATION[lang]})`;
       toast(await copyText(q) ? t('passageCopied') : t('copyFail'));
     });
     foot.append(b);
@@ -4465,7 +5592,6 @@ function setSide(show) {
   store.set('side', show);
   syncContentsButton();
 }
-$('#sideHide').addEventListener('click', () => { setSide(false); contentsBtn.focus(); });
 function openDrawer() {
   lastFocus = document.activeElement;
   $('#drawerSearch').value = ''; filterNav($('#drawerNav'), '');
@@ -4594,7 +5720,7 @@ document.addEventListener('keydown', e => {
       else { openDrawer(); $('#drawerSearch').focus(); }
       break;
     case 's': case 'S': e.preventDefault(); toggleContents(); break;
-    case 'l': case 'L': e.preventDefault(); switchLang(lang === 'en' ? 'es' : 'en'); break;
+    case 'l': case 'L': e.preventDefault(); switchLang(LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]); break;
     case 't': case 'T': e.preventDefault(); toTop(); break;
     case '?': e.preventDefault(); openKeys(); break;
     default: break;
