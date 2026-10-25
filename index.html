@@ -1247,11 +1247,13 @@ h1{font-weight:450;letter-spacing:-.024em;line-height:1.04}
 .topbar-inner{max-width:none;padding:0 20px 0 22px}
 
 /* 2 · Sidebar: one line per chapter, a hairline of progress, drawn icons */
-.side-inner{padding:16px 12px 40px 14px;scrollbar-width:none}
-.side-inner::-webkit-scrollbar{width:0}
-.side-inner:hover{scrollbar-width:thin}
-.side-inner:hover::-webkit-scrollbar{width:6px}
-.side-inner::-webkit-scrollbar-thumb{background:var(--rule-strong);border-radius:3px}
+/* The scrollbar's lane is always reserved, so nothing shifts; the thumb only becomes visible on hover or keyboard focus */
+.side-inner{padding:16px 4px 40px 14px;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:transparent transparent;transition:scrollbar-color .2s}
+.side-inner:hover,.side-inner:focus-within{scrollbar-color:var(--rule-strong) transparent}
+.side-inner::-webkit-scrollbar{width:8px}
+.side-inner::-webkit-scrollbar-track{background:transparent}
+.side-inner::-webkit-scrollbar-thumb{background:transparent;border-radius:4px;border:2px solid transparent;background-clip:padding-box}
+.side-inner:hover::-webkit-scrollbar-thumb,.side-inner:focus-within::-webkit-scrollbar-thumb{background-color:var(--rule-strong)}
 .side-tools{margin:-16px -2px 10px;padding:16px 2px 10px;top:-16px}
 .search-box kbd{margin-left:auto}
 
