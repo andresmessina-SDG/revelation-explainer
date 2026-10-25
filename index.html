@@ -393,7 +393,7 @@ em{font-style:italic}
 .vlabel .vt small{font-size:15px;color:var(--ink-2)}
 .vlabel .vchev{margin-left:auto;font-size:14px;color:var(--gilt-deep);transition:transform .2s}
 .vlabel[aria-expanded="true"] .vchev{transform:rotate(90deg)}
-.vlabel:hover .vt b{color:var(--link)}
+@media (hover:hover){.vlabel:hover .vt b{color:var(--link)}}
 .vbar{padding:16px 0 10px;display:flex;flex-direction:column;gap:7px}
 .vtrack{display:flex;align-items:center;height:10px}
 .vtrack i{display:block;height:10px}
@@ -1387,6 +1387,135 @@ h1,h2,h3,.movements b,.steps b,.seal b,.mill-seg b,.mill-seg small,.alt-grid h3,
   .vbeyond span{display:none}
 }
 
+/* ==========================================================================
+   Seven visions, phone edition: one row per vision, every bar in one column,
+   so the parallel and the growing gold read at a glance. Tap a row to open it.
+   ========================================================================== */
+@container (max-width:560px){
+  .visions-title p{font-size:16px}
+  .vgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);margin-top:18px}
+  .vgrid > .vend{display:none}
+  .vgrid > .vaxis.vlab{display:flex;align-items:flex-end;grid-column:1;padding:0 0 8px;font-size:10px;letter-spacing:.03em}
+  .vgrid > .vaxis.vmid{grid-column:2;display:flex;justify-content:space-between;align-items:flex-end;gap:6px;padding:0 17px 8px 0;border:0;font-size:9.5px;letter-spacing:.02em;line-height:1.2}
+  .vaxis.vmid span:nth-child(2){display:none}
+  .vaxis.vmid span:last-child{text-align:right;margin-right:calc(16% - 4px)}
+  .vpart.vlab{display:none}
+  .vpart.vmid{grid-column:1/-1;border:0;border-top:1px solid var(--hair);padding:14px 0 4px;font-size:14.5px}
+  .vlabel{grid-column:1;gap:8px;min-height:54px;padding:8px 8px 8px 0;border-top:1px solid var(--hair);align-items:center}
+  .vlabel .vn{width:26px;font-size:16px}
+  .vlabel .vt b{font-size:15px;line-height:1.2}
+  .vlabel .vt small{font-size:12px;margin-top:1px}
+  .vlabel .vchev{display:none}
+  .vlabel[aria-expanded="true"] .vt b{color:var(--link)}
+  .vbar{grid-column:2;flex-direction:row;align-items:center;gap:10px;padding:0;border:0;border-top:1px solid var(--hair);cursor:pointer}
+  .vbar .vcap{display:none}
+  .vbar::after{content:'';flex:none;width:7px;height:7px;margin:0 4px 0 0;border-right:1.6px solid var(--ink-3);border-bottom:1.6px solid var(--ink-3);transform:rotate(-45deg);transition:transform .25s}
+  .vlabel[aria-expanded="true"] + .vbar::after{transform:rotate(45deg);border-color:var(--link)}
+  .vtrack{flex:1;height:9px;padding-right:16%}
+  .vtrack i{height:9px}
+  .vtrack .dot{width:15px;height:15px;margin-right:-7.5px}
+  /* the gold grows visibly from vision to vision */
+  #vision-2 + .vbar .end{width:8%!important}
+  #vision-3 + .vbar .end{width:15%!important}
+  #vision-4 + .vbar .end{width:22%!important}
+  #vision-5 + .vbar .end{width:29%!important}
+  #vision-6 + .vbar .end{width:36%!important}
+  #vision-7 + .vbar .end{width:43%!important}
+  /* only the last vision runs on past the return, into the new creation */
+  #vision-7 + .vbar .vtrack{padding-right:0}
+  #vision-7 + .vbar .vtrack::after{content:'';flex:none;width:16%;height:9px;border-radius:0 99px 99px 0;background:linear-gradient(90deg,#D4AE55,rgba(241,217,149,.18))}
+  .vdetail{grid-column:1/-1;padding:2px 0 14px}
+  .vdetail-inner{padding:14px 16px}
+  .vdetail p{font-size:16px}
+  .vclose{border-top-color:var(--hair)}
+  .vlegend{margin-top:14px;font-size:13px}
+  .vlegend .keys{flex-direction:column;gap:6px}
+  .visions::after{inset:8px}
+}
+@container (max-width:380px){
+  .vgrid{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}
+  .vgrid > .vaxis.vmid span{display:none}
+  .vlabel .vt small{display:none}
+}
+
+/* ==========================================================================
+   Millennium views — one colour per meaning
+   lapis: Christ's comings · soft lapis: the church age · gold: the thousand years
+   vermilion: Satan's brief release · ink: final judgment · verdigris: new creation
+   ========================================================================== */
+:root{--newc:#2F7A63}
+:root[data-theme="night"]{--newc:#3E957B}
+.mill-seg.christ i,.mc-seg.christ,.mc-key.christ{background:var(--lapis-tile)}
+.mill-seg.age i,.mc-seg.age,.mc-key.age{background:color-mix(in srgb,var(--lapis-2) 38%,var(--paper))}
+.mill-seg.reign i,.mc-seg.reign,.mc-key.reign{background:var(--leaf)}
+.mill-seg.satan i,.mc-seg.satan,.mc-key.satan{background:var(--vermilion)}
+.mill-seg.judge i,.mc-key.judge{background:var(--ink-3)}
+.mill-seg.new i,.mc-seg.new,.mc-key.new{background:var(--newc)}
+
+.mill-compare{display:none}
+#mill-study{container-type:inline-size}
+@container (max-width:600px){
+  .mill-compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:6px 0 16px}
+  #millVisual{display:none}
+  /* the columns are the visible switch; the tabs stay for keyboards and screen readers */
+  #millTabs{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  #millTabs:focus-within{position:static;width:auto;height:auto;margin:18px 0 10px;overflow:visible;clip:auto}
+  .mc-col{display:flex;flex-direction:column;gap:12px;min-width:0;padding:12px 8px 14px 10px;border:0;border-radius:16px;background:var(--paper);box-shadow:var(--sh-1),inset 0 0 0 1px var(--hair);text-align:left;color:var(--ink);opacity:.6;transition:opacity .2s,box-shadow .2s}
+  .mc-col.on{opacity:1;box-shadow:var(--sh-2),inset 0 0 0 1.5px color-mix(in srgb,var(--gilt) 75%,transparent)}
+  .mc-head{display:block;min-height:2.5em;font:500 14px/1.2 var(--rubric);letter-spacing:.01em;color:var(--vermilion);hyphens:manual;overflow-wrap:normal}
+  .mc-body{position:relative;display:block;height:310px}
+  .mc-rail{position:absolute;left:4px;top:0;bottom:0;width:8px;border-radius:99px;background:var(--fill)}
+  .mc-seg{position:absolute;left:0;width:8px;border-radius:99px}
+  .mc-dot{position:absolute;left:50%;z-index:1;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%}
+  .mc-dot.christ{background:var(--lapis-tile);box-shadow:0 0 0 2.5px var(--paper)}
+  .mc-dot.return{width:18px;height:18px;margin:-9px 0 0 -9px;box-shadow:0 0 0 2.5px var(--paper),0 0 0 4px var(--gilt),0 4px 10px rgba(20,44,94,.35)}
+  .mc-dot.judge{background:var(--ink-3);box-shadow:0 0 0 2.5px var(--paper)}
+  .mc-labels{position:absolute;left:22px;right:0;top:0;bottom:0}
+  .mc-label{position:absolute;left:0;right:0;font:500 12px/1.22 var(--sans);letter-spacing:-.005em;color:var(--ink-2);hyphens:auto;overflow-wrap:break-word}
+  .mc-label.return{font-weight:700;color:var(--link)}
+  .mc-label.reign{font-weight:650;color:var(--gilt-deep)}
+  .mc-legend{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font:400 12.5px/1.3 var(--sans);color:var(--ink-3)}
+  .mc-legend span{display:inline-flex;align-items:center;gap:6px}
+  .mc-key{display:inline-block;width:16px;height:8px;border-radius:99px}
+  .mc-key.christ,.mc-key.judge{width:11px;height:11px;border-radius:50%}
+}
+
+/* Night: make the selected segment unmistakable */
+:root[data-theme="night"]{--thumb:#5A4F41}
+:root[data-theme="night"] .tab[aria-selected="true"],:root[data-theme="night"] .seg button[aria-pressed="true"],:root[data-theme="night"] .lang-pick button[aria-pressed="true"]{color:#FFF8EA;box-shadow:inset 0 0 0 1px rgba(241,217,149,.4),0 2px 8px rgba(0,0,0,.4)}
+
+/* Back to top steps aside while you read down, and returns when you scroll up */
+.to-top{transition:opacity .25s ease,transform .25s ease}
+:root.hdr-away .to-top{opacity:0;transform:translateY(14px);pointer-events:none}
+@media (max-width:600px){.to-top{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0));width:42px;height:42px}}
+/* Section-link icons only where there is hover; on phones they were clutter */
+@media (hover:none) and (max-width:760px){h2 .h-link{display:none}}
+:root[data-theme="night"] .mill-seg.age i,:root[data-theme="night"] .mc-seg.age,:root[data-theme="night"] .mc-key.age{background:color-mix(in srgb,var(--lapis-2) 62%,var(--paper))}
+@container (max-width:360px){
+  .mill-compare{gap:6px}
+  .mc-col{padding:10px 5px 12px 7px}
+  .mc-labels{left:18px}
+  .mc-label{font-size:11px;letter-spacing:-.01em}
+  .mc-head{font-size:13px}
+}
+@container (max-width:300px){
+  .mc-head{font-size:11px;letter-spacing:0;overflow-wrap:anywhere}
+  .mc-label{font-size:10.5px}
+}
+/* comparison refinements */
+@container (max-width:600px){
+  .mc-body{height:350px}
+  .mc-rail{top:8px;bottom:8px}
+  .mc-head{font-size:12.5px;letter-spacing:0}
+  .mc-col{opacity:.8}
+  .mc-col.on{opacity:1}
+  .mc-col:not(.on) .mc-label{color:var(--ink-3)}
+  .mc-col:not(.on) .mc-label.return{color:color-mix(in srgb,var(--link) 80%,var(--ink-3))}
+  .mc-note{grid-column:1/-1;margin:4px 2px 0;font:italic 400 15px/1.4 var(--text);color:var(--ink-2);text-align:center}
+}
+@container (max-width:600px){ .mc-labels{left:27px} }
+@container (max-width:360px){ .mc-labels{left:24px} }
+
 
 /* ==========================================================================
    Phone refinements
@@ -1454,7 +1583,7 @@ html{-webkit-tap-highlight-color:transparent}
   .passage footer{gap:6px 14px}
   .copy-btn{position:absolute;top:16px;right:14px;width:40px;height:40px;min-height:0;padding:0;justify-content:center}
   .copy-btn span{display:none}
-  .visions{padding:22px 14px}
+  .visions{padding:24px 20px 22px}
   .world{padding:28px 22px}
 
   /* the seven-vision strip spans the column */
@@ -2597,10 +2726,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div>
   <div class="mill-inline">
     <div class="mill-track" role="img" aria-label="Timeline: first coming and Satan bound, the thousand years of Christ's reign, a brief release, Christ returns, new creation">
-      <div class="mill-seg event" style="--w:.9"><i></i><b>First coming</b><small>Satan bound · 20:1–3</small></div>
+      <div class="mill-seg christ" style="--w:.9"><i></i><b>First coming</b><small>Satan bound · 20:1–3</small></div>
       <div class="mill-seg reign" style="--w:3"><i></i><b>The thousand years</b><small>Christ reigns; the gospel to the nations · 20:4–6</small></div>
-      <div class="mill-seg event" style="--w:.9"><i></i><b>Brief release</b><small>Final rebellion · 20:7–9</small></div>
-      <div class="mill-seg final" style="--w:1.2"><i></i><b>Christ returns</b><small>Judgment, new creation · 20:10–22:5</small></div>
+      <div class="mill-seg satan" style="--w:.9"><i></i><b>Brief release</b><small>Final rebellion · 20:7–9</small></div>
+      <div class="mill-seg christ" style="--w:1.2"><i></i><b>Christ returns</b><small>Judgment, new creation · 20:10–22:5</small></div>
     </div>
   </div>
   <section class="evidence" aria-labelledby="ev-mill">
@@ -3651,10 +3780,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div>
   <div class="mill-inline">
     <div class="mill-track" role="img" aria-label="Cronología: primera venida y Satanás atado, los mil años del reinado de Cristo, una breve liberación, el regreso de Cristo, la nueva creación">
-      <div class="mill-seg event" style="--w:.9"><i></i><b>Primera venida</b><small>Satanás atado · 20:1–3</small></div>
+      <div class="mill-seg christ" style="--w:.9"><i></i><b>Primera venida</b><small>Satanás atado · 20:1–3</small></div>
       <div class="mill-seg reign" style="--w:3"><i></i><b>Los mil años</b><small>Cristo reina; el evangelio a las naciones · 20:4–6</small></div>
-      <div class="mill-seg event" style="--w:.9"><i></i><b>Breve liberación</b><small>Rebelión final · 20:7–9</small></div>
-      <div class="mill-seg final" style="--w:1.2"><i></i><b>Cristo regresa</b><small>Juicio, nueva creación · 20:10–22:5</small></div>
+      <div class="mill-seg satan" style="--w:.9"><i></i><b>Breve liberación</b><small>Rebelión final · 20:7–9</small></div>
+      <div class="mill-seg christ" style="--w:1.2"><i></i><b>Cristo regresa</b><small>Juicio, nueva creación · 20:10–22:5</small></div>
     </div>
   </div>
   <section class="evidence" aria-labelledby="ev-mill-es">
@@ -4708,10 +4837,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div>
   <div class="mill-inline">
     <div class="mill-track" role="img" aria-label="Хронология: первое пришествие и связывание сатаны, тысяча лет царствования Христа, краткое освобождение, возвращение Христа, новое творение">
-      <div class="mill-seg event" style="--w:.9"><i></i><b>Первое при­шествие</b><small>Сатана связан · 20:1–3</small></div>
+      <div class="mill-seg christ" style="--w:.9"><i></i><b>Первое при­шествие</b><small>Сатана связан · 20:1–3</small></div>
       <div class="mill-seg reign" style="--w:3"><i></i><b>Тысяча лет</b><small>Христос царствует; Евангелие идёт к народам · 20:4–6</small></div>
-      <div class="mill-seg event" style="--w:.9"><i></i><b>Краткое осво­бождение</b><small>Последний мятеж · 20:7–9</small></div>
-      <div class="mill-seg final" style="--w:1.2"><i></i><b>Христос возвра­щается</b><small>Суд, новое творение · 20:10–22:5</small></div>
+      <div class="mill-seg satan" style="--w:.9"><i></i><b>Краткое осво­бождение</b><small>Последний мятеж · 20:7–9</small></div>
+      <div class="mill-seg christ" style="--w:1.2"><i></i><b>Христос возвра­щается</b><small>Суд, новое творение · 20:10–22:5</small></div>
     </div>
   </div>
   <section class="evidence" aria-labelledby="ev-mill">
@@ -4822,8 +4951,8 @@ const LAB = {
     },
     mills: {
       a: { title: 'Amillennialism: the thousand years is now', desc: 'The thousand years of Revelation 20 is the whole age between Christ’s first and second comings. Satan is bound so that he cannot stop the gospel from reaching the nations. Believers who die reign with Christ in heaven. Christ returns once, raises all the dead, judges the world and makes all things new.', texts: 'Matthew 12:29 (the strong man bound); Ephesians 1:20–22 and Matthew 28:18 (Christ reigns now); John 5:28–29 (one hour, one resurrection of all); Revelation 20 read as a fresh vision of the whole age, like the six before it.', caveat: '“Amillennial” does not mean “no millennium.” It means the millennium is not a separate future earthly kingdom. This is the reading of the Reformed confessions and of this guide.', segs: [['First coming', 'Satan bound, Christ enthroned', 'event', 0.8], ['The thousand years', 'Christ reigns; the gospel goes out', 'reign', 3], ['Brief release', 'Final apostasy', 'event', 0.8], ['Christ returns', 'One resurrection, one judgment', 'event', 1], ['New creation', 'Forever', 'final', 1.1]] },
-      pre: { title: 'Premillennialism: Christ returns before the millennium', desc: 'Christ returns before a future thousand-year reign on earth. Believers are raised at his coming; the rest of the dead are raised after the millennium, followed by a final rebellion, judgment and the new creation.', texts: 'Revelation 19 and 20 are read in strict sequence; “came to life” in 20:4 is taken as bodily resurrection.', caveat: 'Historic premillennialism (as in George Eldon Ladd) differs from dispensational premillennialism, which adds a pre-tribulation rapture and a sharp distinction between Israel and the church.', segs: [['Present age', 'The church waits', 'age', 2], ['Christ returns', 'Believers raised', 'event', 1], ['Millennium', 'Earthly reign', 'reign', 1.8], ['Final judgment', 'The rest raised', 'event', 1], ['New creation', 'Forever', 'final', 1.1]] },
-      post: { title: 'Postmillennialism: Christ returns after the millennium', desc: 'Through the gospel, Christ’s kingdom grows until most of the world is Christianized, leading to a long era of righteousness and peace before he returns to judge and make all things new.', texts: 'Psalm 2 and 72; the parables of the mustard seed and leaven (Matthew 13:31–33); the Great Commission (Matthew 28:18–20).', caveat: 'Postmillennialists agree with amillennialists on one return and one resurrection. The difference is the expectation of a golden age within history.', segs: [['Gospel advances', 'The kingdom grows', 'age', 1.6], ['Golden age', 'Christian flourishing', 'reign', 2], ['Christ returns', 'Resurrection and judgment', 'event', 1], ['New creation', 'Forever', 'final', 1.1]] }
+      pre: { title: 'Premillennialism: Christ returns before the millennium', desc: 'Christ returns before a future thousand-year reign on earth. Believers are raised at his coming; the rest of the dead are raised after the millennium, followed by a final rebellion, judgment and the new creation.', texts: 'Revelation 19 and 20 are read in strict sequence; “came to life” in 20:4 is taken as bodily resurrection.', caveat: 'Historic premillennialism (as in George Eldon Ladd) differs from dispensational premillennialism, which adds a pre-tribulation rapture and a sharp distinction between Israel and the church.', segs: [['Present age', 'The church waits', 'age', 2], ['Christ returns', 'Believers raised', 'event', 1], ['Millennium', 'Earthly reign', 'reign', 1.8], ['Brief release', 'Final rebellion', 'event', 0.7], ['Final judgment', 'The rest raised', 'event', 1], ['New creation', 'Forever', 'final', 1.1]] },
+      post: { title: 'Postmillennialism: Christ returns after the millennium', desc: 'Through the gospel, Christ’s kingdom grows until most of the world is Christianized, leading to a long era of righteousness and peace. After a brief final apostasy, he returns to judge and make all things new.', texts: 'Psalm 2 and 72; the parables of the mustard seed and leaven (Matthew 13:31–33); the Great Commission (Matthew 28:18–20).', caveat: 'Postmillennialists agree with amillennialists on one return and one resurrection. The difference is the expectation of a golden age within history.', segs: [['Gospel advances', 'The kingdom grows', 'age', 1.6], ['Golden age', 'Christian flourishing', 'reign', 2], ['Brief release', 'Final apostasy', 'event', 0.7], ['Christ returns', 'Resurrection and judgment', 'event', 1], ['New creation', 'Forever', 'final', 1.1]] }
     },
     readings: {
       beast: [['Rome and its emperors', 'The beast is the Roman Empire and its emperor cult, which threatened John’s churches.'], ['Successive oppressors', 'The beast is traced through powers in church history; the Reformers often saw the papacy here.'], ['A final world ruler', 'The beast is chiefly a future dictator and empire at the end.'], ['Every God-defying state', 'The beast is the persecuting state in every age, Rome first, ending in a final Antichrist.']],
@@ -4838,6 +4967,9 @@ const LAB = {
     pairMill: { pre: 'Christ returns before a future millennium.', a: 'The millennium is Christ’s present reign.', post: 'A golden age comes before Christ returns.' },
     pairOurs: 'This is close to the reading used in this guide, which adds a firm anchor in the first century and a real future end.',
     pairOther: 'Individual interpreters vary; treat this as a broad tendency, not a fixed camp.',
+    compareHeads: { a: 'A\u00ADmillennial', pre: 'Pre\u00ADmillennial', post: 'Post\u00ADmillennial' },
+    compareNote: 'The same history in all three. What differs is where Christ returns.',
+    compareLegend: [['christ', 'Christ comes'], ['age', 'The church age'], ['reign', 'The thousand years'], ['satan', 'Satan’s brief release'], ['judge', 'Final judgment'], ['new', 'New creation']],
     timeline: 'Timeline: ', then: ', then '
   },
   es: {
@@ -4850,8 +4982,8 @@ const LAB = {
     },
     mills: {
       a: { title: 'Amilenialismo: los mil años son ahora', desc: 'Los mil años de Apocalipsis 20 son toda la era entre la primera y la segunda venida de Cristo. Satanás está atado para que no pueda impedir que el evangelio llegue a las naciones. Los creyentes que mueren reinan con Cristo en el cielo. Cristo vuelve una sola vez, resucita a todos los muertos, juzga al mundo y hace nuevas todas las cosas.', texts: 'Mateo 12:29 (el hombre fuerte atado); Efesios 1:20–22 y Mateo 28:18 (Cristo reina ahora); Juan 5:28–29 (una sola hora, una resurrección de todos); Apocalipsis 20 leído como una nueva visión de toda la era, igual que las seis anteriores.', caveat: '«Amilenial» no significa «sin milenio». Significa que el milenio no es un reino terrenal futuro y separado. Esta es la lectura de las confesiones reformadas y de esta guía.', segs: [['Primera venida', 'Satanás atado, Cristo entronizado', 'event', 0.8], ['Los mil años', 'Cristo reina; el evangelio avanza', 'reign', 3], ['Breve liberación', 'Apostasía final', 'event', 0.8], ['Cristo regresa', 'Una resurrección, un juicio', 'event', 1], ['Nueva creación', 'Para siempre', 'final', 1.1]] },
-      pre: { title: 'Premilenialismo: Cristo regresa antes del milenio', desc: 'Cristo regresa antes de un reinado futuro de mil años en la tierra. Los creyentes resucitan en Su venida; el resto de los muertos resucita después del milenio, y luego vienen una rebelión final, el juicio y la nueva creación.', texts: 'Apocalipsis 19 y 20 se leen en estricta secuencia; «volvieron a la vida» en 20:4 se entiende como resurrección corporal.', caveat: 'El premilenialismo histórico (como el de George Eldon Ladd) se distingue del premilenialismo dispensacional, que añade un arrebatamiento antes de la tribulación y una separación marcada entre Israel y la iglesia.', segs: [['Era presente', 'La iglesia espera', 'age', 2], ['Cristo regresa', 'Resucitan los creyentes', 'event', 1], ['Milenio', 'Reinado terrenal', 'reign', 1.8], ['Juicio final', 'Resucitan los demás', 'event', 1], ['Nueva creación', 'Para siempre', 'final', 1.1]] },
-      post: { title: 'Posmilenialismo: Cristo regresa después del milenio', desc: 'Por medio del evangelio, el reino de Cristo crece hasta que la mayor parte del mundo es cristianizada, y viene una larga era de justicia y paz antes de que Él regrese para juzgar y hacer nuevas todas las cosas.', texts: 'Salmos 2 y 72; las parábolas de la semilla de mostaza y la levadura (Mateo 13:31–33); la Gran Comisión (Mateo 28:18–20).', caveat: 'Los posmilenialistas coinciden con los amilenialistas en un solo regreso y una sola resurrección. La diferencia es la expectativa de una era dorada dentro de la historia.', segs: [['El evangelio avanza', 'El reino crece', 'age', 1.6], ['Era dorada', 'Florecimiento cristiano', 'reign', 2], ['Cristo regresa', 'Resurrección y juicio', 'event', 1], ['Nueva creación', 'Para siempre', 'final', 1.1]] }
+      pre: { title: 'Premilenialismo: Cristo regresa antes del milenio', desc: 'Cristo regresa antes de un reinado futuro de mil años en la tierra. Los creyentes resucitan en Su venida; el resto de los muertos resucita después del milenio, y luego vienen una rebelión final, el juicio y la nueva creación.', texts: 'Apocalipsis 19 y 20 se leen en estricta secuencia; «volvieron a la vida» en 20:4 se entiende como resurrección corporal.', caveat: 'El premilenialismo histórico (como el de George Eldon Ladd) se distingue del premilenialismo dispensacional, que añade un arrebatamiento antes de la tribulación y una separación marcada entre Israel y la iglesia.', segs: [['Era presente', 'La iglesia espera', 'age', 2], ['Cristo regresa', 'Resucitan los creyentes', 'event', 1], ['Milenio', 'Reinado terrenal', 'reign', 1.8], ['Breve liberación', 'Rebelión final', 'event', 0.7], ['Juicio final', 'Resucitan los demás', 'event', 1], ['Nueva creación', 'Para siempre', 'final', 1.1]] },
+      post: { title: 'Posmilenialismo: Cristo regresa después del milenio', desc: 'Por medio del evangelio, el reino de Cristo crece hasta que la mayor parte del mundo es cristianizada, y viene una larga era de justicia y paz. Tras una breve apostasía final, Él regresa para juzgar y hacer nuevas todas las cosas.', texts: 'Salmos 2 y 72; las parábolas de la semilla de mostaza y la levadura (Mateo 13:31–33); la Gran Comisión (Mateo 28:18–20).', caveat: 'Los posmilenialistas coinciden con los amilenialistas en un solo regreso y una sola resurrección. La diferencia es la expectativa de una era dorada dentro de la historia.', segs: [['El evangelio avanza', 'El reino crece', 'age', 1.6], ['Era dorada', 'Florecimiento cristiano', 'reign', 2], ['Breve liberación', 'Apostasía final', 'event', 0.7], ['Cristo regresa', 'Resurrección y juicio', 'event', 1], ['Nueva creación', 'Para siempre', 'final', 1.1]] }
     },
     readings: {
       beast: [['Roma y sus emperadores', 'La bestia es el Imperio romano y su culto al emperador, que amenazaba a las iglesias de Juan.'], ['Opresores sucesivos', 'La bestia se rastrea en poderes de la historia de la iglesia; los reformadores solían ver aquí al papado.'], ['Un gobernante mundial final', 'La bestia es sobre todo un dictador y un imperio futuros al final de la historia.'], ['Todo Estado que desafía a Dios', 'La bestia es el Estado perseguidor de toda época: primero Roma, y al final un Anticristo definitivo.']],
@@ -4866,6 +4998,9 @@ const LAB = {
     pairMill: { pre: 'Cristo regresa antes de un milenio futuro.', a: 'El milenio es el reinado presente de Cristo.', post: 'Una era dorada llega antes del regreso de Cristo.' },
     pairOurs: 'Esto se acerca a la lectura de esta guía, que además la ancla firmemente en el primer siglo y en un final real y futuro.',
     pairOther: 'Cada intérprete es distinto; tómalo como una tendencia general, no como un bando fijo.',
+    compareHeads: { a: 'Ami\u00ADlenial', pre: 'Pre\u00ADmilenial', post: 'Pos\u00ADmilenial' },
+    compareNote: 'La misma historia en las tres. Lo que cambia es dónde regresa Cristo.',
+    compareLegend: [['christ', 'Cristo viene'], ['age', 'La era de la iglesia'], ['reign', 'Los mil años'], ['satan', 'La breve liberación de Satanás'], ['judge', 'Juicio final'], ['new', 'Nueva creación']],
     timeline: 'Cronología: ', then: ', luego '
   },
   ru: {
@@ -4878,8 +5013,8 @@ const LAB = {
     },
     mills: {
       a: { title: 'Амилленаризм: тысяча лет — сейчас', desc: 'Тысяча лет из Откровения 20 — это вся эпоха между первым и вторым пришествиями Христа. Сатана связан, так что не может помешать Евангелию дойти до народов. Умершие верующие царствуют со Христом на небе. Христос возвращается один раз, воскрешает всех мёртвых, судит мир и творит всё новое.', texts: 'Матфея 12:29 (сильный связан); Ефесянам 1:20–22 и Матфея 28:18 (Христос царствует сейчас); Иоанна 5:28–29 (один час, одно воскресение всех); Откровение 20 как новое видение всей эпохи, подобно шести предыдущим.', caveat: '«Амилленаризм» не означает «никакого тысячелетия». Он означает, что тысячелетнее царство — не отдельное будущее земное царство. Таково прочтение реформатских исповеданий и этого пособия.', segs: [['Первое при\u00ADшествие', 'Сатана связан, Христос воцарился', 'event', 0.8], ['Тысяча лет', 'Христос царствует; Евангелие идёт по миру', 'reign', 3], ['Краткое осво\u00ADбождение', 'Последнее отступление', 'event', 0.8], ['Христос возвра\u00ADщается', 'Одно воскресение, один суд', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] },
-      pre: { title: 'Премилленаризм: Христос возвращается до тысячелетия', desc: 'Христос возвращается перед будущим тысячелетним царством на земле. Верующие воскресают при Его пришествии; остальные мёртвые воскресают после тысячелетия, за чем следуют последний мятеж, суд и новое творение.', texts: 'Главы 19 и 20 Откровения читаются в строгой последовательности; слово «ожили» в 20:4 понимается как телесное воскресение.', caveat: 'Исторический премилленаризм (например, у Джорджа Элдона Лэдда) отличается от диспенсационального, который добавляет восхищение церкви до скорби и резкое различие между Израилем и церковью.', segs: [['Нынешний век', 'Церковь ожидает', 'age', 2], ['Христос возвра\u00ADщается', 'Верующие воскресают', 'event', 1], ['Тысячелетие', 'Земное царство', 'reign', 1.8], ['Последний суд', 'Воскресают остальные', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] },
-      post: { title: 'Постмилленаризм: Христос возвращается после тысячелетия', desc: 'Через Евангелие Царство Христа растёт, пока бо́льшая часть мира не станет христианской, и наступает долгая эпоха праведности и мира, после которой Он возвращается судить и творить всё новое.', texts: 'Псалмы 2 и 71 (в еврейской нумерации 72); притчи о горчичном зерне и закваске (Матфея 13:31–33); Великое поручение (Матфея 28:18–20).', caveat: 'Постмилленаристы согласны с амилленаристами в том, что возвращение одно и воскресение одно. Различие — в ожидании золотого века внутри истории.', segs: [['Евангелие ше\u00ADствует', 'Царство растёт', 'age', 1.6], ['Золотой век', 'Расцвет христианства', 'reign', 2], ['Христос возвра\u00ADщается', 'Воскресение и суд', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] }
+      pre: { title: 'Премилленаризм: Христос возвращается до тысячелетия', desc: 'Христос возвращается перед будущим тысячелетним царством на земле. Верующие воскресают при Его пришествии; остальные мёртвые воскресают после тысячелетия, за чем следуют последний мятеж, суд и новое творение.', texts: 'Главы 19 и 20 Откровения читаются в строгой последовательности; слово «ожили» в 20:4 понимается как телесное воскресение.', caveat: 'Исторический премилленаризм (например, у Джорджа Элдона Лэдда) отличается от диспенсационального, который добавляет восхищение церкви до скорби и резкое различие между Израилем и церковью.', segs: [['Нынешний век', 'Церковь ожидает', 'age', 2], ['Христос возвра\u00ADщается', 'Верующие воскресают', 'event', 1], ['Тысячелетие', 'Земное царство', 'reign', 1.8], ['Краткое осво\u00ADбождение', 'Последний мятеж', 'event', 0.7], ['Последний суд', 'Воскресают остальные', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] },
+      post: { title: 'Постмилленаризм: Христос возвращается после тысячелетия', desc: 'Через Евангелие Царство Христа растёт, пока бо́льшая часть мира не станет христианской, и наступает долгая эпоха праведности и мира. После краткого последнего отступления Он возвращается судить и творить всё новое.', texts: 'Псалмы 2 и 71 (в еврейской нумерации 72); притчи о горчичном зерне и закваске (Матфея 13:31–33); Великое поручение (Матфея 28:18–20).', caveat: 'Постмилленаристы согласны с амилленаристами в том, что возвращение одно и воскресение одно. Различие — в ожидании золотого века внутри истории.', segs: [['Евангелие ше\u00ADствует', 'Царство растёт', 'age', 1.6], ['Золотой век', 'Расцвет христианства', 'reign', 2], ['Краткое осво\u00ADбождение', 'Последнее отступление', 'event', 0.7], ['Христос возвра\u00ADщается', 'Воскресение и суд', 'event', 1], ['Новое творение', 'Навеки', 'final', 1.1]] }
     },
     readings: {
       beast: [['Рим и его императоры', 'Зверь — это Римская империя и культ императора, угрожавшие церквам Иоанна.'], ['Череда угнетателей', 'Зверя прослеживают через силы церковной истории; реформаторы часто видели здесь папство.'], ['Последний мировой правитель', 'Зверь — это прежде всего будущий диктатор и его империя в конце времён.'], ['Всякое богоборческое государство', 'Зверь — это государство-гонитель во все века: сначала Рим, а в конце — последний антихрист.']],
@@ -4894,6 +5029,9 @@ const LAB = {
     pairMill: { pre: 'Христос возвращается до будущего тысячелетнего царства.', a: 'Тысячелетнее царство — это нынешнее царствование Христа.', post: 'Золотой век наступает до возвращения Христа.' },
     pairOurs: 'Это близко к прочтению этого пособия, которое к тому же твёрдо опирается на первый век и ожидает реального, будущего конца.',
     pairOther: 'Толкователи бывают разными; воспринимайте это как общую тенденцию, а не как жёсткий лагерь.',
+    compareHeads: { a: 'Амилле\u00ADнаризм', pre: 'Премилле\u00ADнаризм', post: 'Постмилле\u00ADнаризм' },
+    compareNote: 'Одна и та же история во всех трёх. Различается лишь то, где возвращается Христос.',
+    compareLegend: [['christ', 'Пришествие Христа'], ['age', 'Эпоха церкви'], ['reign', 'Тысяча лет'], ['satan', 'Краткое освобождение сатаны'], ['judge', 'Последний суд'], ['new', 'Новое творение']],
     timeline: 'Хронология: ', then: ', затем '
   }
 };
@@ -5390,6 +5528,8 @@ function enhance() {
 
   // Seven visions: expandable rows
   $$('.vlabel', host).forEach(btn => btn.addEventListener('click', () => setVision(btn, btn.getAttribute('aria-expanded') !== 'true')));
+  // On phones the bar sits beside its title, so tapping the bar opens the vision too
+  $$('.vlabel + .vbar', host).forEach(bar => bar.addEventListener('click', () => bar.previousElementSibling.click()));
 
   // Artwork that fails to load degrades to an ornament
   $$('img[data-art]', host).forEach(img => {
@@ -5452,8 +5592,8 @@ function initLab() {
     $('#millTitle').textContent = d.title; $('#millDesc').textContent = d.desc;
     $('#millTexts').textContent = d.texts; $('#millCaveat').textContent = d.caveat;
     const track = el('div', 'mill-track');
-    d.segs.forEach(([b, s, kind, w]) => {
-      const seg = el('div', 'mill-seg ' + kind); seg.style.setProperty('--w', w);
+    d.segs.forEach(([b, s, kind, w], i) => {
+      const seg = el('div', 'mill-seg ' + MILL_KINDS[key][i]); seg.style.setProperty('--w', w);
       seg.append(el('i'), el('b', null, b), el('small', null, s)); track.append(seg);
     });
     $('#millVisual').replaceChildren(track);
@@ -5470,7 +5610,12 @@ function initLab() {
   };
   lensTabs.addEventListener('click', e => { const b = e.target.closest('[data-lens]'); if (!b) return; selectTab(lensTabs, b); renderLens(b.dataset.lens); });
   const millTabs = $('#millTabs');
-  millTabs.addEventListener('click', e => { const b = e.target.closest('[data-mill]'); if (!b) return; selectTab(millTabs, b); renderMill(b.dataset.mill); });
+  const compare = buildMillCompare(L, millTabs);
+  millTabs.addEventListener('click', e => {
+    const b = e.target.closest('[data-mill]'); if (!b) return;
+    selectTab(millTabs, b); renderMill(b.dataset.mill);
+    $$('.mc-col', compare).forEach(c => c.classList.toggle('on', c.dataset.mill === b.dataset.mill));
+  });
   const readTabs = $('#readingTabs');
   readTabs.addEventListener('click', e => { const b = e.target.closest('[data-reading]'); if (!b) return; selectTab(readTabs, b); readingLens = b.dataset.reading; renderReading(); });
   $('#passagePick').addEventListener('change', renderReading);
@@ -5489,6 +5634,69 @@ function initLab() {
     $('#matrixOut').textContent = `${L.pair[lens]} ${L.pairMill[mill]} ` + (lens === 'idealism' && mill === 'a' ? L.pairOurs : L.pairOther);
   });
   renderLens('preterism'); renderMill('a'); renderReading();
+  $$('.mc-col', compare).forEach(c => c.classList.toggle('on', c.dataset.mill === 'a'));
+}
+
+/* Millennium views: one colour per meaning, shared by the wide track and the phone comparison */
+const MILL_KINDS = {
+  a: ['christ', 'reign', 'satan', 'christ', 'new'],
+  pre: ['age', 'christ', 'reign', 'satan', 'judge', 'new'],
+  post: ['age', 'reign', 'satan', 'christ', 'new']
+};
+/* Relative lengths for the side-by-side rails (markers have no length). Every rail starts at the first coming. */
+const MILL_RAIL = { a: [0, 4.4, 0.9, 0, 1.4], pre: [0, 2, 0, 2.4, 0.9, 0, 1.4], post: [0, 1.9, 2.5, 0.9, 0, 1.4] };
+
+function buildMillCompare(L, millTabs) {
+  const cmp = el('div', 'mill-compare');
+  cmp.setAttribute('aria-hidden', 'true'); // the tabs and the text below carry the same content for assistive tech
+  const first = L.mills.a.segs[0][0];
+  $$('[data-mill]', millTabs).forEach(tab => {
+    const key = tab.dataset.mill;
+    const segs = L.mills[key].segs.map(s => s[0]);
+    const labels = key === 'a' ? segs : [first, ...segs];
+    const kinds = key === 'a' ? MILL_KINDS.a : ['christ', ...MILL_KINDS[key]];
+    const hs = MILL_RAIL[key], total = hs.reduce((a, b) => a + b, 0);
+    const col = el('button', 'mc-col'); col.type = 'button'; col.tabIndex = -1; col.dataset.mill = key;
+    const head = el('span', 'mc-head', (L.compareHeads && L.compareHeads[key]) || tab.textContent.trim());
+    const body = el('span', 'mc-body'), rail = el('span', 'mc-rail'), lab = el('span', 'mc-labels');
+    let y = 0, comings = 0;
+    labels.forEach((text, i) => {
+      const kind = kinds[i], h = hs[i];
+      let mark;
+      if (h > 0) {
+        mark = el('i', 'mc-seg ' + kind);
+        mark.style.top = (y / total * 100) + '%'; mark.style.height = (h / total * 100) + '%';
+      } else {
+        const isReturn = kind === 'christ' && comings++ > 0;
+        mark = el('i', 'mc-dot ' + kind + (isReturn ? ' return' : ''));
+        mark.style.top = (y / total * 100) + '%';
+      }
+      rail.append(mark);
+      const l = el('span', 'mc-label ' + kind + (mark.classList.contains('return') ? ' return' : ''), text);
+      l.dataset.y = (h > 0 ? y + h / 2 : y) / total;
+      lab.append(l);
+      y += h;
+    });
+    body.append(rail, lab); col.append(head, body); cmp.append(col);
+    col.addEventListener('click', () => tab.click());
+  });
+  cmp.append(el('p', 'mc-note', L.compareNote));
+  millTabs.after(cmp);
+  // Keep labels next to their marks without colliding
+  const place = () => $$('.mc-labels', cmp).forEach(box => {
+    const H = box.clientHeight; if (!H) return;
+    const items = $$('.mc-label', box).map(n => ({ n, h: n.offsetHeight, c: 8 + Number(n.dataset.y) * (H - 16) }));
+    let prev = -Infinity;
+    items.forEach(it => { it.top = Math.max(it.c - it.h / 2, prev + 3, 0); prev = it.top + it.h; });
+    for (let i = items.length - 1, limit = H; i >= 0; i--) {
+      const it = items[i]; if (it.top + it.h > limit) it.top = limit - it.h; limit = it.top - 3;
+    }
+    items.forEach(it => { it.n.style.top = it.top + 'px'; });
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(place).observe(cmp);
+  if (document.fonts) document.fonts.ready.then(place);
+  place();
+  return cmp;
 }
 
 /* ==========================================================================
