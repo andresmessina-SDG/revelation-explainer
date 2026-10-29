@@ -1781,7 +1781,7 @@ h1,h2,h3,.movements b,.steps b,.seal b,.mill-seg b,.mill-seg small,.alt-grid h3,
 .pp-out-icon{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#f1d995;color:#142348;font-size:12px}
 
 .pp-meta{display:flex;flex-direction:column;gap:4px;min-width:0;padding-right:34px}
-.pp-kicker{font:600 11.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gilt-deep)}
+.pp-kicker{font:700 12.5px/1.2 var(--rubric);letter-spacing:.06em;color:var(--vermilion)}
 .pp-title{font:600 19px/1.25 var(--display);letter-spacing:-.01em}
 .pp-title span{margin-left:6px;font:600 12px/1 var(--sans);color:var(--ink-3)}
 .pp-perf{font:400 14px/1.4 var(--sans);color:var(--ink-2)}
@@ -1826,7 +1826,7 @@ h1,h2,h3,.movements b,.steps b,.seal b,.mill-seg b,.mill-seg small,.alt-grid h3,
 .series-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r-lg);background:var(--lapis-tile);color:var(--lapis-ink);box-shadow:0 18px 40px -24px rgba(20,44,94,.75),inset 0 0 0 1px rgba(241,217,149,.22);cursor:pointer}
 .series-ico{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(241,217,149,.14);color:var(--gilt-pale)}
 .series-txt{display:flex;flex-direction:column;gap:2px;min-width:0}
-.series-kick{font:600 11.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gilt-pale)}
+.series-kick{font:700 12.5px/1.2 var(--rubric);letter-spacing:.06em;color:var(--gilt-pale)}
 .series-txt b{font:600 19px/1.25 var(--display);letter-spacing:-.01em;color:var(--lapis-ink)}
 .series-txt small{font:400 13.5px/1.35 var(--sans);color:rgba(247,242,232,.74)}
 .series-btn.pl-play{width:auto;height:38px;padding:0 16px 0 13px;gap:8px;display:inline-flex;align-items:center;border-radius:999px;background:var(--leaf);color:#3A2A08;font:600 14px/1 var(--sans);box-shadow:none}
@@ -1992,34 +1992,61 @@ html{-webkit-tap-highlight-color:transparent}
 }
 
 
-/* Blessed Hope — one quiet reading surface, with a single gold manuscript accent. */
-.bh-study{scroll-margin-top:100px;position:relative;margin:32px 0;padding:24px;border:1px solid var(--hair);border-radius:var(--r-lg);background:var(--paper);box-shadow:var(--sh-1);container-type:inline-size}
-.bh-study::before{content:'';position:absolute;top:24px;left:24px;width:28px;height:2px;border-radius:2px;background:var(--leaf);pointer-events:none}
-.bh-lecture{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:18px;padding:18px 0 16px;cursor:pointer;position:relative;border-radius:var(--r-sm)}
-.bh-lecture::after{content:'';position:absolute;bottom:0;left:0;width:calc(var(--p, 0) * 100%);height:2px;border-radius:2px;background:var(--leaf);pointer-events:none}
-.bh-medal{align-self:start;margin-top:27px;width:40px;aspect-ratio:1;display:grid;place-items:center;color:var(--lapis-ink);border-radius:50%;background:var(--lapis-tile)}
-.bh-medal svg{width:16px;height:16px;fill:currentColor}
-.bh-copy{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px}
-.bh-count{color:var(--gilt-deep);font:600 12.5px/1.4 var(--sans);letter-spacing:.025em;font-variant-numeric:tabular-nums}
-.bh-name{margin:0;font:600 clamp(20px,2.4vw,23px)/1.25 var(--display);letter-spacing:-.015em;color:var(--ink);text-wrap:pretty}
-.bh-scripture{font:500 13px/1.4 var(--sans);color:var(--ink-3)}
-.bh-description{font:400 14.5px/1.6 var(--sans);color:var(--ink-2);max-width:54ch;margin:3px 0 0}
-.bh-lecture .pl-music{font:400 13px/1.5 var(--sans);color:var(--ink-3);margin:3px 0 0}
+/* Blessed Hope: Godfrey's lectures beside the questions they expound.
+   Built from the site's own parts: a paper card with a leaf bar, a rubric, serif prose,
+   and a lapis panel with the gilded inner frame for the index. */
+.bh-study{position:relative;margin:32px 0 30px;padding:24px 24px 16px;border-radius:var(--r-lg);background:var(--paper);box-shadow:var(--sh-2);scroll-margin-top:100px;container-type:inline-size;transition:box-shadow .25s}
+.bh-study::before{content:'';position:absolute;left:24px;top:0;width:36px;height:3px;border-radius:0 0 3px 3px;background:var(--leaf)}
+.bh-study:has(.bh-lecture.playing){box-shadow:var(--sh-2),inset 0 0 0 1.5px color-mix(in srgb,var(--gilt) 70%,transparent)}
+.bh-crest{margin:0 0 12px;font:700 12.5px/1.4 var(--rubric);letter-spacing:.06em;color:var(--vermilion)}
+.bh-lecture{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:18px;padding:0 0 14px;cursor:pointer}
+.bh-lecture::after{content:'';position:absolute;left:0;bottom:0;width:calc(var(--p, 0) * 100%);height:3px;border-radius:2px;background:var(--leaf);opacity:0;transition:opacity .3s;pointer-events:none}
+.bh-lecture.playing::after{opacity:1}
+.bh-medal{display:grid;place-items:center;width:56px;aspect-ratio:1;border-radius:50%;background:var(--lapis-tile);color:var(--gilt-pale);box-shadow:inset 0 0 0 1px rgba(241,217,149,.35),0 8px 18px -10px rgba(20,44,94,.7)}
+.bh-medal svg{width:38px;height:38px}
+.bh-copy{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.bh-count{font:600 12.5px/1.35 var(--sans);font-variant-numeric:tabular-nums;color:var(--gilt-deep)}
+.bh-name{font:600 22px/1.2 var(--display);letter-spacing:-.02em;color:var(--ink);transition:color .2s}
+.bh-lecture:hover .bh-name{color:var(--link)}
+.bh-scripture{font:600 12.5px/1.3 var(--sans);font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.bh-description{margin:4px 0 0;max-width:56ch;font-size:16.5px;line-height:1.5;color:var(--ink-2)}
+.bh-lecture .pl-music{margin-top:4px;font:500 12.5px/1.4 var(--sans);color:var(--ink-3)}
 .bh-lecture .pl-music::before{display:none}
-.bh-action.pl-play{display:inline-flex;gap:8px;align-items:center;justify-content:center;width:auto;height:auto;min-height:44px;border-radius:99px;padding:12px 18px;font:500 14px/1.3 var(--sans);white-space:nowrap;box-shadow:0 7px 15px -10px rgba(15,35,75,.6);transition:background .2s,box-shadow .2s}
-.bh-action.pl-play:hover{transform:none;background:var(--lapis-2);box-shadow:0 8px 18px -10px rgba(15,35,75,.7)}
-[data-yt].playing .bh-action.pl-play{animation:none;background:var(--lapis-tile);color:var(--lapis-ink)}
+.bh-action.pl-play{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:auto;height:38px;padding:0 16px 0 13px;border-radius:999px;font:600 14px/1 var(--sans);white-space:nowrap}
 .bh-action.pl-play svg{flex:none}
-.bh-foot{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin:0;padding-top:16px;border-top:1px solid var(--hair);font:400 12.5px/1.5 var(--sans);color:var(--ink-3)}
-.bh-foot a{color:var(--link);text-decoration:none;text-underline-offset:3px}
+.bh-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;margin:0;padding-top:12px;border-top:1px solid var(--hair);font:400 13px/1.4 var(--sans);color:var(--ink-3)}
+.bh-foot a{color:var(--link);text-decoration:none}
 .bh-foot a:hover{text-decoration:underline}
-.bh-study .praise-player{margin:20px 0 0}
-.bh-study .pp-frame{min-width:0}
-.bh-study .bh-lecture:focus-within{outline:2px solid var(--link);outline-offset:2px}
-@container (max-width:600px){.bh-lecture{grid-template-columns:40px minmax(0,1fr);gap:16px}.bh-action.pl-play{grid-column:2;justify-self:start;margin-bottom:2px}}
-@container (max-width:360px){.bh-lecture{grid-template-columns:minmax(0,1fr);gap:16px}.bh-medal{display:none}.bh-action.pl-play{grid-column:1}.bh-foot{flex-direction:column;align-items:flex-start;gap:8px}}
-@media(max-width:540px){.bh-study{padding:20px;margin:28px 0}.bh-study::before{top:20px;left:20px}}
-@media(prefers-reduced-motion:reduce){.bh-action.pl-play{transition:none}}
+.bh-study .praise-player{margin:0 0 14px}
+.bh-study .bh-lecture:focus-within{outline:none}
+@container (max-width:630px){
+  .bh-lecture{grid-template-columns:48px minmax(0,1fr);gap:12px 14px}
+  .bh-medal{width:48px}
+  .bh-medal svg{width:32px;height:32px}
+  .bh-name{font-size:20px}
+  .bh-action.pl-play{grid-column:1/-1;justify-self:start;max-width:100%;white-space:normal;text-align:left;line-height:1.2;height:auto;min-height:38px;padding-top:8px;padding-bottom:8px}
+}
+@media (max-width:560px){.bh-study{padding:22px 18px 14px}.bh-study::before{left:18px}}
+
+/* The index of lectures: a lapis panel like the lesson and the rule boxes */
+.bh-index{position:relative;margin:34px 0 28px;padding:30px 32px 24px;border-radius:var(--r-xl);background:var(--lapis-tile);color:var(--lapis-ink);box-shadow:0 24px 50px -24px rgba(20,44,94,.6),inset 0 0 0 1px rgba(241,217,149,.22)}
+.bh-index::before{content:'';position:absolute;inset:9px;border:1px solid rgba(241,217,149,.38);border-radius:calc(var(--r-xl) - 9px);pointer-events:none}
+.bh-index .bh-index-k{display:block;margin:0 0 6px;font:700 12.5px/1.4 var(--rubric);letter-spacing:.06em;color:var(--gilt-pale)}
+.bh-index h2{margin:0 0 8px;font:600 clamp(24px,3vw,30px)/1.2 var(--display);letter-spacing:-.02em;color:var(--lapis-ink)}
+.bh-index .bh-index-deck{margin:0 0 18px;max-width:60ch;font-size:17px;line-height:1.5;color:rgba(251,247,238,.86)}
+.bh-index-items{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;margin:0;padding:0;list-style:none}
+.bh-index-items a{display:flex;align-items:center;gap:12px;min-width:0;padding:10px 12px;border-radius:var(--r-sm);background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(241,217,149,.2);color:var(--lapis-ink);text-decoration:none;transition:background .2s,box-shadow .2s}
+.bh-index-items a:hover,.bh-index-items a:focus-visible{background:rgba(241,217,149,.12);box-shadow:inset 0 0 0 1px rgba(241,217,149,.55);outline:none}
+.bh-index-items .bh-i-num{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(241,217,149,.6);font:600 12px/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--gilt-pale)}
+.bh-index-items .bh-i-words{flex:1;min-width:0}
+.bh-index-items .bh-i-words b{display:block;font:600 16px/1.3 var(--display);letter-spacing:-.01em;color:var(--lapis-ink)}
+.bh-index-items .bh-i-words small{display:block;margin-top:1px;font:500 12.5px/1.3 var(--sans);font-variant-numeric:tabular-nums;color:rgba(251,247,238,.66)}
+.bh-index-items .bh-i-go{flex:none;font:500 16px/1 var(--sans);color:var(--gilt-pale)}
+.bh-index-note{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(241,217,149,.22);font:400 13px/1.45 var(--sans);color:rgba(251,247,238,.74)}
+.bh-index-note a{color:var(--gilt-pale);text-decoration:underline;text-decoration-color:rgba(241,217,149,.4);text-underline-offset:3px}
+@media (max-width:760px){.bh-index{border-radius:var(--r-lg);padding:26px 22px 20px}.bh-index::before{inset:7px;border-radius:calc(var(--r-lg) - 7px)}}
+@media (max-width:540px){.bh-index-items{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.bh-lecture::after,.bh-index-items a,.bh-study{transition:none}}
 
 </style>
 </head>
@@ -2243,6 +2270,15 @@ html{-webkit-tap-highlight-color:transparent}
   <h2>What is its great message?</h2>
   <p>The One who died and rose again is “alive forever and ever” and holds “the keys of Death and of Hades” (1:18). He is coming again (22:20). Everything in between explains why his return is good news for his people.</p>
   <aside class="lesson"><span class="rubric">Remember this</span><p>Revelation was written to produce faithfulness rather than speculation, courage rather than fear, and hope rather than despair.</p></aside>
+
+  <!-- Guide to the official full-length YouTube lectures: each opens in context. -->
+  <aside class="bh-index" aria-label="Further study, within the visions">
+    <span class="bh-index-k">Ligonier Ministries · W. Robert Godfrey</span>
+    <h2>Further study, within the visions</h2>
+    <p class="bh-index-deck">Seven complete <em>Blessed Hope</em> lessons are available on Ligonier’s YouTube channel. Find each where it illuminates the biblical passage.</p>
+    <ol class="bh-index-items"><li><a href="#bh-6"><span class="bh-i-num">06</span><span class="bh-i-words"><b>Letters to Philadelphia &amp; Laodicea</b><small>Revelation 3:7–22</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-8"><span class="bh-i-num">08</span><span class="bh-i-words"><b>Worthy Is the Lamb</b><small>Revelation 5:1–14</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-12"><span class="bh-i-num">12</span><span class="bh-i-words"><b>The Final Trumpets</b><small>Revelation 11:1–19</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-13"><span class="bh-i-num">13</span><span class="bh-i-words"><b>The Woman &amp; the Dragon</b><small>Revelation 12</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-14"><span class="bh-i-num">14</span><span class="bh-i-words"><b>The Two Beasts</b><small>Revelation 13:1–18</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-21"><span class="bh-i-num">21</span><span class="bh-i-words"><b>The Final Judgment</b><small>Revelation 20:11–15</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-22"><span class="bh-i-num">22</span><span class="bh-i-words"><b>The New Jerusalem</b><small>Revelation 21:1–22:5</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li></ol>
+    <div class="bh-index-note"><span>The complete teaching series contains 24 lessons; only these seven official full-length YouTube uploads are included here.</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">The complete series at Ligonier ↗</a></div>
+  </aside>
 
   <div class="btn-row">
     <a class="btn" href="#structure">Begin with the seven visions</a>
@@ -2799,9 +2835,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 6; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-6" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
     <div class="bh-lecture" data-yt="tIt376Rt8Ok" data-start="0" data-title="Letters to Philadelphia &amp; Laodicea">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 06 / 24</span><h3 class="bh-name">Letters to Philadelphia &amp; Laodicea</h3><span class="bh-scripture">Revelation 3:7–22</span><p class="bh-description">The risen Christ encourages a faithful church and corrects a complacent one. Listen after studying the seven letters.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 6 of 24</span><b class="bh-name">Letters to Philadelphia &amp; Laodicea</b><span class="bh-scripture">Revelation 3:7–22</span><p class="bh-description">The risen Christ encourages a faithful church and corrects a complacent one. Listen after studying the seven letters.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: Letters to Philadelphia &amp; Laodicea"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
     </div>
     <div class="bh-foot"><span>English · Full lesson · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
@@ -2840,9 +2877,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 8; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-8" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
     <div class="bh-lecture" data-yt="FSL6SWWoZ7w" data-start="0" data-title="Worthy Is the Lamb">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 08 / 24</span><h3 class="bh-name">Worthy Is the Lamb</h3><span class="bh-scripture">Revelation 5:1–14</span><p class="bh-description">Why is the slain Lamb alone worthy to open the scroll? An exposition of the vision at the heart of heaven’s worship.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 8 of 24</span><b class="bh-name">Worthy Is the Lamb</b><span class="bh-scripture">Revelation 5:1–14</span><p class="bh-description">Why is the slain Lamb alone worthy to open the scroll? An exposition of the vision at the heart of heaven’s worship.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: Worthy Is the Lamb"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
     </div>
     <div class="bh-foot"><span>English · Full lesson · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
@@ -3006,17 +3044,6 @@ html{-webkit-tap-highlight-color:transparent}
     <article><h3>A chronological countdown</h3><p>Futurists usually read seals, trumpets and bowls as twenty-one judgments in sequence, the trumpets coming out of the seventh seal and the bowls out of the seventh trumpet.</p></article>
     <article class="ours"><h3>Parallel cycles of one age</h3><p>The trumpets warn throughout the age; the bowls show the same judgments complete at its close. Both end in the same storm from the throne.</p></article>
   </div></div></details>
-  <!-- Blessed Hope: official Ligonier YouTube lecture 12; uses the site's single lazy YouTube player. -->
-  <aside class="bh-study" id="bh-12" data-listen-group aria-label="A companion exposition">
-    <div class="bh-lecture" data-yt="qj9wGAyFj0U" data-start="0" data-title="The Final Trumpets">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 12 / 24</span><h3 class="bh-name">The Final Trumpets</h3><span class="bh-scripture">Revelation 11:1–19</span><p class="bh-description">The church bears witness amid opposition while the seventh trumpet announces the triumph of Christ’s kingdom.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
-      <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: The Final Trumpets"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
-    </div>
-    <div class="bh-foot"><span>English · Full lesson · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
-    <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Now playing</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=qj9wGAyFj0U" target="_blank" rel="noopener">Watch on YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Close the player"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
-  </aside>
-
   <aside class="lesson"><span class="rubric">The lesson to remember</span><p>Every disaster in this world is a trumpet: a summons to repent while there is still time.</p></aside>
   <section class="quiz"><span class="rubric">Check your understanding</span><h3>What is the main difference between the trumpets and the bowls?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>The trumpets strike a third as warnings; the bowls are complete</button><button class="quiz-opt">They strike completely different parts of creation</button><button class="quiz-opt">The bowls are poured out on the church</button></div><p class="quiz-feedback" hidden>The two series hit the same seven targets in the same order. The trumpets are partial (“a third”), and the bowls complete the wrath of God (15:1).</p></section>
 </section>
@@ -3047,6 +3074,17 @@ html{-webkit-tap-highlight-color:transparent}
     <article><h3>Two end-time prophets</h3><p>Futurists usually expect two literal prophets, often identified as Moses and Elijah or Enoch and Elijah, ministering in Jerusalem for three and a half years.</p></article>
     <article class="ours"><h3>The witnessing church</h3><p>The two lampstands are the church, prophesying through the whole age, silenced briefly at the end, and vindicated when Christ returns.</p></article>
   </div></div></details>
+  <!-- Blessed Hope: official Ligonier YouTube lecture 12; uses the site's single lazy YouTube player. -->
+  <aside class="bh-study" id="bh-12" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
+    <div class="bh-lecture" data-yt="qj9wGAyFj0U" data-start="0" data-title="The Final Trumpets">
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 12 of 24</span><b class="bh-name">The Final Trumpets</b><span class="bh-scripture">Revelation 11:1–19</span><p class="bh-description">The church bears witness amid opposition while the seventh trumpet announces the triumph of Christ’s kingdom.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: The Final Trumpets"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
+    </div>
+    <div class="bh-foot"><span>English · Full lesson · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
+    <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Now playing</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=qj9wGAyFj0U" target="_blank" rel="noopener">Watch on YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Close the player"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  </aside>
   <aside class="lesson"><span class="rubric">The lesson to remember</span><p>The church is not called to be comfortable but to be faithful. Its testimony cannot be silenced until God says its work is finished.</p></aside>
   <section class="quiz"><span class="rubric">Check your understanding</span><h3>Revelation calls the witnesses “the two lampstands.” What are lampstands in Revelation?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Churches (1:20)</button><button class="quiz-opt">Angels who guard Jerusalem</button><button class="quiz-opt">The two halves of the Bible</button></div><p class="quiz-feedback" hidden>“The seven lampstands are the seven churches” (1:20). So the two lampstands of 11:4 point to the church as God’s witness.</p></section>
 </section>
@@ -3115,9 +3153,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 13; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-13" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
     <div class="bh-lecture" data-yt="sbJMkyVYsuM" data-start="0" data-title="The Woman &amp; the Dragon">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 13 / 24</span><h3 class="bh-name">The Woman &amp; the Dragon</h3><span class="bh-scripture">Revelation 12</span><p class="bh-description">The vision reveals the conflict behind the church’s earthly trials—and the decisive defeat of the dragon.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 13 of 24</span><b class="bh-name">The Woman &amp; the Dragon</b><span class="bh-scripture">Revelation 12</span><p class="bh-description">The vision reveals the conflict behind the church’s earthly trials—and the decisive defeat of the dragon.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: The Woman &amp; the Dragon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
     </div>
     <div class="bh-foot"><span>English · Full lesson · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
@@ -3159,9 +3198,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 14; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-14" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
     <div class="bh-lecture" data-yt="8cU2-f6fNqE" data-start="0" data-title="The Two Beasts">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 14 / 24</span><h3 class="bh-name">The Two Beasts</h3><span class="bh-scripture">Revelation 13:1–18</span><p class="bh-description">Two beasts counterfeit divine authority. Godfrey considers how persecution and false worship threaten the saints.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 14 of 24</span><b class="bh-name">The Two Beasts</b><span class="bh-scripture">Revelation 13:1–18</span><p class="bh-description">Two beasts counterfeit divine authority. Godfrey considers how persecution and false worship threaten the saints.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: The Two Beasts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
     </div>
     <div class="bh-foot"><span>English · Full lesson · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
@@ -3541,9 +3581,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 21; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-21" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
     <div class="bh-lecture" data-yt="cf3QQuzDdBQ" data-start="0" data-title="The Final Judgment">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 21 / 24</span><h3 class="bh-name">The Final Judgment</h3><span class="bh-scripture">Revelation 20:11–15</span><p class="bh-description">The great white throne, the book of life, and the certainty that God will judge the living and the dead in righteousness.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 21 of 24</span><b class="bh-name">The Final Judgment</b><span class="bh-scripture">Revelation 20:11–15</span><p class="bh-description">The great white throne, the book of life, and the certainty that God will judge the living and the dead in righteousness.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: The Final Judgment"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
     </div>
     <div class="bh-foot"><span>English · Full lesson · 24 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
@@ -3578,15 +3619,15 @@ html{-webkit-tap-highlight-color:transparent}
   </section>
   <!-- Blessed Hope: official Ligonier YouTube lecture 22; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-22" data-listen-group aria-label="A companion exposition">
+    <div class="bh-crest"><span>A companion exposition</span></div>
     <div class="bh-lecture" data-yt="njvQngmHzaQ" data-start="0" data-title="The New Jerusalem">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 22 / 24</span><h3 class="bh-name">The New Jerusalem</h3><span class="bh-scripture">Revelation 21:1–22:5</span><p class="bh-description">The holy city is the dwelling place of God with his redeemed people. This is the hope toward which the visions move.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lesson 22 of 24</span><b class="bh-name">The New Jerusalem</b><span class="bh-scripture">Revelation 21:1–22:5</span><p class="bh-description">The holy city is the dwelling place of God with his redeemed people. This is the hope toward which the visions move.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Watch lecture: The New Jerusalem"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Watch lecture</span></button>
     </div>
     <div class="bh-foot"><span>English · Full lesson · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explore the full series on Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Now playing</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=njvQngmHzaQ" target="_blank" rel="noopener">Watch on YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Close the player"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
-
   <aside class="lesson"><span class="rubric">The lesson to remember</span><p>The last word is not destruction. It is life with God, face to face, forever. “Come, Lord Jesus!”</p></aside>
   <section class="quiz"><span class="rubric">Check your understanding</span><h3>Why is there no temple in the New Jerusalem?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Because the Lord God and the Lamb are its temple</button><button class="quiz-opt">Because worship has ended</button><button class="quiz-opt">Because the city has not been finished</button></div><p class="quiz-feedback" hidden>“I saw no temple in the city, because the Lord God Almighty and the Lamb are its temple” (21:22). The whole city is God’s dwelling place.</p></section>
 </section>
@@ -3714,6 +3755,15 @@ html{-webkit-tap-highlight-color:transparent}
   <h2>¿Cuál es su gran mensaje?</h2>
   <p>El que murió y resucitó dice: «estoy vivo por los siglos de los siglos, y tengo las llaves de la muerte y del Hades» (1:18). Y viene otra vez (22:20). Todo lo que hay entre esas dos promesas explica por qué Su regreso es una buena noticia para Su pueblo.</p>
   <aside class="lesson"><span class="rubric">Recuerda esto</span><p>El Apocalipsis fue escrito para producir fidelidad y no especulación, valor y no miedo, esperanza y no desesperación.</p></aside>
+
+  <!-- Guide to the official full-length YouTube lectures: each opens in context. -->
+  <aside class="bh-index" aria-label="Estudio complementario entre las visiones">
+    <span class="bh-index-k">Ligonier Ministries · W. Robert Godfrey</span>
+    <h2>Estudio complementario entre las visiones</h2>
+    <p class="bh-index-deck">Siete lecciones completas de <em>Blessed Hope</em> están disponibles en el canal de YouTube de Ligonier. Cada una acompaña el pasaje correspondiente.</p>
+    <ol class="bh-index-items"><li><a href="#bh-6"><span class="bh-i-num">06</span><span class="bh-i-words"><b>Letters to Philadelphia &amp; Laodicea</b><small>Apocalipsis 3:7–22</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-8"><span class="bh-i-num">08</span><span class="bh-i-words"><b>Worthy Is the Lamb</b><small>Apocalipsis 5:1–14</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-12"><span class="bh-i-num">12</span><span class="bh-i-words"><b>The Final Trumpets</b><small>Apocalipsis 11:1–19</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-13"><span class="bh-i-num">13</span><span class="bh-i-words"><b>The Woman &amp; the Dragon</b><small>Apocalipsis 12</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-14"><span class="bh-i-num">14</span><span class="bh-i-words"><b>The Two Beasts</b><small>Apocalipsis 13:1–18</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-21"><span class="bh-i-num">21</span><span class="bh-i-words"><b>The Final Judgment</b><small>Apocalipsis 20:11–15</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-22"><span class="bh-i-num">22</span><span class="bh-i-words"><b>The New Jerusalem</b><small>Apocalipsis 21:1–22:5</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li></ol>
+    <div class="bh-index-note"><span>La serie completa contiene 24 lecciones; aquí solo se incluyen estas siete lecciones íntegras publicadas oficialmente en YouTube.</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">La serie completa en Ligonier ↗</a></div>
+  </aside>
 
   <div class="btn-row">
     <a class="btn" href="#structure">Comenzar con las siete visiones</a>
@@ -4269,9 +4319,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 6; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-6" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
     <div class="bh-lecture" data-yt="tIt376Rt8Ok" data-start="0" data-title="Letters to Philadelphia &amp; Laodicea">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 06 / 24</span><h3 class="bh-name">Letters to Philadelphia &amp; Laodicea</h3><span class="bh-scripture">Revelation 3:7–22</span><p class="bh-description">Cristo resucitado alienta a una iglesia fiel y reprende a otra acomodada. Una ampliación de las siete cartas.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 6 de 24</span><b class="bh-name">Letters to Philadelphia &amp; Laodicea</b><span class="bh-scripture">Apocalipsis 3:7–22</span><p class="bh-description">Cristo resucitado alienta a una iglesia fiel y reprende a otra acomodada. Una ampliación de las siete cartas.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: Letters to Philadelphia &amp; Laodicea"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
     </div>
     <div class="bh-foot"><span>En inglés · Lección completa · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
@@ -4310,9 +4361,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 8; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-8" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
     <div class="bh-lecture" data-yt="FSL6SWWoZ7w" data-start="0" data-title="Worthy Is the Lamb">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 08 / 24</span><h3 class="bh-name">Worthy Is the Lamb</h3><span class="bh-scripture">Revelation 5:1–14</span><p class="bh-description">¿Por qué solo el Cordero inmolado es digno de abrir el rollo? Una exposición de la visión central de la adoración celestial.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 8 de 24</span><b class="bh-name">Worthy Is the Lamb</b><span class="bh-scripture">Apocalipsis 5:1–14</span><p class="bh-description">¿Por qué solo el Cordero inmolado es digno de abrir el rollo? Una exposición de la visión central de la adoración celestial.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: Worthy Is the Lamb"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
     </div>
     <div class="bh-foot"><span>En inglés · Lección completa · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
@@ -4476,17 +4528,6 @@ html{-webkit-tap-highlight-color:transparent}
     <article><h3>Una cuenta regresiva cronológica</h3><p>Los futuristas suelen leer los sellos, las trompetas y las copas como veintiún juicios en secuencia: las trompetas salen del séptimo sello y las copas de la séptima trompeta.</p></article>
     <article class="ours"><h3>Ciclos paralelos de una misma era</h3><p>Las trompetas advierten a lo largo de la era; las copas muestran los mismos juicios completos al final. Ambas terminan con la misma tormenta que sale del trono.</p></article>
   </div></div></details>
-  <!-- Blessed Hope: official Ligonier YouTube lecture 12; uses the site's single lazy YouTube player. -->
-  <aside class="bh-study" id="bh-12" data-listen-group aria-label="Exposición complementaria">
-    <div class="bh-lecture" data-yt="qj9wGAyFj0U" data-start="0" data-title="The Final Trumpets">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 12 / 24</span><h3 class="bh-name">The Final Trumpets</h3><span class="bh-scripture">Revelation 11:1–19</span><p class="bh-description">La iglesia da testimonio en medio de la oposición, mientras la séptima trompeta anuncia el triunfo del reino de Cristo.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
-      <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: The Final Trumpets"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
-    </div>
-    <div class="bh-foot"><span>En inglés · Lección completa · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
-    <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Reproduciendo</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=qj9wGAyFj0U" target="_blank" rel="noopener">Ver en YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Cerrar reproductor"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
-  </aside>
-
   <aside class="lesson"><span class="rubric">La lección para recordar</span><p>Cada desastre de este mundo es una trompeta: un llamado a arrepentirse mientras todavía hay tiempo.</p></aside>
   <section class="quiz"><span class="rubric">Comprueba lo que aprendiste</span><h3>¿Cuál es la diferencia principal entre las trompetas y las copas?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Las trompetas golpean la tercera parte como advertencia; las copas son completas</button><button class="quiz-opt">Golpean partes completamente distintas de la creación</button><button class="quiz-opt">Las copas se derraman sobre la iglesia</button></div><p class="quiz-feedback" hidden>Las dos series golpean los mismos siete blancos en el mismo orden. Las trompetas son parciales («la tercera parte»), y en las copas «se ha consumado el furor de Dios» (15:1).</p></section>
 </section>
@@ -4517,6 +4558,17 @@ html{-webkit-tap-highlight-color:transparent}
     <article><h3>Dos profetas del fin</h3><p>Los futuristas suelen esperar dos profetas literales, identificados a menudo con Moisés y Elías o con Enoc y Elías, que ministrarán en Jerusalén durante tres años y medio.</p></article>
     <article class="ours"><h3>La iglesia que testifica</h3><p>Los dos candelabros son la iglesia, que profetiza durante toda la era, es silenciada brevemente al final y es vindicada cuando Cristo regresa.</p></article>
   </div></div></details>
+  <!-- Blessed Hope: official Ligonier YouTube lecture 12; uses the site's single lazy YouTube player. -->
+  <aside class="bh-study" id="bh-12" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
+    <div class="bh-lecture" data-yt="qj9wGAyFj0U" data-start="0" data-title="The Final Trumpets">
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 12 de 24</span><b class="bh-name">The Final Trumpets</b><span class="bh-scripture">Apocalipsis 11:1–19</span><p class="bh-description">La iglesia da testimonio en medio de la oposición, mientras la séptima trompeta anuncia el triunfo del reino de Cristo.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: The Final Trumpets"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
+    </div>
+    <div class="bh-foot"><span>En inglés · Lección completa · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
+    <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Reproduciendo</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=qj9wGAyFj0U" target="_blank" rel="noopener">Ver en YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Cerrar reproductor"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  </aside>
   <aside class="lesson"><span class="rubric">La lección para recordar</span><p>La iglesia no está llamada a estar cómoda, sino a ser fiel. Su testimonio no puede ser silenciado hasta que Dios diga que su obra ha terminado.</p></aside>
   <section class="quiz"><span class="rubric">Comprueba lo que aprendiste</span><h3>El Apocalipsis llama a los testigos «los dos candelabros». ¿Qué son los candelabros en el Apocalipsis?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Iglesias (1:20)</button><button class="quiz-opt">Ángeles que custodian Jerusalén</button><button class="quiz-opt">Las dos mitades de la Biblia</button></div><p class="quiz-feedback" hidden>«Los siete candelabros son las siete iglesias» (1:20). Así que los dos candelabros de 11:4 apuntan a la iglesia como testigo de Dios.</p></section>
 </section>
@@ -4585,9 +4637,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 13; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-13" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
     <div class="bh-lecture" data-yt="sbJMkyVYsuM" data-start="0" data-title="The Woman &amp; the Dragon">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 13 / 24</span><h3 class="bh-name">The Woman &amp; the Dragon</h3><span class="bh-scripture">Revelation 12</span><p class="bh-description">La visión revela la batalla detrás de las pruebas terrenales de la iglesia y la derrota decisiva del dragón.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 13 de 24</span><b class="bh-name">The Woman &amp; the Dragon</b><span class="bh-scripture">Apocalipsis 12</span><p class="bh-description">La visión revela la batalla detrás de las pruebas terrenales de la iglesia y la derrota decisiva del dragón.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: The Woman &amp; the Dragon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
     </div>
     <div class="bh-foot"><span>En inglés · Lección completa · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
@@ -4629,9 +4682,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 14; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-14" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
     <div class="bh-lecture" data-yt="8cU2-f6fNqE" data-start="0" data-title="The Two Beasts">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 14 / 24</span><h3 class="bh-name">The Two Beasts</h3><span class="bh-scripture">Revelation 13:1–18</span><p class="bh-description">Dos bestias falsifican la autoridad divina. Godfrey explica cómo la persecución y la falsa adoración amenazan a los santos.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 14 de 24</span><b class="bh-name">The Two Beasts</b><span class="bh-scripture">Apocalipsis 13:1–18</span><p class="bh-description">Dos bestias falsifican la autoridad divina. Godfrey explica cómo la persecución y la falsa adoración amenazan a los santos.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: The Two Beasts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
     </div>
     <div class="bh-foot"><span>En inglés · Lección completa · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
@@ -5011,9 +5065,10 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 21; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-21" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
     <div class="bh-lecture" data-yt="cf3QQuzDdBQ" data-start="0" data-title="The Final Judgment">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 21 / 24</span><h3 class="bh-name">The Final Judgment</h3><span class="bh-scripture">Revelation 20:11–15</span><p class="bh-description">El gran trono blanco, el libro de la vida y la certeza de que Dios juzgará con justicia a vivos y muertos.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 21 de 24</span><b class="bh-name">The Final Judgment</b><span class="bh-scripture">Apocalipsis 20:11–15</span><p class="bh-description">El gran trono blanco, el libro de la vida y la certeza de que Dios juzgará con justicia a vivos y muertos.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: The Final Judgment"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
     </div>
     <div class="bh-foot"><span>En inglés · Lección completa · 24 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
@@ -5048,15 +5103,15 @@ html{-webkit-tap-highlight-color:transparent}
   </section>
   <!-- Blessed Hope: official Ligonier YouTube lecture 22; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-22" data-listen-group aria-label="Exposición complementaria">
+    <div class="bh-crest"><span>Exposición complementaria</span></div>
     <div class="bh-lecture" data-yt="njvQngmHzaQ" data-start="0" data-title="The New Jerusalem">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 22 / 24</span><h3 class="bh-name">The New Jerusalem</h3><span class="bh-scripture">Revelation 21:1–22:5</span><p class="bh-description">La ciudad santa es la morada de Dios con su pueblo redimido. Esta es la esperanza hacia la cual avanzan las visiones.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · lección 22 de 24</span><b class="bh-name">The New Jerusalem</b><span class="bh-scripture">Apocalipsis 21:1–22:5</span><p class="bh-description">La ciudad santa es la morada de Dios con su pueblo redimido. Esta es la esperanza hacia la cual avanzan las visiones.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Ver lección: The New Jerusalem"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Ver lección</span></button>
     </div>
     <div class="bh-foot"><span>En inglés · Lección completa · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Explorar la serie en Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Reproduciendo</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=njvQngmHzaQ" target="_blank" rel="noopener">Ver en YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Cerrar reproductor"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
-
   <aside class="lesson"><span class="rubric">La lección para recordar</span><p>La última palabra no es destrucción. Es vida con Dios, cara a cara, para siempre. «Ven, Señor Jesús».</p></aside>
   <section class="quiz"><span class="rubric">Comprueba lo que aprendiste</span><h3>¿Por qué no hay templo en la nueva Jerusalén?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Porque su templo es el Señor, el Dios Todopoderoso, y el Cordero</button><button class="quiz-opt">Porque la adoración ha terminado</button><button class="quiz-opt">Porque la ciudad no está terminada</button></div><p class="quiz-feedback" hidden>«No vi en ella templo alguno, porque su templo es el Señor, el Dios Todopoderoso, y el Cordero» (21:22). Toda la ciudad es la morada de Dios.</p></section>
 </section>
@@ -5186,6 +5241,15 @@ html{-webkit-tap-highlight-color:transparent}
   <h2>В чём его главная весть?</h2>
   <p>Тот, Кто умер и воскрес, «жив во веки веков» и имеет «ключи ада и смерти» (1:18). Он придёт снова: «ей, гряду скоро!» (22:20). Всё, что между этими словами, объясняет, почему Его возвращение — добрая весть для Его народа.</p>
   <aside class="lesson"><span class="rubric">Запомните</span><p>Откровение написано, чтобы рождать верность, а не домыслы, мужество, а не страх, и надежду, а не отчаяние.</p></aside>
+
+  <!-- Guide to the official full-length YouTube lectures: each opens in context. -->
+  <aside class="bh-index" aria-label="Дополнительное изучение видений">
+    <span class="bh-index-k">Ligonier Ministries · W. Robert Godfrey</span>
+    <h2>Дополнительное изучение видений</h2>
+    <p class="bh-index-deck">На YouTube-канале Ligonier доступны семь полных лекций курса <em>Blessed Hope</em>. Каждая связана с соответствующим библейским отрывком.</p>
+    <ol class="bh-index-items"><li><a href="#bh-6"><span class="bh-i-num">06</span><span class="bh-i-words"><b>Letters to Philadelphia &amp; Laodicea</b><small>Откровение 3:7–22</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-8"><span class="bh-i-num">08</span><span class="bh-i-words"><b>Worthy Is the Lamb</b><small>Откровение 5:1–14</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-12"><span class="bh-i-num">12</span><span class="bh-i-words"><b>The Final Trumpets</b><small>Откровение 11:1–19</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-13"><span class="bh-i-num">13</span><span class="bh-i-words"><b>The Woman &amp; the Dragon</b><small>Откровение 12</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-14"><span class="bh-i-num">14</span><span class="bh-i-words"><b>The Two Beasts</b><small>Откровение 13:1–18</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-21"><span class="bh-i-num">21</span><span class="bh-i-words"><b>The Final Judgment</b><small>Откровение 20:11–15</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li><li><a href="#bh-22"><span class="bh-i-num">22</span><span class="bh-i-words"><b>The New Jerusalem</b><small>Откровение 21:1–22:5</small></span><span class="bh-i-go" aria-hidden="true">→</span></a></li></ol>
+    <div class="bh-index-note"><span>Полный курс состоит из 24 лекций; здесь представлены только семь полных лекций, официально опубликованных на YouTube.</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Полный курс на Ligonier ↗</a></div>
+  </aside>
 
   <div class="btn-row">
     <a class="btn" href="#structure">Начать с семи видений</a>
@@ -5742,12 +5806,13 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 6; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-6" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
     <div class="bh-lecture" data-yt="tIt376Rt8Ok" data-start="0" data-title="Letters to Philadelphia &amp; Laodicea">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 06 / 24</span><h3 class="bh-name">Letters to Philadelphia &amp; Laodicea</h3><span class="bh-scripture">Revelation 3:7–22</span><p class="bh-description">Воскресший Христос ободряет верную церковь и обличает самодовольную. Дополнение к изучению семи посланий.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 6 из 24</span><b class="bh-name">Letters to Philadelphia &amp; Laodicea</b><span class="bh-scripture">Откровение 3:7–22</span><p class="bh-description">Воскресший Христос ободряет верную церковь и обличает самодовольную. Дополнение к изучению семи посланий.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: Letters to Philadelphia &amp; Laodicea"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
     </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 25 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=tIt376Rt8Ok" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
 
@@ -5783,12 +5848,13 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 8; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-8" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
     <div class="bh-lecture" data-yt="FSL6SWWoZ7w" data-start="0" data-title="Worthy Is the Lamb">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 08 / 24</span><h3 class="bh-name">Worthy Is the Lamb</h3><span class="bh-scripture">Revelation 5:1–14</span><p class="bh-description">Почему только закланный Агнец достоин открыть свиток? Толкование видения, стоящего в центре небесного поклонения.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 8 из 24</span><b class="bh-name">Worthy Is the Lamb</b><span class="bh-scripture">Откровение 5:1–14</span><p class="bh-description">Почему только закланный Агнец достоин открыть свиток? Толкование видения, стоящего в центре небесного поклонения.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: Worthy Is the Lamb"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
     </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 25 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=FSL6SWWoZ7w" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
 
@@ -5949,17 +6015,6 @@ html{-webkit-tap-highlight-color:transparent}
     <article><h3>Хронологический обратный отсчёт</h3><p>Футуристы обычно читают печати, трубы и чаши как двадцать один последовательный суд: трубы выходят из седьмой печати, а чаши — из седьмой трубы.</p></article>
     <article class="ours"><h3>Параллельные циклы одной эпохи</h3><p>Трубы предупреждают на протяжении всей эпохи; чаши показывают те же суды завершёнными в её конце. Обе серии заканчиваются одной и той же бурей от престола.</p></article>
   </div></div></details>
-  <!-- Blessed Hope: official Ligonier YouTube lecture 12; uses the site's single lazy YouTube player. -->
-  <aside class="bh-study" id="bh-12" data-listen-group aria-label="Дополнительное толкование">
-    <div class="bh-lecture" data-yt="qj9wGAyFj0U" data-start="0" data-title="The Final Trumpets">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 12 / 24</span><h3 class="bh-name">The Final Trumpets</h3><span class="bh-scripture">Revelation 11:1–19</span><p class="bh-description">Церковь свидетельствует вопреки противлению, а седьмая труба возвещает торжество Царства Христа.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
-      <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: The Final Trumpets"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
-    </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
-    <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=qj9wGAyFj0U" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
-  </aside>
-
   <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Каждое бедствие в этом мире — это труба: призыв покаяться, пока ещё есть время.</p></aside>
   <section class="quiz"><span class="rubric">Проверьте себя</span><h3>В чём главное различие между трубами и чашами?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Трубы поражают третью часть как предупреждение; чаши — всё целиком</button><button class="quiz-opt">Они поражают совершенно разные части творения</button><button class="quiz-opt">Чаши изливаются на церковь</button></div><p class="quiz-feedback" hidden>Обе серии поражают одни и те же семь целей в одном порядке. Трубы — частичные («третья часть»), а чашами оканчивается ярость Божия (15:1).</p></section>
 </section>
@@ -5990,6 +6045,17 @@ html{-webkit-tap-highlight-color:transparent}
     <article><h3>Два пророка последнего времени</h3><p>Футуристы обычно ожидают двух буквальных пророков — часто это Моисей и Илия или Енох и Илия, — служащих в Иерусалиме три с половиной года.</p></article>
     <article class="ours"><h3>Свидетель­ствующая церковь</h3><p>Два светильника — это церковь, пророчествующая на протяжении всей эпохи, ненадолго замолкающая в конце и оправданная при возвращении Христа.</p></article>
   </div></div></details>
+  <!-- Blessed Hope: official Ligonier YouTube lecture 12; uses the site's single lazy YouTube player. -->
+  <aside class="bh-study" id="bh-12" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
+    <div class="bh-lecture" data-yt="qj9wGAyFj0U" data-start="0" data-title="The Final Trumpets">
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 12 из 24</span><b class="bh-name">The Final Trumpets</b><span class="bh-scripture">Откровение 11:1–19</span><p class="bh-description">Церковь свидетельствует вопреки противлению, а седьмая труба возвещает торжество Царства Христа.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: The Final Trumpets"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
+    </div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 23 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=qj9wGAyFj0U" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  </aside>
   <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Церковь призвана не к удобству, а к верности. Её свидетельство нельзя заглушить, пока Бог не скажет, что её дело окончено.</p></aside>
   <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Откровение называет свидетелей «два светильника». Что такое светильники в Откровении?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Церкви (1:20)</button><button class="quiz-opt">Ангелы, охраняющие Иерусалим</button><button class="quiz-opt">Две половины Библии</button></div><p class="quiz-feedback" hidden>«Семь светильников, которые ты видел, суть семь церквей» (1:20). Значит, два светильника из 11:4 указывают на церковь как на Божьего свидетеля.</p></section>
 </section>
@@ -6058,12 +6124,13 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 13; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-13" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
     <div class="bh-lecture" data-yt="sbJMkyVYsuM" data-start="0" data-title="The Woman &amp; the Dragon">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 13 / 24</span><h3 class="bh-name">The Woman &amp; the Dragon</h3><span class="bh-scripture">Revelation 12</span><p class="bh-description">Это видение раскрывает борьбу за земными испытаниями Церкви и решительное поражение дракона.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 13 из 24</span><b class="bh-name">The Woman &amp; the Dragon</b><span class="bh-scripture">Откровение 12</span><p class="bh-description">Это видение раскрывает борьбу за земными испытаниями Церкви и решительное поражение дракона.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: The Woman &amp; the Dragon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
     </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 25 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=sbJMkyVYsuM" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
 
@@ -6102,12 +6169,13 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 14; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-14" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
     <div class="bh-lecture" data-yt="8cU2-f6fNqE" data-start="0" data-title="The Two Beasts">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 14 / 24</span><h3 class="bh-name">The Two Beasts</h3><span class="bh-scripture">Revelation 13:1–18</span><p class="bh-description">Два зверя присваивают себе божественную власть. Годфри объясняет угрозу гонений и ложного поклонения святым.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 14 из 24</span><b class="bh-name">The Two Beasts</b><span class="bh-scripture">Откровение 13:1–18</span><p class="bh-description">Два зверя присваивают себе божественную власть. Годфри объясняет угрозу гонений и ложного поклонения святым.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: The Two Beasts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
     </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 25 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 25 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=8cU2-f6fNqE" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
 
@@ -6484,12 +6552,13 @@ html{-webkit-tap-highlight-color:transparent}
   </div></div></details>
   <!-- Blessed Hope: official Ligonier YouTube lecture 21; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-21" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
     <div class="bh-lecture" data-yt="cf3QQuzDdBQ" data-start="0" data-title="The Final Judgment">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 21 / 24</span><h3 class="bh-name">The Final Judgment</h3><span class="bh-scripture">Revelation 20:11–15</span><p class="bh-description">Великий белый престол, книга жизни и уверенность, что Бог праведно будет судить живых и мёртвых.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 21 из 24</span><b class="bh-name">The Final Judgment</b><span class="bh-scripture">Откровение 20:11–15</span><p class="bh-description">Великий белый престол, книга жизни и уверенность, что Бог праведно будет судить живых и мёртвых.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: The Final Judgment"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
     </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 24 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 24 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=cf3QQuzDdBQ" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
 
@@ -6521,15 +6590,15 @@ html{-webkit-tap-highlight-color:transparent}
   </section>
   <!-- Blessed Hope: official Ligonier YouTube lecture 22; uses the site's single lazy YouTube player. -->
   <aside class="bh-study" id="bh-22" data-listen-group aria-label="Дополнительное толкование">
+    <div class="bh-crest"><span>Дополнительное толкование</span></div>
     <div class="bh-lecture" data-yt="njvQngmHzaQ" data-start="0" data-title="The New Jerusalem">
-      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div>
-      <div class="bh-copy"><span class="bh-count">Blessed Hope · 22 / 24</span><h3 class="bh-name">The New Jerusalem</h3><span class="bh-scripture">Revelation 21:1–22:5</span><p class="bh-description">Святой город — обитель Бога с Его искупленным народом. Именно к этой надежде ведут все видения.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
+      <div class="bh-medal" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 89 27v46L50 95 11 73V27Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M43 35v30l24-15z" fill="currentColor"/></svg></div>
+      <div class="bh-copy"><span class="bh-count"><em>Blessed Hope</em> · урок 22 из 24</span><b class="bh-name">The New Jerusalem</b><span class="bh-scripture">Откровение 21:1–22:5</span><p class="bh-description">Святой город — обитель Бога с Его искупленным народом. Именно к этой надежде ведут все видения.</p><small class="pl-music">W. Robert Godfrey · Ligonier Ministries</small></div>
       <button type="button" class="pl-play bh-action" aria-pressed="false" aria-label="Смотреть лекцию: The New Jerusalem"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-stop" d="M7 7h10v10H7z"/></svg><span>Смотреть лекцию</span></button>
     </div>
-    <div class="bh-foot"><span>На английском · Полная лекция · 23 min</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
+    <div class="bh-foot"><span>На английском · Полная лекция · 23 мин</span><a href="https://learn.ligonier.org/series/blessed-hope-book-revelation" target="_blank" rel="noopener">Весь курс на сайте Ligonier ↗</a></div>
     <div class="praise-player" hidden><div class="pp-frame"><div class="pp-slot"></div></div><div class="pp-meta"><span class="pp-kicker">Сейчас воспроизводится</span><b class="pp-title"></b><span class="pp-perf"></span><a class="pp-link" href="https://www.youtube.com/watch?v=njvQngmHzaQ" target="_blank" rel="noopener">Смотреть на YouTube ↗</a></div><button type="button" class="pp-close" aria-label="Закрыть плеер"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
   </aside>
-
   <aside class="lesson"><span class="rubric">Урок, который нужно запомнить</span><p>Последнее слово — не разрушение. Это жизнь с Богом, лицом к лицу, вовеки. «Ей, гряди, Господи Иисусе!»</p></aside>
   <section class="quiz"><span class="rubric">Проверьте себя</span><h3>Почему в Новом Иерусалиме нет храма?</h3><div class="quiz-options"><button class="quiz-opt" data-correct>Потому что Господь Бог и Агнец — его храм</button><button class="quiz-opt">Потому что поклонение прекратилось</button><button class="quiz-opt">Потому что город ещё не достроен</button></div><p class="quiz-feedback" hidden>«Храма же я не видел в нем, ибо Господь Бог Вседержитель — храм его, и Агнец» (21:22). Весь город — жилище Бога.</p></section>
 </section>
